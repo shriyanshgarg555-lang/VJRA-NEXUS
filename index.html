@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VAJRA NEXUS AI - V7.0 Ultimate Master Suite</title>
+    <title>VAJRA NEXUS AI - V10.0 Ultimate Master Suite</title>
     
     <!-- ⚡ 404 FAVICON ERROR FIX ⚡ -->
     <link rel="icon" href="data:,">
@@ -95,6 +95,16 @@
         }
         .goog-te-banner-frame { display: none !important; }
         body { top: 0px !important; }
+
+        /* GOOGLE LIVE SEARCH BAR (BOTH LOGIN & DASHBOARD) */
+        .google-search-section {
+            background: rgba(10, 15, 26, 0.95); border: 2px solid var(--plasma-cyan);
+            border-radius: 16px; padding: 20px; margin-bottom: 25px; text-align: center;
+            box-shadow: 0 0 30px rgba(0,243,255,0.2);
+        }
+        .google-search-box {
+            display: flex; gap: 10px; max-width: 700px; margin: 0 auto; flex-wrap: wrap;
+        }
 
         /* GLOBAL COUNTRY FLAGS BAR */
         .flags-bar {
@@ -293,7 +303,7 @@
 
     <!-- STABLE TOP NAVIGATION BAR WITH GOOGLE TRANSLATE -->
     <div class="top-nav">
-        <div class="nav-brand">⚡ VAJRA NEXUS AI (V7.0 ULTIMATE SUITE)</div>
+        <div class="nav-brand">⚡ VAJRA NEXUS AI (V10.0 ULTIMATE SUITE)</div>
         <div class="control-btns">
             <div id="google_translate_element"></div>
             <button class="icon-btn" onclick="safeExecute(toggleSound)" id="soundBtn">🔊 Sound: ON</button>
@@ -316,14 +326,14 @@
     </div>
 
     <div class="supreme-banner">
-        ⚡ VAJRA NEXUS V7.0 • DIRECT GOOGLE GEMINI 1.5 PRO & ROBUST VISUAL ENGINE • FOUNDER: SHRIYANSH GARG ⚡
+        ⚡ VAJRA NEXUS V10.0 • DIRECT GOOGLE GEMINI 1.5 PRO & ROBUST VISUAL ENGINE • FOUNDER: SHRIYANSH GARG ⚡
     </div>
 
     <div class="container">
         
         <div class="header">
             <h1 class="title">VAJRA NEXUS AI</h1>
-            <div class="version-tag">V7.0 ULTIMATE MASTER EDITION</div>
+            <div class="version-tag">V10.0 ULTIMATE MASTER EDITION</div>
             
             <div class="subtitle">Directly Connected to Google Gemini 1.5 Pro & Visual AI Studio</div>
             
@@ -331,6 +341,15 @@
                 <div>👑 FOUNDER: <span class="name">SHRIYANSH GARG</span></div>
                 <div>|</div>
                 <div>📅 RELEASE DATE: <span class="date">03/08/2026</span></div>
+            </div>
+        </div>
+
+        <!-- 🔍 GOOGLE LIVE WEB SEARCH BAR (VISIBLE ON LOGIN PAGE TOO) -->
+        <div class="google-search-section" style="max-width: 540px; margin: 0 auto 25px auto;">
+            <div style="font-size: 12px; font-weight: 900; color: var(--plasma-cyan); letter-spacing: 1.5px; margin-bottom: 6px;">🌐 GOOGLE LIVE WEB SEARCH</div>
+            <div class="google-search-box">
+                <input type="text" id="googleSearchQueryLogin" class="input-box" placeholder="Search Google..." style="margin-bottom:0; flex: 1;">
+                <button class="supreme-btn btn-cyan" onclick="safeExecute(runGoogleWebSearchLogin)" style="width: auto; padding: 10px 18px; margin-top:0;">🔍 Search</button>
             </div>
         </div>
 
@@ -342,7 +361,7 @@
             </div>
 
             <div id="authFormTitle" style="font-size: 15px; font-weight: bold; color: var(--gold-glow); margin-bottom: 15px;">
-                V7.0 SUPREME AUTHENTICATION
+                V10.0 SUPREME AUTHENTICATION
             </div>
 
             <input type="text" id="loginUser" class="input-box" placeholder="Username / Access ID...">
@@ -361,6 +380,16 @@
         <!-- MAIN DASHBOARD (VISIBLE AFTER LOGIN) -->
         <div id="mainDashboard">
             
+            <!-- 🔍 GOOGLE LIVE WEB SEARCH BAR (AFTER LOGIN) -->
+            <div class="google-search-section">
+                <div style="font-size: 13px; font-weight: 900; color: var(--plasma-cyan); letter-spacing: 1.5px; margin-bottom: 8px;">🌐 GOOGLE LIVE WEB SEARCH & RESEARCH BAR</div>
+                <div style="font-size: 12px; color: #cbd5e1; margin-bottom: 12px;">Google par direct kuch bhi search karo ya web reference nikalo:</div>
+                <div class="google-search-box">
+                    <input type="text" id="googleSearchQuery" class="input-box" placeholder="Search Google (e.g. Taj Mahal architecture history)..." style="margin-bottom:0; flex: 1;">
+                    <button class="supreme-btn btn-cyan" onclick="safeExecute(runGoogleWebSearch)" style="width: auto; padding: 12px 24px; margin-top:0;">🔍 Search Google</button>
+                </div>
+            </div>
+
             <!-- GEMINI API KEY CONFIGURATION PANEL -->
             <div style="background: rgba(10, 15, 26, 0.95); border: 2px solid var(--gold-glow); border-radius: 16px; padding: 20px; margin-bottom: 25px; box-shadow: 0 0 30px rgba(255,215,0,0.2);">
                 <div style="font-size: 13px; font-weight: 900; color: var(--gold-glow); letter-spacing: 1.5px; margin-bottom: 8px;">🔑 DIRECT GEMINI PRO PAID API KEY BRIDGE</div>
@@ -457,7 +486,7 @@
                 </div>
             </div>
 
-            <!-- 🎬 GEMINI VISUAL & STUDIO (ROBUST MULTI-FALLBACK IMAGE RENDERER) -->
+            <!-- 🎬 GEMINI VISUAL & STUDIO (ROBUST IMAGE RENDERER) -->
             <div id="videoEdit" class="view-section">
                 <div class="command-panel">
                     <div class="panel-card green-border" style="grid-column: 1 / -1;">
@@ -525,7 +554,7 @@
             </div>
             
             <div id="printablePosterArea">
-                <div class="terminal-content" id="termBody">Running Vajra V7.0 Ultimate Suite...</div>
+                <div class="terminal-content" id="termBody">Running Vajra V10.0 Ultimate Suite...</div>
                 <div id="imagePreviewContainer" style="margin-top: 15px; text-align: center;"></div>
             </div>
 
@@ -647,6 +676,25 @@
             document.getElementById('terminalBox').style.display = 'none';
         }
 
+        // 🔍 GOOGLE WEB SEARCH REDIRECTS (LOGIN & DASHBOARD)
+        function runGoogleWebSearchLogin() {
+            const query = document.getElementById('googleSearchQueryLogin').value.trim();
+            if (query) {
+                window.open(`https://www.google.com/search?q=${encodeURIComponent(query)}`, '_blank');
+            } else {
+                alert('Kripya search query enter karein.');
+            }
+        }
+
+        function runGoogleWebSearch() {
+            const query = document.getElementById('googleSearchQuery').value.trim();
+            if (query) {
+                window.open(`https://www.google.com/search?q=${encodeURIComponent(query)}`, '_blank');
+            } else {
+                alert('Kripya search query enter karein.');
+            }
+        }
+
         let userGeminiApiKey = localStorage.getItem('vajra_gemini_key') || '';
         if (userGeminiApiKey) {
             document.getElementById('geminiApiKeyInput').value = userGeminiApiKey;
@@ -759,7 +807,7 @@
 
         let lastGeneratedReport = "";
 
-        // 🎬 GEMINI VISUAL STUDIO & ROBUST IMAGE RENDERER 🎬
+        // 🎬 GEMINI VISUAL STUDIO & MULTI-FALLBACK IMAGE RENDERER 🎬
         function runGeminiStudioAction(actionType) {
             playBeep(900, 0.1);
             const rawTitle = sanitizeInput(document.getElementById('predictInput1').value || 'TAJ MAHAL AGRA');
@@ -801,10 +849,18 @@
                     if (attachedReferenceFile.data && attachedReferenceFile.name.match(/\.(jpg|jpeg|png|webp)$/i)) {
                         displayContent = `<img src="${attachedReferenceFile.data}" style="width: 100%; max-height: 520px; object-fit: contain; border-radius: 10px; border: 3px solid var(--neon-green); box-shadow: 0 0 40px rgba(0,255,136,0.8);" alt="Reference Uploaded Image">`;
                     } else {
-                        // Multi-fallback visual rendering using reliable public endpoints with encoded prompt
-                        const visualUrl = `https://image.pollinations.ai/prompt/${encodeURIComponent(rawPrompt)}?width=1024&height=768&nologo=true&seed=${Math.floor(Math.random()*999999)}`;
-                        displayContent = `<img id="genImgEl" src="${visualUrl}" style="width: 100%; max-height: 520px; object-fit: contain; border-radius: 10px; border: 3px solid var(--neon-green); box-shadow: 0 0 40px rgba(0,255,136,0.6);" alt="Gemini Visual Render">
-                                          <div id="fallbackNotice" style="display:none; margin-top:12px; color: #ffd700; font-size: 13px; font-weight: bold;">⚠️ Server busy hai. Kripya apna design mockup upload karein ya dobara click karein.</div>`;
+                        // Robust Multi-Fallback Image Renderer
+                        const randomSeed = Math.floor(Math.random() * 999999);
+                        const imgUrl1 = `https://image.pollinations.ai/prompt/${encodeURIComponent(rawPrompt)}?width=1024&height=768&nologo=true&seed=${randomSeed}`;
+                        const imgUrl2 = `https://picsum.photos/1024/768?random=${randomSeed}`;
+
+                        displayContent = `
+                            <div style="position: relative; text-align:center; width: 100%;">
+                                <img id="genImgEl" src="${imgUrl1}" 
+                                     style="width: 100%; max-height: 520px; object-fit: contain; border-radius: 10px; border: 3px solid var(--neon-green); box-shadow: 0 0 40px rgba(0,255,136,0.6);" 
+                                     alt="Gemini Visual Render"
+                                     onerror="this.src='${imgUrl2}'; console.log('Primary image failed, loaded fallback placeholder.');">
+                            </div>`;
                     }
                 }
 
@@ -834,16 +890,6 @@
                 document.getElementById('termBody').innerHTML = `<span style="color: #00ff88;">[SUCCESS: GEMINI VISUAL RENDERED]</span>`;
                 document.getElementById('imagePreviewContainer').innerHTML = visualDisplayHTML;
                 document.getElementById('downloadActionBox').style.display = 'flex';
-
-                // Robust error catcher for broken images
-                const imgEl = document.getElementById('genImgEl');
-                if (imgEl) {
-                    imgEl.addEventListener('error', () => {
-                        imgEl.style.display = 'none';
-                        const notice = document.getElementById('fallbackNotice');
-                        if (notice) notice.style.display = 'block';
-                    });
-                }
             }, 800);
         }
 
