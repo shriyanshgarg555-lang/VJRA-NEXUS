@@ -6,7 +6,7 @@
     <title>VAJRA NEXUS AI - V2.0 Enterprise Operating System Core</title>
     
     <!-- ⚡ SEO & SCHEMA META STRUCTURE ⚡ -->
-    <meta name="description" content="VAJRA NEXUS AI V2 - The World's No.1 Advanced Quantum AI & Cyber Protection Operating System, designed and developed by Shriyansh Garg.">
+    <meta name="description" content="VAJRA NEXUS AI V2 - The World's No.1 Advanced Quantum AI, Website Graphic Design, Visuals & Motion Graphics Operating System, designed and developed by Shriyansh Garg.">
     <meta name="author" content="Shriyansh Garg">
     <link rel="icon" href="data:,">
 
@@ -106,7 +106,7 @@
         .goog-te-banner-frame { display: none !important; }
         body { top: 0px !important; }
 
-        /* COMMAND PALETTE MODAL (Ctrl+K) */
+        /* COMMAND PALETTE MODAL (Ctrl+K) WITH LIVE SEARCH */
         #commandPaletteModal {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(3, 7, 18, 0.85); backdrop-filter: blur(12px);
@@ -344,16 +344,23 @@
 </head>
 <body class="theme-aurora">
 
-    <!-- COMMAND PALETTE MODAL (Ctrl + K) -->
+    <!-- COMMAND PALETTE MODAL (Ctrl + K) WITH LIVE SEARCH -->
     <div id="commandPaletteModal" onclick="if(event.target === this) toggleCommandPalette()">
         <div class="palette-box">
             <input type="text" id="paletteInput" class="palette-input" placeholder="Type a command or search sections (Press ESC to close)..." oninput="filterPalette(this.value)">
             <div class="palette-results" id="paletteResults">
-                <div class="palette-item" onclick="switchTab('growth', null); toggleCommandPalette();">🚀 Go to Launch & Graphs</div>
-                <div class="palette-item" onclick="switchTab('workspace', null); toggleCommandPalette();">🤖 Open Gemini AI Hub</div>
-                <div class="palette-item" onclick="switchTab('videoEdit', null); toggleCommandPalette();">🎬 Open Gemini Visual Studio</div>
-                <div class="palette-item" onclick="switchTab('docConverter', null); toggleCommandPalette();">🔄 File & Document Converter</div>
-                <div class="palette-item" onclick="switchTab('feedback', null); toggleCommandPalette();">💡 Send Feedback / Vajra Labs</div>
+                <div class="palette-item" data-tab="growth" onclick="switchTab('growth', null); toggleCommandPalette();">🚀 Go to Launch & Graphs</div>
+                <div class="palette-item" data-tab="workspace" onclick="switchTab('workspace', null); toggleCommandPalette();">🤖 Open Gemini AI Hub</div>
+                <div class="palette-item" data-tab="videoEdit" onclick="switchTab('videoEdit', null); toggleCommandPalette();">🎬 Open Gemini Visual Studio & Motion Graphics</div>
+                <div class="palette-item" data-tab="docConverter" onclick="switchTab('docConverter', null); toggleCommandPalette();">🔄 File & Document Converter Suite</div>
+                <div class="palette-item" data-tab="themeAdvisor" onclick="switchTab('themeAdvisor', null); toggleCommandPalette();">🎨 Theme & Color Advisor</div>
+                <div class="palette-item" data-tab="portfolioStudio" onclick="switchTab('portfolioStudio', null); toggleCommandPalette();">💼 AI Professional Portfolio Studio</div>
+                <div class="palette-item" data-tab="cyber" onclick="switchTab('cyber', null); toggleCommandPalette();">🛡️ Cyber Shield & Security</div>
+                <div class="palette-item" data-tab="social" onclick="switchTab('social', null); toggleCommandPalette();">📱 Social Hub & Connections</div>
+                <div class="palette-item" data-tab="creator" onclick="switchTab('creator', null); toggleCommandPalette();">🎨 Creator Assets & Design Gradients</div>
+                <div class="palette-item" data-tab="quiz" onclick="switchTab('quiz', null); toggleCommandPalette();">🧪 Legal Hub & SAMPADA 2.0</div>
+                <div class="palette-item" data-tab="feedback" onclick="switchTab('feedback', null); toggleCommandPalette();">💡 VAJRA Labs & Community Idea Hub</div>
+                <div class="palette-item" data-tab="principles" onclick="switchTab('principles', null); toggleCommandPalette();">📜 Vision & Design Philosophy</div>
             </div>
         </div>
     </div>
@@ -393,7 +400,7 @@
     </div>
 
     <div class="supreme-banner">
-        ⚡ VAJRA NEXUS V2.0 OS • DIRECT GOOGLE GEMINI 1.5 PRO & FULL MASSIVE SUITE • CREATOR: Shriyansh Garg ⚡
+        ⚡ VAJRA NEXUS V2.0 OS • WEBSITE GRAPHIC DESIGN, VISUALS & MOTION GRAPHICS • CREATOR: Shriyansh Garg ⚡
     </div>
 
     <div class="container">
@@ -411,7 +418,7 @@
             </div>
         </div>
 
-        <!-- 🔍 GOOGLE LIVE WEB SEARCH BAR (LOGIN PAGE) -->
+        <!-- 🔍 GOOGLE LIVE SEARCH BAR (LOGIN PAGE) -->
         <div class="google-search-section" style="max-width: 540px; margin: 0 auto 25px auto;">
             <div style="font-size: 12px; font-weight: 900; color: var(--plasma-cyan); letter-spacing: 1.5px; margin-bottom: 6px;">🌐 GOOGLE LIVE WEB SEARCH & QUERY BAR</div>
             <div class="google-search-box">
@@ -612,16 +619,16 @@
                 </div>
             </div>
 
-            <!-- 3. GEMINI VISUAL STUDIO -->
+            <!-- 3. GEMINI VISUAL STUDIO & MOTION GRAPHICS -->
             <div id="videoEdit" class="view-section">
                 <div class="command-panel">
                     <div class="panel-card green-border">
-                        <div class="panel-title green">🎬 Gemini Visual Studio & Direct Image Generator</div>
-                        <div class="panel-desc">Type your exact design prompt below (e.g. "Taj Mahal Agra", "Shahi Mahal Candle Box"), and render professional visuals instantly.</div>
+                        <div class="panel-title green">🎬 Gemini Visual Studio & Motion Graphics Hub</div>
+                        <div class="panel-desc">Website Graphic Design, Visuals & Motion Graphics Renderer. Type your exact design prompt below:</div>
                         
-                        <input type="text" id="predictInput1" class="input-box" placeholder="Project Title..." value="TAJ MAHAL AGRA">
+                        <input type="text" id="predictInput1" class="input-box" placeholder="Project Title..." value="SHAHI MAHAL CANDLE PACKAGING">
                         
-                        <textarea id="predictInput2" class="input-box" rows="3" placeholder="Enter exact prompt for image generation...">A majestic photorealistic architectural photograph of the Taj Mahal in Agra at sunset, glowing white marble reflecting in the calm Yamuna river waters, lush Mughal gardens, cinematic 4K photography.</textarea>
+                        <textarea id="predictInput2" class="input-box" rows="3" placeholder="Enter exact prompt for image/motion generation...">A luxury high-end commercial packaging design for Shahi Mahal luxury scented candles, matte black box with intricate gold foil royal Indian motifs, clean typography, minimalist aesthetic, professional 3D product render.</textarea>
                         
                         <div class="upload-wrapper" style="border-color: var(--neon-green);">
                             <label for="assetUpload" id="uploadLabel" style="color: var(--neon-green); font-weight: bold;">📁 UPLOAD REFERENCE FILE / PHOTO (ALL FORMATS SUPPORTED)</label>
@@ -629,9 +636,9 @@
                         </div>
 
                         <div style="display: flex; gap: 10px; margin-top: 5px; flex-wrap: wrap; margin-bottom: 20px;">
-                            <button class="supreme-btn btn-green" onclick="safeExecute(() => runGeminiStudioAction('render'))" style="flex: 1;">⚡ Render Gemini Visual</button>
-                            <button class="supreme-btn btn-cyan" onclick="safeExecute(() => runGeminiStudioAction('editor'))" style="flex: 1;">🛠️ Open Advanced Photopea Editor</button>
-                            <button class="supreme-btn btn-gold" onclick="safeExecute(() => runGeminiStudioAction('audio'))" style="flex: 1;">🎵 Play Audio/BGM Stream</button>
+                            <button class="supreme-btn btn-green" onclick="safeExecute(() => runGeminiStudioAction('render'))" style="flex: 1;">⚡ Render Visual & Motion</button>
+                            <button class="supreme-btn btn-cyan" onclick="safeExecute(() => runGeminiStudioAction('editor'))" style="flex: 1;">🛠️ Open Photopea Editor</button>
+                            <button class="supreme-btn btn-gold" onclick="safeExecute(() => runGeminiStudioAction('audio'))" style="flex: 1;">🎵 Play BGM / Audio Stream</button>
                         </div>
 
                         <!-- SECURE EMBEDDED PROFESSIONAL WORKSPACE FRAME -->
@@ -861,13 +868,15 @@
             playBeep(700, 0.08);
         }
 
-        // Command Palette Toggle (Ctrl + K)
+        // Command Palette Toggle (Ctrl + K) with Live Search Filtering
         function toggleCommandPalette() {
             const modal = document.getElementById('commandPaletteModal');
             if(modal.style.display === 'flex') {
                 modal.style.display = 'none';
             } else {
                 modal.style.display = 'flex';
+                document.getElementById('paletteInput').value = '';
+                filterPalette('');
                 document.getElementById('paletteInput').focus();
             }
         }
@@ -882,8 +891,18 @@
             }
         });
 
+        // Live filtering for Ctrl+K Command Palette
         function filterPalette(query) {
-            // Palette search filtering logic
+            const filter = query.toLowerCase();
+            const items = document.querySelectorAll('.palette-item');
+            items.forEach(item => {
+                const text = item.innerText.toLowerCase();
+                if(text.includes(filter)) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
         }
 
         // VAJRA Labs Idea Submission
@@ -1205,11 +1224,11 @@ ${geminiReply}`;
 
         let lastGeneratedReport = "";
 
-        // GEMINI VISUAL STUDIO
+        // GEMINI VISUAL STUDIO & MOTION GRAPHICS
         function runGeminiStudioAction(actionType) {
             playBeep(900, 0.1);
-            const rawTitle = sanitizeInput(document.getElementById('predictInput1').value || 'TAJ MAHAL AGRA');
-            const rawPrompt = sanitizeInput(document.getElementById('predictInput2').value || 'A majestic photorealistic architectural photograph of the Taj Mahal in Agra at sunset');
+            const rawTitle = sanitizeInput(document.getElementById('predictInput1').value || 'SHAHI MAHAL CANDLE PACKAGING');
+            const rawPrompt = sanitizeInput(document.getElementById('predictInput2').value || 'A luxury high-end commercial packaging design for Shahi Mahal luxury scented candles');
 
             const box = document.getElementById('terminalBox');
             const iframeContainer = document.getElementById('embeddedStudioContainer');
@@ -1225,10 +1244,10 @@ ${geminiReply}`;
             }
 
             box.style.display = 'block';
-            document.getElementById('termTitle').innerText = `⚡ GEMINI VISUAL STUDIO (${actionType.toUpperCase()})`;
+            document.getElementById('termTitle').innerText = `⚡ GEMINI VISUAL & MOTION STUDIO (${actionType.toUpperCase()})`;
             document.getElementById('termTime').innerText = 'TIME: ' + new Date().toLocaleTimeString();
 
-            document.getElementById('termBody').innerHTML = `<span style="color: #00f3ff;">Processing visual render for: "${rawPrompt}"...</span>`;
+            document.getElementById('termBody').innerHTML = `<span style="color: #00f3ff;">Processing graphic design & motion render for: "${rawPrompt}"...</span>`;
             document.getElementById('downloadActionBox').style.display = 'none';
             document.getElementById('imagePreviewContainer').innerHTML = '';
             box.scrollIntoView({ behavior: 'smooth' });
@@ -1239,9 +1258,9 @@ ${geminiReply}`;
                 if (actionType === 'audio') {
                     displayContent = `
                         <div style="background: #1e1b4b; padding: 30px; border-radius: 12px; border: 2px solid var(--gold-glow); text-align: center;">
-                            <h3 style="color: var(--gold-glow); margin-top:0;">🎵 Gemini AI Audio Stream Active</h3>
-                            <p style="color: #cbd5e1; font-size: 13px;">Commercial ambient soundscapes tuned for "${rawTitle}".</p>
-                            <div style="margin-top: 15px; font-weight: bold; color: var(--neon-green);">▶ Playing 4K Sound Stream... Active</div>
+                            <h3 style="color: var(--gold-glow); margin-top:0;">🎵 Motion Graphics BGM Audio Stream</h3>
+                            <p style="color: #cbd5e1; font-size: 13px;">Cinematic soundscapes tuned for "${rawTitle}".</p>
+                            <div style="margin-top: 15px; font-weight: bold; color: var(--neon-green);">▶ Playing 4K Motion Audio Stream... Active</div>
                         </div>`;
                 } else {
                     if (attachedReferenceFile.data && attachedReferenceFile.name.match(/\.(jpg|jpeg|png|webp)$/i)) {
@@ -1255,7 +1274,7 @@ ${geminiReply}`;
                             <div style="position: relative; text-align:center; width: 100%;">
                                 <img id="genImgEl" src="${imgUrl1}" 
                                      style="width: 100%; max-height: 520px; object-fit: contain; border-radius: 10px; border: 3px solid var(--neon-green); box-shadow: 0 0 40px rgba(0,255,136,0.6);" 
-                                     alt="Gemini Visual Render"
+                                     alt="Gemini Visual & Motion Render"
                                      onerror="this.src='${imgUrl2}'; console.log('Primary image failed, loaded fallback placeholder.');">
                             </div>`;
                     }
@@ -1266,7 +1285,7 @@ ${geminiReply}`;
                     <div style="width: 100%; max-width: 800px; background: linear-gradient(135deg, #061525 0%, #020813 100%); padding: 40px 30px; border-radius: 12px; border: 4px solid var(--neon-green); text-align: center; box-shadow: 0 0 60px rgba(0,255,136,0.4); box-sizing: border-box; display: flex; flex-direction: column; justify-content: space-between; position: relative; overflow: hidden;">
                         
                         <div style="position: relative; z-index: 1;">
-                            <span style="background: var(--neon-green); color: #000; padding: 6px 18px; font-size: 11px; font-weight: 900; border-radius: 4px; letter-spacing: 2.5px;">GEMINI VISUAL STUDIO RENDER</span>
+                            <span style="background: var(--neon-green); color: #000; padding: 6px 18px; font-size: 11px; font-weight: 900; border-radius: 4px; letter-spacing: 2.5px;">WEBSITE GRAPHIC DESIGN & MOTION STUDIO</span>
                             <h2 style="color: var(--neon-green); margin: 22px 0 8px 0; font-size: 30px; font-family: serif; text-shadow: 0 0 20px rgba(0,255,136,0.8);">${rawTitle.toUpperCase()}</h2>
                             <p style="color: #6ee7b7; font-size: 12px; margin: 0 0 20px 0; letter-spacing: 2px; text-transform: uppercase; font-weight: bold;">Prompt: "${rawPrompt}"</p>
                         </div>
@@ -1276,18 +1295,18 @@ ${geminiReply}`;
                         </div>
 
                         <div style="position: relative; z-index: 1;">
-                            <div style="color: #ffffff; font-size: 12px; font-weight: 600; letter-spacing: 3px; margin-bottom: 4px;">AUTHENTIC AI CREATION BY VAJRA NEXUS</div>
+                            <div style="color: #ffffff; font-size: 12px; font-weight: 600; letter-spacing: 3px; margin-bottom: 4px;">AUTHENTIC CREATION BY Shriyansh Garg</div>
                             <div style="color: #94a3b8; font-size: 10px; letter-spacing: 1.5px;">Powered by Google Gemini Visual Engine • Status: 100% Operational</div>
                         </div>
                     </div>
                 </div>`;
 
-                lastGeneratedReport = `VAJRA NEXUS AI - GEMINI VISUAL REPORT
+                lastGeneratedReport = `VAJRA NEXUS AI - VISUAL & MOTION REPORT
 Title: ${rawTitle}
 Prompt: ${rawPrompt}
 Status: Rendered Successfully`;
 
-                document.getElementById('termBody').innerHTML = `<span style="color: #00ff88;">[SUCCESS: GEMINI VISUAL RENDERED]</span>`;
+                document.getElementById('termBody').innerHTML = `<span style="color: #00ff88;">[SUCCESS: VISUAL & MOTION RENDERED]</span>`;
                 document.getElementById('imagePreviewContainer').innerHTML = visualDisplayHTML;
                 document.getElementById('downloadActionBox').style.display = 'flex';
             }, 800);
@@ -1297,13 +1316,13 @@ Status: Rendered Successfully`;
             const blob = new Blob([lastGeneratedReport], { type: 'text/plain;charset=utf-8' });
             const url = URL.createObjectURL(blob);
             const a = document.createElement('a');
-            a.href = url; a.download = 'Vajra_Gemini_Report.txt'; a.click();
+            a.href = url; a.download = 'Vajra_Design_Report.txt'; a.click();
         }
 
         function downloadPosterJPG() {
             html2canvas(document.getElementById('printablePosterArea'), { backgroundColor: '#030712', scale: 2, useCORS: true }).then(canvas => {
                 const link = document.createElement('a');
-                link.download = 'Vajra_Gemini_Image.jpg';
+                link.download = 'Vajra_Design_Visual.jpg';
                 link.href = canvas.toDataURL('image/jpeg', 0.95);
                 link.click();
             });
