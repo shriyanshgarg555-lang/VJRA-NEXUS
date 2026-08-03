@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VAJRA NEXUS AI - V10.0 Ultimate Master Suite</title>
+    <title>VAJRA NEXUS AI - V10.1 Ultimate Master Suite</title>
     
     <!-- ⚡ 404 FAVICON ERROR FIX ⚡ -->
     <link rel="icon" href="data:,">
@@ -303,7 +303,7 @@
 
     <!-- STABLE TOP NAVIGATION BAR WITH GOOGLE TRANSLATE -->
     <div class="top-nav">
-        <div class="nav-brand">⚡ VAJRA NEXUS AI (V10.0 ULTIMATE SUITE)</div>
+        <div class="nav-brand">⚡ VAJRA NEXUS AI (V10.1 ULTIMATE SUITE)</div>
         <div class="control-btns">
             <div id="google_translate_element"></div>
             <button class="icon-btn" onclick="safeExecute(toggleSound)" id="soundBtn">🔊 Sound: ON</button>
@@ -326,14 +326,14 @@
     </div>
 
     <div class="supreme-banner">
-        ⚡ VAJRA NEXUS V10.0 • DIRECT GOOGLE GEMINI 1.5 PRO & ROBUST VISUAL ENGINE • FOUNDER: SHRIYANSH GARG ⚡
+        ⚡ VAJRA NEXUS V10.1 • DIRECT GOOGLE GEMINI 1.5 PRO & ROBUST VISUAL ENGINE • FOUNDER: SHRIYANSH GARG ⚡
     </div>
 
     <div class="container">
         
         <div class="header">
             <h1 class="title">VAJRA NEXUS AI</h1>
-            <div class="version-tag">V10.0 ULTIMATE MASTER EDITION</div>
+            <div class="version-tag">V10.1 ULTIMATE MASTER EDITION</div>
             
             <div class="subtitle">Directly Connected to Google Gemini 1.5 Pro & Visual AI Studio</div>
             
@@ -361,7 +361,7 @@
             </div>
 
             <div id="authFormTitle" style="font-size: 15px; font-weight: bold; color: var(--gold-glow); margin-bottom: 15px;">
-                V10.0 SUPREME AUTHENTICATION
+                V10.1 SUPREME AUTHENTICATION
             </div>
 
             <input type="text" id="loginUser" class="input-box" placeholder="Username / Access ID...">
@@ -554,7 +554,7 @@
             </div>
             
             <div id="printablePosterArea">
-                <div class="terminal-content" id="termBody">Running Vajra V10.0 Ultimate Suite...</div>
+                <div class="terminal-content" id="termBody">Running Vajra V10.1 Ultimate Suite...</div>
                 <div id="imagePreviewContainer" style="margin-top: 15px; text-align: center;"></div>
             </div>
 
@@ -749,15 +749,15 @@
             box.scrollIntoView({ behavior: 'smooth' });
         }
 
-        // 🚀 LIVE GEMINI PRO API QUERY HANDLER 🚀
+        // 🚀 LIVE GEMINI PRO API QUERY HANDLER (FIXED MODEL ENDPOINT) 🚀
         async function runGeminiLiveQuery() {
             const query = sanitizeInput(document.getElementById('openAISearchInput').value || "Shahi Mahal candle box packaging and branding concept");
             const box = document.getElementById('terminalBox');
             box.style.display = 'block';
-            document.getElementById('termTitle').innerText = '🤖 GOOGLE GEMINI 1.5 PRO LIVE CORE';
+            document.getElementById('termTitle').innerText = '🤖 GOOGLE GEMINI PRO LIVE CORE';
             document.getElementById('termTime').innerText = 'TIME: ' + new Date().toLocaleTimeString();
 
-            document.getElementById('termBody').innerHTML = `<span style="color: #00f3ff;">Connecting directly to Gemini 1.5 Pro for query: "${query}"...</span>`;
+            document.getElementById('termBody').innerHTML = `<span style="color: #00f3ff;">Connecting directly to Gemini Pro for query: "${query}"...</span>`;
             document.getElementById('imagePreviewContainer').innerHTML = '';
             document.getElementById('downloadActionBox').style.display = 'none';
             box.scrollIntoView({ behavior: 'smooth' });
@@ -767,9 +767,9 @@
                     document.getElementById('termBody').innerHTML = `<span style="color: #00ff88;">[GEMINI PRO SYNTHESIS COMPLETE (SIMULATION MODE)]</span>`;
                     document.getElementById('imagePreviewContainer').innerHTML = `
                         <div style="background: rgba(10,15,26,0.95); padding: 25px; border-radius: 12px; border: 2px solid var(--gold-glow); text-align: left;">
-                            <h3 style="color: var(--gold-glow); margin-top:0;">💡 Gemini 1.5 Pro Strategic Analysis</h3>
+                            <h3 style="color: var(--gold-glow); margin-top:0;">💡 Gemini Pro Strategic Analysis</h3>
                             <p style="color: #e2e8f0; font-size: 14px; line-height: 1.7;"><b>Query:</b> "${query}"</p>
-                            <p style="color: #cbd5e1; font-size: 13px; line-height: 1.6;">Gemini Pro Core Analysis: For premium commercial design and brand architecture, combine minimalist luxury typography, matte black textures, and gold foil accents to maximize visual appeal. <br><br><i>(Note: To get live responses directly from your paid Gemini account, enter and save your Gemini API Key in the panel above!)</i></p>
+                            <p style="color: #cbd5e1; font-size: 13px; line-height: 1.6;">Gemini Pro Core Analysis: For premium commercial design and brand architecture, combine minimalist luxury typography, matte black textures, and gold foil accents.</p>
                         </div>`;
                     document.getElementById('downloadActionBox').style.display = 'flex';
                 }, 800);
@@ -777,7 +777,8 @@
             }
 
             try {
-                const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${userGeminiApiKey}`;
+                // FIXED ENDPOINT: gemini-1.5-pro
+                const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-pro:generateContent?key=${userGeminiApiKey}`;
                 const response = await fetch(endpoint, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
@@ -794,7 +795,7 @@
                 document.getElementById('termBody').innerHTML = `<span style="color: #00ff88;">[SUCCESS: LIVE GEMINI PRO RESPONSE RECEIVED]</span>`;
                 document.getElementById('imagePreviewContainer').innerHTML = `
                     <div style="background: rgba(10,15,26,0.95); padding: 25px; border-radius: 12px; border: 2px solid var(--gold-glow); text-align: left;">
-                        <h3 style="color: var(--gold-glow); margin-top:0;">💡 Google Gemini 1.5 Pro Response</h3>
+                        <h3 style="color: var(--gold-glow); margin-top:0;">💡 Google Gemini Pro Response</h3>
                         <p style="color: #e2e8f0; font-size: 14px; line-height: 1.7; white-space: pre-wrap;">${sanitizeInput(geminiReply)}</p>
                     </div>`;
                 document.getElementById('downloadActionBox').style.display = 'flex';
