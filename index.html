@@ -972,8 +972,10 @@
         // ==========================================
         let userGeminiApiKey = localStorage.getItem('vajra_gemini_key') || '';
         if (userGeminiApiKey) {
-            document.getElementById('geminiApiKeyInput').value = userGeminiApiKey;
-            document.getElementById('apiKeyStatus').innerText = 'Status: API Key Loaded Securely from Local Storage ✅';
+            const keyInputEl = document.getElementById('geminiApiKeyInput');
+            const statusEl = document.getElementById('apiKeyStatus');
+            if(keyInputEl) keyInputEl.value = userGeminiApiKey;
+            if(statusEl) statusEl.innerText = 'Status: API Key Loaded Securely from Local Storage ✅';
         }
 
         function saveGeminiKey() {
@@ -990,7 +992,8 @@
         }
 
         async function runGeminiLiveQuery() {
-            const query = sanitizeInput(document.getElementById('openAISearchInput').value || "Shahi Mahal candle box packaging and branding concept");
+            const queryInput = document.getElementById('openAISearchInput');
+            const query = sanitizeInput(queryInput ? queryInput.value : "Shahi Mahal candle box packaging and branding concept");
             const box = document.getElementById('terminalBox');
             box.style.display = 'block';
             document.getElementById('termTitle').innerText = '🤖 VAJRA NEXUS AI X26 - REAL GEMINI BRIDGE';
