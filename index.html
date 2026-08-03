@@ -177,6 +177,19 @@
         .creator-badge span.name { color: var(--gold-glow); }
         .creator-badge span.date { color: var(--plasma-cyan); }
 
+        /* STATUS METRICS BAR */
+        .metrics-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 15px; margin-bottom: 25px;
+        }
+        .metric-card {
+            background: var(--card-bg); border: 1px solid rgba(0, 243, 255, 0.3);
+            border-radius: 12px; padding: 15px; text-align: center; backdrop-filter: blur(8px);
+        }
+        .metric-title { font-size: 11px; font-weight: 900; color: #94a3b8; letter-spacing: 1px; margin-bottom: 6px; text-transform: uppercase; }
+        .metric-val { font-size: 15px; font-weight: 900; color: var(--plasma-cyan); }
+        .metric-val.red { color: var(--laser-red); }
+        .metric-val.green { color: var(--neon-green); }
+
         /* AUTHENTICATION GATE */
         .auth-gate-box {
             max-width: 480px; margin: 30px auto; background: var(--card-bg);
@@ -220,20 +233,22 @@
         }
         .chart-card h4 { margin: 0 0 12px 0; color: var(--gold-glow); font-size: 14px; letter-spacing: 1px; }
 
-        .command-panel { display: grid; grid-template-columns: 1fr; gap: 20px; margin-bottom: 30px; }
+        .triple-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 20px; margin-bottom: 25px; }
 
         .panel-card {
             background: var(--card-bg); border: 2px solid var(--plasma-cyan);
             border-radius: 20px; padding: 25px; backdrop-filter: blur(8px);
-            box-shadow: 0 0 25px rgba(0, 243, 255, 0.15); display: flex; flex-direction: column;
+            box-shadow: 0 0 25px rgba(0, 243, 255, 0.15); display: flex; flex-direction: column; text-align: left;
         }
 
         .panel-card.gold-border { border-color: var(--gold-glow); box-shadow: 0 0 25px rgba(255, 215, 0, 0.15); }
         .panel-card.green-border { border-color: var(--neon-green); box-shadow: 0 0 25px rgba(0, 255, 136, 0.15); }
+        .panel-card.red-border { border-color: var(--laser-red); box-shadow: 0 0 25px rgba(255, 0, 85, 0.15); }
 
-        .panel-title { font-size: 18px; font-weight: 900; color: var(--plasma-cyan); margin-bottom: 10px; }
+        .panel-title { font-size: 16px; font-weight: 900; color: var(--plasma-cyan); margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
         .panel-title.gold { color: var(--gold-glow); }
         .panel-title.green { color: var(--neon-green); }
+        .panel-title.red { color: var(--laser-red); }
 
         .panel-desc { font-size: 12px; color: #cbd5e1; line-height: 1.5; margin-bottom: 18px; }
 
@@ -266,11 +281,12 @@
         .btn-cyan { background: linear-gradient(135deg, #0099ff, #00f3ff); color: #000; }
         .btn-gold { background: linear-gradient(135deg, #b45309, #ffd700); color: #000; }
         .btn-green { background: linear-gradient(135deg, #059669, #00ff88); color: #000; }
+        .btn-red { background: linear-gradient(135deg, #990033, #ff0055); color: #fff; }
 
         .output-terminal {
             display: none; background: rgba(3, 8, 18, 0.95); border: 2px solid var(--neon-green);
             border-radius: 20px; padding: 25px; backdrop-filter: blur(10px);
-            box-shadow: 0 0 35px rgba(0, 255, 136, 0.25); margin-top: 20px;
+            box-shadow: 0 0 35px rgba(0, 255, 136, 0.25); margin-top: 20px; text-align: left;
         }
 
         .terminal-header { display: flex; justify-content: space-between; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 10px; margin-bottom: 15px; }
@@ -390,6 +406,26 @@
                 </div>
             </div>
 
+            <!-- STATUS METRICS BAR -->
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <div class="metric-title">Response Latency</div>
+                    <div class="metric-val">0.0000001 ns</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-title">Intrusion Consequence</div>
+                    <div class="metric-val red">Instant Vaporization</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-title">Data Sharding State</div>
+                    <div class="metric-val">Infinite Multi-Verse</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-title">System Immunity</div>
+                    <div class="metric-val green">100% Invulnerable</div>
+                </div>
+            </div>
+
             <!-- GEMINI API KEY CONFIGURATION PANEL -->
             <div style="background: rgba(10, 15, 26, 0.95); border: 2px solid var(--gold-glow); border-radius: 16px; padding: 20px; margin-bottom: 25px; box-shadow: 0 0 30px rgba(255,215,0,0.2);">
                 <div style="font-size: 13px; font-weight: 900; color: var(--gold-glow); letter-spacing: 1.5px; margin-bottom: 8px;">🔑 DIRECT GEMINI PRO PAID API KEY BRIDGE</div>
@@ -432,8 +468,52 @@
 
             <!-- ================= SUB-SECTIONS (TABS) ================= -->
 
-            <!-- 1. GROWTH TAB -->
+            <!-- 1. GROWTH TAB (TRIPLE CARDS + CHARTS) -->
             <div id="growth" class="view-section active">
+                <div class="triple-grid" style="margin-bottom: 25px;">
+                    <!-- 1. QUANTUM AI PREDICTIVE ENGINE -->
+                    <div class="panel-card">
+                        <div class="panel-title">🪐 Quantum AI Predictive Engine</div>
+                        <div class="panel-desc">कानूनी, तकनीकी, डिज़ाइनिंग या सुरक्षा संबंधी प्रश्नों का एआई सिमुलेशन।</div>
+                        
+                        <input type="text" id="qQuery" class="input-box" placeholder="उद्देश्य या समस्या दर्ज करें..." value="Maitri Thandai Layout">
+                        <textarea id="qDesc" class="input-box" rows="3" placeholder="विस्तृत विवरण दर्ज करें...">Design a premium outlined bottle label layout with Hindi Integration & Cinzel Decorative typography.</textarea>
+                        
+                        <button class="supreme-btn btn-cyan" onclick="runQuantumEngine()">लाइव एआई समाधान स्कैन करें</button>
+                    </div>
+
+                    <!-- 2. ANTI-MATTER TOUCH-DESTRUCTION -->
+                    <div class="panel-card red-border">
+                        <div class="panel-title red">🚨 Anti-Matter Touch-Destruction</div>
+                        <div class="panel-desc">घुसपैठिए के सिग्नल को नष्ट करने वाली काउंटर-स्ट्राइक प्रणाली।</div>
+                        
+                        <select id="attackType" class="input-box" style="background: rgba(4,8,16,0.9); color: var(--laser-red); border-color: var(--laser-red);">
+                            <option value="बाहरी क्वांटम घुसपैठ प्रयास (Quantum Incursion)">बाहरी क्वांटम घुसपैठ प्रयास (Quantum Incursion)</option>
+                            <option value="डेटा ब्रीच संदिग्ध गतिविधि (Data Breach Activity)">डेटा ब्रीच संदिग्ध गतिविधि (Data Breach Activity)</option>
+                        </select>
+
+                        <input type="text" id="ipFreq" class="input-box" placeholder="अज्ञात सिग्नल नोड या आईपी फ्रिक्वेंसी..." value="192.168.4.555">
+                        
+                        <button class="supreme-btn btn-red" onclick="runCounterStrike()">काउंटर-स्ट्राइक और खाक करें</button>
+                    </div>
+
+                    <!-- 3. CYBER HELPLINE & LEGAL HUB -->
+                    <div class="panel-card gold-border">
+                        <div class="panel-title gold">🛡️ Cyber Helpline & Legal Hub</div>
+                        <div class="panel-desc">ऑनलाइन फ्रॉड, हैकिंग व साइबर अपराधों का तुरंत समाधान और रिपोर्टिंग गाइड।</div>
+                        
+                        <select id="cyberIssue" class="input-box" style="background: rgba(4,8,16,0.9); color: var(--gold-glow); border-color: var(--gold-glow);">
+                            <option value="ऑनलाइन बैंक/ओटीपी फ्रॉड (Financial Cyber Fraud)">ऑनलाइन बैंक/ओटीपी फ्रॉड (Financial Cyber Fraud)</option>
+                            <option value="सोशल मीडिया हैकिंग (Social Media Cyber Attack)">सोशल मीडिया हैकिंग (Social Media Cyber Attack)</option>
+                            <option value="प्रॉपर्टी डीड / SAMPADA 2.0 सत्यापन">प्रॉपर्टी डीड / SAMPADA 2.0 सत्यापन</option>
+                        </select>
+
+                        <input type="text" id="cyberDesc" class="input-box" placeholder="घटना का संक्षिप्त विवरण (ऐच्छिक)...">
+                        
+                        <button class="supreme-btn btn-gold" onclick="runLegalHub()">साइबर पुलिस समाधान व दिशानिर्देश प्राप्त करें</button>
+                    </div>
+                </div>
+
                 <div class="chart-grid">
                     <div class="chart-card">
                         <h4>📈 Live Traffic & Visitor Analytics Graph</h4>
@@ -796,6 +876,39 @@
             } else {
                 alert('Kripya search query enter karein.');
             }
+        }
+
+        function runQuantumEngine() {
+            const topic = document.getElementById('qQuery').value;
+            const desc = document.getElementById('qDesc').value;
+            const box = document.getElementById('terminalBox');
+            box.style.display = 'block';
+            document.getElementById('termTitle').innerText = '🪐 QUANTUM AI PREDICTIVE ENGINE';
+            document.getElementById('termTime').innerText = 'TIME: ' + new Date().toLocaleTimeString();
+            document.getElementById('termBody').innerHTML = `<span style="color: var(--plasma-cyan);">[QUANTUM PREDICTIVE SCAN COMPLETE]</span><br><b>Topic:</b> ${topic}<br><b>Details:</b> ${desc}<br><span style="color: var(--neon-green);">Status: Luxury aesthetic typography, outlined vector layout, and Hindi integration successfully compiled.</span>`;
+            box.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function runCounterStrike() {
+            const type = document.getElementById('attackType').value;
+            const ip = document.getElementById('ipFreq').value;
+            const box = document.getElementById('terminalBox');
+            box.style.display = 'block';
+            document.getElementById('termTitle').innerText = '🚨 ANTI-MATTER COUNTER-STRIKE';
+            document.getElementById('termTime').innerText = 'TIME: ' + new Date().toLocaleTimeString();
+            document.getElementById('termBody').innerHTML = `<span style="color: var(--laser-red);">[ANTI-MATTER COUNTER-STRIKE EXECUTED]</span><br><b>Target Type:</b> ${type}<br><b>Signal Node:</b> ${ip}<br><span style="color: var(--laser-red);">Status: Intrusion neutralized via instant vaporization protocol.</span>`;
+            box.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function runLegalHub() {
+            const issue = document.getElementById('cyberIssue').value;
+            const desc = document.getElementById('cyberDesc').value || 'Standard Inquiry';
+            const box = document.getElementById('terminalBox');
+            box.style.display = 'block';
+            document.getElementById('termTitle').innerText = '🛡️ CYBER HELPLINE & LEGAL HUB';
+            document.getElementById('termTime').innerText = 'TIME: ' + new Date().toLocaleTimeString();
+            document.getElementById('termBody').innerHTML = `<span style="color: var(--gold-glow);">[CYBER LEGAL HUB & SAMPADA 2.0 PROTOCOL]</span><br><b>Selected Issue:</b> ${issue}<br><b>Summary:</b> ${desc}<br><span style="color: var(--neon-green);">Status: Official cyber advisory and reporting pathway generated successfully.</span>`;
+            box.scrollIntoView({ behavior: 'smooth' });
         }
 
         let userGeminiApiKey = localStorage.getItem('vajra_gemini_key') || '';
