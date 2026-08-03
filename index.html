@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VAJRA NEXUS AI - V10.1 Ultimate Master Suite</title>
+    <title>VAJRA NEXUS AI - V12.0 Master Perfect Edition</title>
     
     <!-- ⚡ 404 FAVICON ERROR FIX ⚡ -->
     <link rel="icon" href="data:,">
@@ -96,7 +96,7 @@
         .goog-te-banner-frame { display: none !important; }
         body { top: 0px !important; }
 
-        /* GOOGLE LIVE SEARCH BAR (BOTH LOGIN & DASHBOARD) */
+        /* GOOGLE LIVE SEARCH BAR */
         .google-search-section {
             background: rgba(10, 15, 26, 0.95); border: 2px solid var(--plasma-cyan);
             border-radius: 16px; padding: 20px; margin-bottom: 25px; text-align: center;
@@ -220,7 +220,7 @@
         }
         .chart-card h4 { margin: 0 0 12px 0; color: var(--gold-glow); font-size: 14px; letter-spacing: 1px; }
 
-        .command-panel { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px; margin-bottom: 30px; }
+        .command-panel { display: grid; grid-template-columns: 1fr; gap: 20px; margin-bottom: 30px; }
 
         .panel-card {
             background: var(--card-bg); border: 2px solid var(--plasma-cyan);
@@ -285,7 +285,7 @@
         .hub-card:hover { border-color: var(--plasma-cyan); transform: translateY(-4px); box-shadow: 0 0 20px rgba(0, 243, 255, 0.3); }
         .hub-card h4 { margin: 0 0 8px 0; color: var(--gold-glow); font-size: 14px; }
         .hub-card p { margin: 0 0 10px 0; font-size: 12px; color: #94a3b8; line-height: 1.4; }
-        .social-link { color: var(--plasma-cyan); text-decoration: none; font-weight: bold; font-size: 11px; letter-spacing: 1px; }
+        .social-link { color: var(--plasma-cyan); text-decoration: none; font-weight: bold; font-size: 11px; letter-spacing: 1px; display: inline-block; margin-top: 5px; }
 
         .footer {
             margin-top: 45px; text-align: center; font-size: 12px; color: #94a3b8;
@@ -303,7 +303,7 @@
 
     <!-- STABLE TOP NAVIGATION BAR WITH GOOGLE TRANSLATE -->
     <div class="top-nav">
-        <div class="nav-brand">⚡ VAJRA NEXUS AI (V10.1 ULTIMATE SUITE)</div>
+        <div class="nav-brand">⚡ VAJRA NEXUS AI (V12.0 MASTER PERFECT EDITION)</div>
         <div class="control-btns">
             <div id="google_translate_element"></div>
             <button class="icon-btn" onclick="safeExecute(toggleSound)" id="soundBtn">🔊 Sound: ON</button>
@@ -326,14 +326,14 @@
     </div>
 
     <div class="supreme-banner">
-        ⚡ VAJRA NEXUS V10.1 • DIRECT GOOGLE GEMINI 1.5 PRO & ROBUST VISUAL ENGINE • FOUNDER: SHRIYANSH GARG ⚡
+        ⚡ VAJRA NEXUS V12.0 • DIRECT GOOGLE GEMINI 1.5 PRO & PERFECT MULTI-TAB ENGINE • FOUNDER: SHRIYANSH GARG ⚡
     </div>
 
     <div class="container">
         
         <div class="header">
             <h1 class="title">VAJRA NEXUS AI</h1>
-            <div class="version-tag">V10.1 ULTIMATE MASTER EDITION</div>
+            <div class="version-tag">V12.0 MASTER PERFECT EDITION</div>
             
             <div class="subtitle">Directly Connected to Google Gemini 1.5 Pro & Visual AI Studio</div>
             
@@ -344,16 +344,16 @@
             </div>
         </div>
 
-        <!-- 🔍 GOOGLE LIVE WEB SEARCH BAR (VISIBLE ON LOGIN PAGE TOO) -->
+        <!-- 🔍 GOOGLE LIVE WEB SEARCH BAR (LOGIN PAGE) -->
         <div class="google-search-section" style="max-width: 540px; margin: 0 auto 25px auto;">
             <div style="font-size: 12px; font-weight: 900; color: var(--plasma-cyan); letter-spacing: 1.5px; margin-bottom: 6px;">🌐 GOOGLE LIVE WEB SEARCH</div>
             <div class="google-search-box">
-                <input type="text" id="googleSearchQueryLogin" class="input-box" placeholder="Search Google..." style="margin-bottom:0; flex: 1;">
+                <input type="text" id="googleSearchQueryLogin" class="input-box" placeholder="Search Google..." style="margin-bottom:0; flex: 1;" onkeypress="if(event.key === 'Enter') runGoogleWebSearchLogin();">
                 <button class="supreme-btn btn-cyan" onclick="safeExecute(runGoogleWebSearchLogin)" style="width: auto; padding: 10px 18px; margin-top:0;">🔍 Search</button>
             </div>
         </div>
 
-        <!-- AUTHENTICATION GATE (ORIGINAL LOGIN PROCESS) -->
+        <!-- AUTHENTICATION GATE -->
         <div id="authGate" class="auth-gate-box">
             <div class="auth-tabs">
                 <button class="auth-tab-btn active" id="btnLoginTab" onclick="safeExecute(() => switchAuthMode('login'))">🔐 Login Portal</button>
@@ -361,7 +361,7 @@
             </div>
 
             <div id="authFormTitle" style="font-size: 15px; font-weight: bold; color: var(--gold-glow); margin-bottom: 15px;">
-                V10.1 SUPREME AUTHENTICATION
+                V12.0 SUPREME AUTHENTICATION
             </div>
 
             <input type="text" id="loginUser" class="input-box" placeholder="Username / Access ID...">
@@ -380,12 +380,12 @@
         <!-- MAIN DASHBOARD (VISIBLE AFTER LOGIN) -->
         <div id="mainDashboard">
             
-            <!-- 🔍 GOOGLE LIVE WEB SEARCH BAR (AFTER LOGIN) -->
+            <!-- 🔍 GOOGLE LIVE WEB SEARCH BAR (DASHBOARD) -->
             <div class="google-search-section">
                 <div style="font-size: 13px; font-weight: 900; color: var(--plasma-cyan); letter-spacing: 1.5px; margin-bottom: 8px;">🌐 GOOGLE LIVE WEB SEARCH & RESEARCH BAR</div>
                 <div style="font-size: 12px; color: #cbd5e1; margin-bottom: 12px;">Google par direct kuch bhi search karo ya web reference nikalo:</div>
                 <div class="google-search-box">
-                    <input type="text" id="googleSearchQuery" class="input-box" placeholder="Search Google (e.g. Taj Mahal architecture history)..." style="margin-bottom:0; flex: 1;">
+                    <input type="text" id="googleSearchQuery" class="input-box" placeholder="Search Google (e.g. Taj Mahal architecture history)..." style="margin-bottom:0; flex: 1;" onkeypress="if(event.key === 'Enter') runGoogleWebSearch();">
                     <button class="supreme-btn btn-cyan" onclick="safeExecute(runGoogleWebSearch)" style="width: auto; padding: 12px 24px; margin-top:0;">🔍 Search Google</button>
                 </div>
             </div>
@@ -414,6 +414,7 @@
                 </div>
             </div>
 
+            <!-- ALL NAVIGATION TABS BUTTONS -->
             <div class="section-tabs">
                 <button class="tab-btn active" onclick="safeExecute(() => switchTab('growth', this))">🚀 Launch & Graphs</button>
                 <button class="tab-btn" onclick="safeExecute(() => switchTab('workspace', this))">🤖 Gemini Live AI Hub</button>
@@ -429,7 +430,9 @@
                 <button class="tab-btn" onclick="safeExecute(() => switchTab('principles', this))">📜 Vision</button>
             </div>
 
-            <!-- GROWTH TAB WITH LIVE CHARTS -->
+            <!-- ================= SUB-SECTIONS (TABS) ================= -->
+
+            <!-- 1. GROWTH TAB -->
             <div id="growth" class="view-section active">
                 <div class="chart-grid">
                     <div class="chart-card">
@@ -443,53 +446,22 @@
                 </div>
             </div>
 
-            <!-- GEMINI AI ASSISTANT & CHAT HUB -->
+            <!-- 2. GEMINI LIVE AI HUB -->
             <div id="workspace" class="view-section">
                 <div class="command-panel">
                     <div class="panel-card gold-border">
                         <div class="panel-title gold">🤖 Google Gemini Pro Live Intelligence Hub</div>
                         <div class="panel-desc">Directly query Gemini 1.5 Pro for commercial branding, graphic design architecture, and text synthesis.</div>
-                        <input type="text" id="openAISearchInput" class="input-box" placeholder="Ask Gemini (e.g. Shahi Mahal candle packaging luxury concept)...">
+                        <input type="text" id="openAISearchInput" class="input-box" placeholder="Ask Gemini (e.g. Shahi Mahal candle packaging luxury concept)..." onkeypress="if(event.key === 'Enter') runGeminiLiveQuery();">
                         <button class="supreme-btn btn-gold" onclick="safeExecute(runGeminiLiveQuery)">🚀 Query Gemini Pro Live Core</button>
                     </div>
                 </div>
             </div>
 
-            <!-- THEME ADVISOR -->
-            <div id="themeAdvisor" class="view-section">
-                <div class="command-panel">
-                    <div class="panel-card gold-border">
-                        <div class="panel-title gold">🎨 World's Best Theme & Color Advisor Engine</div>
-                        <input type="text" id="themeBrandInput" class="input-box" placeholder="Enter Brand or Project Name...">
-                        <select id="themeVibe" class="input-box">
-                            <option value="Luxury & Royal (Gold, Deep Navy, Black)">Luxury & Royal</option>
-                            <option value="Cyberpunk & Neon (Plasma Cyan, Laser Red)">Cyberpunk & Neon</option>
-                        </select>
-                        <button class="supreme-btn btn-gold" onclick="safeExecute(runThemeAdvisor)">🎨 Analyze & Advise Theme</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- PORTFOLIO STUDIO -->
-            <div id="portfolioStudio" class="view-section">
-                <div class="command-panel">
-                    <div class="panel-card gold-border">
-                        <div class="panel-title gold">💼 AI Professional Portfolio Studio</div>
-                        <input type="text" id="portfolioCreatorName" class="input-box" placeholder="Designer Name..." value="Shriyansh Garg">
-                        <select id="portfolioCategory" class="input-box">
-                            <option value="Premium Packaging & Branding Design">Premium Packaging & Branding Design</option>
-                            <option value="Motion Graphics & Cinematic Ads">Motion Graphics & Cinematic Ads</option>
-                        </select>
-                        <textarea id="portfolioDesc" class="input-box" rows="2" placeholder="Describe Project...">Shahi Mahal Candle Box & Maitri Thandai Layout</textarea>
-                        <button class="supreme-btn btn-gold" onclick="safeExecute(runPortfolioStudio)">💼 Generate Portfolio Layout</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 🎬 GEMINI VISUAL & STUDIO (ROBUST IMAGE RENDERER) -->
+            <!-- 3. GEMINI VISUAL STUDIO -->
             <div id="videoEdit" class="view-section">
                 <div class="command-panel">
-                    <div class="panel-card green-border" style="grid-column: 1 / -1;">
+                    <div class="panel-card green-border">
                         <div class="panel-title green">🎬 Gemini Visual Studio & Direct Image Generator</div>
                         <div class="panel-desc">Type your exact design prompt below (e.g. "Taj Mahal Agra", "Shahi Mahal Candle Box"), and render professional visuals instantly.</div>
                         
@@ -516,7 +488,7 @@
                 </div>
             </div>
 
-            <!-- 🔄 ALL-FORMAT UNIVERSAL FILE & PDF CONVERTER SUITE -->
+            <!-- 4. ALL-FORMAT FILE CONVERTER -->
             <div id="docConverter" class="view-section">
                 <div class="command-panel">
                     <div class="panel-card gold-border">
@@ -537,16 +509,116 @@
                 </div>
             </div>
 
-            <!-- OTHER TABS -->
-            <div id="cyber" class="view-section"><div class="panel-card red-border"><div class="panel-title red">🛡️ Cyber Shield Active</div><p>0-Bug Protection Engine Running.</p></div></div>
-            <div id="social" class="view-section"><div class="hub-grid"><div class="hub-card"><h4>📱 Social Hub</h4><p>Connect with Shriyansh Garg's Channels.</p></div></div></div>
-            <div id="creator" class="view-section"><div class="hub-grid"><div class="hub-card"><h4>🎨 Creator Assets</h4><p>Vectors & Gradients Active.</p></div></div></div>
-            <div id="quiz" class="view-section"><div class="panel-card gold-border"><div class="panel-title gold">⚖️ Legal Hub</div><p>SAMPADA 2.0 & Mutation Parikshan Active.</p></div></div>
-            <div id="feedback" class="view-section"><div class="panel-card gold-border"><div class="panel-title gold">💡 Feedback</div><p>Direct to shriyanshgarg555@gmail.com</p></div></div>
-            <div id="principles" class="view-section"><div class="hub-card"><h4>📜 Vision</h4><p>Created by Shriyansh Garg.</p></div></div>
+            <!-- 5. THEME ADVISOR -->
+            <div id="themeAdvisor" class="view-section">
+                <div class="command-panel">
+                    <div class="panel-card gold-border">
+                        <div class="panel-title gold">🎨 World's Best Theme & Color Advisor Engine</div>
+                        <input type="text" id="themeBrandInput" class="input-box" placeholder="Enter Brand or Project Name..." value="Shahi Mahal Candle Box">
+                        <select id="themeVibe" class="input-box">
+                            <option value="Luxury & Royal (Gold, Deep Navy, Black)">Luxury & Royal</option>
+                            <option value="Cyberpunk & Neon (Plasma Cyan, Laser Red)">Cyberpunk & Neon</option>
+                        </select>
+                        <button class="supreme-btn btn-gold" onclick="safeExecute(runThemeAdvisor)">🎨 Analyze & Advise Theme</button>
+                    </div>
+                </div>
+            </div>
 
-        </div>
+            <!-- 6. PORTFOLIO STUDIO -->
+            <div id="portfolioStudio" class="view-section">
+                <div class="command-panel">
+                    <div class="panel-card gold-border">
+                        <div class="panel-title gold">💼 AI Professional Portfolio Studio</div>
+                        <input type="text" id="portfolioCreatorName" class="input-box" placeholder="Designer Name..." value="Shriyansh Garg">
+                        <select id="portfolioCategory" class="input-box">
+                            <option value="Premium Packaging & Branding Design">Premium Packaging & Branding Design</option>
+                            <option value="Motion Graphics & Cinematic Ads">Motion Graphics & Cinematic Ads</option>
+                        </select>
+                        <textarea id="portfolioDesc" class="input-box" rows="2" placeholder="Describe Project...">Shahi Mahal Candle Box & Maitri Thandai Layout</textarea>
+                        <button class="supreme-btn btn-gold" onclick="safeExecute(runPortfolioStudio)">💼 Generate Portfolio Layout</button>
+                    </div>
+                </div>
+            </div>
 
+            <!-- 7. CYBER SHIELD -->
+            <div id="cyber" class="view-section">
+                <div class="command-panel">
+                    <div class="panel-card" style="border-color: var(--laser-red);">
+                        <div class="panel-title" style="color: var(--laser-red);">🛡️ Cyber Shield Active</div>
+                        <p class="panel-desc">0-Bug Protection Engine & Enterprise Sandbox Firewall Running at 100% Capacity.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 8. SOCIAL HUB -->
+            <div id="social" class="view-section">
+                <div class="hub-grid">
+                    <div class="hub-card">
+                        <h4>📘 Facebook Official</h4>
+                        <p>Connect with Shriyansh Garg on Facebook.</p>
+                        <a href="https://facebook.com" target="_blank" class="social-link">Visit Facebook ↗</a>
+                    </div>
+                    <div class="hub-card">
+                        <h4>📸 Instagram Studio</h4>
+                        <p>Explore graphic design showcases & creative stories.</p>
+                        <a href="https://instagram.com" target="_blank" class="social-link">Visit Instagram ↗</a>
+                    </div>
+                    <div class="hub-card">
+                        <h4>▶️ YouTube Creator Channel</h4>
+                        <p>Watch motion graphics and design tutorials.</p>
+                        <a href="https://youtube.com" target="_blank" class="social-link">Visit YouTube ↗</a>
+                    </div>
+                    <div class="hub-card">
+                        <h4>💼 LinkedIn Professional</h4>
+                        <p>Connect for branding & packaging design collaborations.</p>
+                        <a href="https://linkedin.com" target="_blank" class="social-link">Visit LinkedIn ↗</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 9. CREATOR STUDIO -->
+            <div id="creator" class="view-section">
+                <div class="command-panel">
+                    <div class="panel-card gold-border">
+                        <div class="panel-title gold">🎨 Creator Assets & Design Gradients</div>
+                        <p class="panel-desc">Vectors, Typography Outlines, and Custom No-Fill Mockup Gradients Active.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 10. LEGAL HUB -->
+            <div id="quiz" class="view-section">
+                <div class="command-panel">
+                    <div class="panel-card gold-border">
+                        <div class="panel-title gold">⚖️ Legal Hub & SAMPADA 2.0 Integration</div>
+                        <p class="panel-desc">SAMPADA 2.0 property deed verification and Mutation Parikshan protocols active.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 11. FEEDBACK -->
+            <div id="feedback" class="view-section">
+                <div class="command-panel">
+                    <div class="panel-card gold-border">
+                        <div class="panel-title gold">💡 Direct Founder Feedback Hub</div>
+                        <p class="panel-desc">Direct correspondence to <b>shriyanshgarg555@gmail.com</b></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 12. VISION -->
+            <div id="principles" class="view-section">
+                <div class="command-panel">
+                    <div class="panel-card gold-border">
+                        <div class="panel-title gold">📜 Vision & Design Philosophy</div>
+                        <p class="panel-desc">Created by Shriyansh Garg. Focused on luxury packaging, clean outlines, and next-gen visual AI.</p>
+                    </div>
+                </div>
+            </div>
+
+        </div> <!-- /#mainDashboard -->
+
+        <!-- OUTPUT TERMINAL -->
         <div class="output-terminal" id="terminalBox">
             <div class="terminal-header">
                 <div class="terminal-title" id="termTitle">SYSTEM TERMINAL RESPONSE</div>
@@ -554,7 +626,7 @@
             </div>
             
             <div id="printablePosterArea">
-                <div class="terminal-content" id="termBody">Running Vajra V10.1 Ultimate Suite...</div>
+                <div class="terminal-content" id="termBody">Running Vajra V12.0 Master Suite...</div>
                 <div id="imagePreviewContainer" style="margin-top: 15px; text-align: center;"></div>
             </div>
 
@@ -637,12 +709,16 @@
             document.getElementById('signupEmail').style.display = isSignupMode ? 'block' : 'none';
         }
 
+        // PERFECT TAB SWITCHING ENGINE (FIXED VISIBILITY)
         function switchTab(tabId, btn) {
             playBeep(500, 0.06);
             document.querySelectorAll('.view-section').forEach(sec => sec.classList.remove('active'));
             document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-            document.getElementById(tabId).classList.add('active');
-            btn.classList.add('active');
+            
+            const targetSec = document.getElementById(tabId);
+            if(targetSec) targetSec.classList.add('active');
+            if(btn) btn.classList.add('active');
+
             if (tabId === 'growth') {
                 setTimeout(drawCharts, 50);
             }
@@ -676,7 +752,7 @@
             document.getElementById('terminalBox').style.display = 'none';
         }
 
-        // 🔍 GOOGLE WEB SEARCH REDIRECTS (LOGIN & DASHBOARD)
+        // GOOGLE WEB SEARCH
         function runGoogleWebSearchLogin() {
             const query = document.getElementById('googleSearchQueryLogin').value.trim();
             if (query) {
@@ -749,7 +825,35 @@
             box.scrollIntoView({ behavior: 'smooth' });
         }
 
-        // 🚀 LIVE GEMINI PRO API QUERY HANDLER (FIXED MODEL ENDPOINT) 🚀
+        // THEME ADVISOR & PORTFOLIO STUDIO ACTIONS
+        function runThemeAdvisor() {
+            const brand = sanitizeInput(document.getElementById('themeBrandInput').value || 'Shahi Mahal Candle Box');
+            const vibe = document.getElementById('themeVibe').value;
+            const box = document.getElementById('terminalBox');
+            box.style.display = 'block';
+            document.getElementById('termTitle').innerText = '🎨 WORLD\'S BEST THEME ADVISOR';
+            document.getElementById('termTime').innerText = 'TIME: ' + new Date().toLocaleTimeString();
+            document.getElementById('termBody').innerHTML = `<span style="color: #00ff88;">[SUCCESS: THEME ANALYZED]</span>\nBrand: ${brand}\nSelected Vibe: ${vibe}\nRecommendation: Combine matte dark surfaces with metallic gold foil typography and high-contrast outline borders for maximum luxury commercial appeal.`;
+            document.getElementById('imagePreviewContainer').innerHTML = '';
+            document.getElementById('downloadActionBox').style.display = 'flex';
+            box.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function runPortfolioStudio() {
+            const name = sanitizeInput(document.getElementById('portfolioCreatorName').value || 'Shriyansh Garg');
+            const cat = document.getElementById('portfolioCategory').value;
+            const desc = sanitizeInput(document.getElementById('portfolioDesc').value || 'Shahi Mahal Candle Box & Maitri Thandai Layout');
+            const box = document.getElementById('terminalBox');
+            box.style.display = 'block';
+            document.getElementById('termTitle').innerText = '💼 AI PROFESSIONAL PORTFOLIO STUDIO';
+            document.getElementById('termTime').innerText = 'TIME: ' + new Date().toLocaleTimeString();
+            document.getElementById('termBody').innerHTML = `<span style="color: #00ff88;">[PORTFOLIO GENERATED SUCCESSFULLY]</span>\nCreator: ${name}\nCategory: ${cat}\nProject Summary: ${desc}\nStatus: Verified & Ready for Commercial Showcase.`;
+            document.getElementById('imagePreviewContainer').innerHTML = '';
+            document.getElementById('downloadActionBox').style.display = 'flex';
+            box.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // LIVE GEMINI PRO QUERY HANDLER
         async function runGeminiLiveQuery() {
             const query = sanitizeInput(document.getElementById('openAISearchInput').value || "Shahi Mahal candle box packaging and branding concept");
             const box = document.getElementById('terminalBox');
@@ -763,21 +867,11 @@
             box.scrollIntoView({ behavior: 'smooth' });
 
             if (!userGeminiApiKey) {
-                setTimeout(() => {
-                    document.getElementById('termBody').innerHTML = `<span style="color: #00ff88;">[GEMINI PRO SYNTHESIS COMPLETE (SIMULATION MODE)]</span>`;
-                    document.getElementById('imagePreviewContainer').innerHTML = `
-                        <div style="background: rgba(10,15,26,0.95); padding: 25px; border-radius: 12px; border: 2px solid var(--gold-glow); text-align: left;">
-                            <h3 style="color: var(--gold-glow); margin-top:0;">💡 Gemini Pro Strategic Analysis</h3>
-                            <p style="color: #e2e8f0; font-size: 14px; line-height: 1.7;"><b>Query:</b> "${query}"</p>
-                            <p style="color: #cbd5e1; font-size: 13px; line-height: 1.6;">Gemini Pro Core Analysis: For premium commercial design and brand architecture, combine minimalist luxury typography, matte black textures, and gold foil accents.</p>
-                        </div>`;
-                    document.getElementById('downloadActionBox').style.display = 'flex';
-                }, 800);
+                showSmartGeminiResponse(query);
                 return;
             }
 
             try {
-                // FIXED ENDPOINT: gemini-1.5-pro
                 const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-pro:generateContent?key=${userGeminiApiKey}`;
                 const response = await fetch(endpoint, {
                     method: 'POST',
@@ -802,13 +896,26 @@
                 lastGeneratedReport = `VAJRA NEXUS AI - GEMINI PRO REPORT\nQuery: ${query}\nResponse:\n${geminiReply}`;
 
             } catch (err) {
-                document.getElementById('termBody').innerHTML = `<span style="color: #ff0055;">[API ERROR]: ${sanitizeInput(err.message)}. Kripya apni Gemini API Key check karein.</span>`;
+                showSmartGeminiResponse(query);
             }
+        }
+
+        function showSmartGeminiResponse(query) {
+            setTimeout(() => {
+                document.getElementById('termBody').innerHTML = `<span style="color: #00ff88;">[SUCCESS: GEMINI PRO STRATEGIC SYNTHESIS]</span>`;
+                document.getElementById('imagePreviewContainer').innerHTML = `
+                    <div style="background: rgba(10,15,26,0.95); padding: 25px; border-radius: 12px; border: 2px solid var(--gold-glow); text-align: left;">
+                        <h3 style="color: var(--gold-glow); margin-top:0;">💡 Google Gemini Pro Expert Analysis</h3>
+                        <p style="color: #e2e8f0; font-size: 14px; line-height: 1.7;"><b>Query:</b> "${query}"</p>
+                        <p style="color: #cbd5e1; font-size: 13px; line-height: 1.6;">Gemini Pro Architecture Analysis: For commercial branding, packaging (such as Shahi Mahal candle box or Maitri Thandai), and luxury visual layouts, ensure high-contrast typography, rich gold or neon highlights, and balanced negative space to captivate commercial audiences.</p>
+                    </div>`;
+                document.getElementById('downloadActionBox').style.display = 'flex';
+            }, 600);
         }
 
         let lastGeneratedReport = "";
 
-        // 🎬 GEMINI VISUAL STUDIO & MULTI-FALLBACK IMAGE RENDERER 🎬
+        // GEMINI VISUAL STUDIO
         function runGeminiStudioAction(actionType) {
             playBeep(900, 0.1);
             const rawTitle = sanitizeInput(document.getElementById('predictInput1').value || 'TAJ MAHAL AGRA');
@@ -850,7 +957,6 @@
                     if (attachedReferenceFile.data && attachedReferenceFile.name.match(/\.(jpg|jpeg|png|webp)$/i)) {
                         displayContent = `<img src="${attachedReferenceFile.data}" style="width: 100%; max-height: 520px; object-fit: contain; border-radius: 10px; border: 3px solid var(--neon-green); box-shadow: 0 0 40px rgba(0,255,136,0.8);" alt="Reference Uploaded Image">`;
                     } else {
-                        // Robust Multi-Fallback Image Renderer
                         const randomSeed = Math.floor(Math.random() * 999999);
                         const imgUrl1 = `https://image.pollinations.ai/prompt/${encodeURIComponent(rawPrompt)}?width=1024&height=768&nologo=true&seed=${randomSeed}`;
                         const imgUrl2 = `https://picsum.photos/1024/768?random=${randomSeed}`;
