@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VAJRA NEXUS AI - V12.0 Master Perfect Edition</title>
+    <title>VAJRA NEXUS AI - V14.0 Ultimate Master Suite</title>
     
     <!-- ⚡ 404 FAVICON ERROR FIX ⚡ -->
     <link rel="icon" href="data:,">
@@ -292,6 +292,11 @@
             border-top: 1px solid rgba(255, 255, 255, 0.1); padding: 25px 0; width: 100%; position: relative; z-index: 10;
         }
         .footer b { color: var(--gold-glow); }
+
+        /* Q&A SCRIPT STYLES */
+        .qa-box { background: rgba(4,8,16,0.9); border: 1px solid var(--gold-glow); border-radius: 12px; padding: 15px; margin-bottom: 15px; }
+        .qa-q { color: var(--gold-glow); font-weight: bold; font-size: 13px; margin-bottom: 6px; }
+        .qa-a { color: #e2e8f0; font-size: 12px; line-height: 1.6; }
     </style>
 </head>
 <body>
@@ -303,7 +308,7 @@
 
     <!-- STABLE TOP NAVIGATION BAR WITH GOOGLE TRANSLATE -->
     <div class="top-nav">
-        <div class="nav-brand">⚡ VAJRA NEXUS AI (V12.0 MASTER PERFECT EDITION)</div>
+        <div class="nav-brand">⚡ VAJRA NEXUS AI (V14.0 SUPREME MASTER SUITE)</div>
         <div class="control-btns">
             <div id="google_translate_element"></div>
             <button class="icon-btn" onclick="safeExecute(toggleSound)" id="soundBtn">🔊 Sound: ON</button>
@@ -326,14 +331,14 @@
     </div>
 
     <div class="supreme-banner">
-        ⚡ VAJRA NEXUS V12.0 • DIRECT GOOGLE GEMINI 1.5 PRO & PERFECT MULTI-TAB ENGINE • FOUNDER: SHRIYANSH GARG ⚡
+        ⚡ VAJRA NEXUS V14.0 • DIRECT GOOGLE GEMINI 1.5 PRO & FULL FEEDBACK / Q&A SCRIPT SUITE • FOUNDER: SHRIYANSH GARG ⚡
     </div>
 
     <div class="container">
         
         <div class="header">
             <h1 class="title">VAJRA NEXUS AI</h1>
-            <div class="version-tag">V12.0 MASTER PERFECT EDITION</div>
+            <div class="version-tag">V14.0 SUPREME MASTER EDITION</div>
             
             <div class="subtitle">Directly Connected to Google Gemini 1.5 Pro & Visual AI Studio</div>
             
@@ -344,11 +349,11 @@
             </div>
         </div>
 
-        <!-- 🔍 GOOGLE LIVE WEB SEARCH BAR (LOGIN PAGE) -->
+        <!-- 🔍 GOOGLE LIVE WEB SEARCH & QUICK QUERY BAR (LOGIN PAGE) -->
         <div class="google-search-section" style="max-width: 540px; margin: 0 auto 25px auto;">
-            <div style="font-size: 12px; font-weight: 900; color: var(--plasma-cyan); letter-spacing: 1.5px; margin-bottom: 6px;">🌐 GOOGLE LIVE WEB SEARCH</div>
+            <div style="font-size: 12px; font-weight: 900; color: var(--plasma-cyan); letter-spacing: 1.5px; margin-bottom: 6px;">🌐 GOOGLE LIVE WEB SEARCH & QUERY BAR</div>
             <div class="google-search-box">
-                <input type="text" id="googleSearchQueryLogin" class="input-box" placeholder="Search Google..." style="margin-bottom:0; flex: 1;" onkeypress="if(event.key === 'Enter') runGoogleWebSearchLogin();">
+                <input type="text" id="googleSearchQueryLogin" class="input-box" placeholder="Search Google or Enter Query..." style="margin-bottom:0; flex: 1;" onkeypress="if(event.key === 'Enter') runGoogleWebSearchLogin();">
                 <button class="supreme-btn btn-cyan" onclick="safeExecute(runGoogleWebSearchLogin)" style="width: auto; padding: 10px 18px; margin-top:0;">🔍 Search</button>
             </div>
         </div>
@@ -361,7 +366,7 @@
             </div>
 
             <div id="authFormTitle" style="font-size: 15px; font-weight: bold; color: var(--gold-glow); margin-bottom: 15px;">
-                V12.0 SUPREME AUTHENTICATION
+                V14.0 SUPREME AUTHENTICATION
             </div>
 
             <input type="text" id="loginUser" class="input-box" placeholder="Username / Access ID...">
@@ -426,7 +431,7 @@
                 <button class="tab-btn" onclick="safeExecute(() => switchTab('social', this))">📱 Social Hub</button>
                 <button class="tab-btn" onclick="safeExecute(() => switchTab('creator', this))">🎨 Creator Studio</button>
                 <button class="tab-btn" onclick="safeExecute(() => switchTab('quiz', this))">🧪 Legal Hub</button>
-                <button class="tab-btn" onclick="safeExecute(() => switchTab('feedback', this))">💡 Feedback</button>
+                <button class="tab-btn" onclick="safeExecute(() => switchTab('feedback', this))">💡 Feedback & Q&A</button>
                 <button class="tab-btn" onclick="safeExecute(() => switchTab('principles', this))">📜 Vision</button>
             </div>
 
@@ -446,11 +451,11 @@
                 </div>
             </div>
 
-            <!-- 2. GEMINI LIVE AI HUB -->
+            <!-- 2. GEMINI LIVE AI HUB (LIVE CHAT RUNNING) -->
             <div id="workspace" class="view-section">
                 <div class="command-panel">
                     <div class="panel-card gold-border">
-                        <div class="panel-title gold">🤖 Google Gemini Pro Live Intelligence Hub</div>
+                        <div class="panel-title gold">🤖 Google Gemini Pro Live Intelligence Hub (Active Chat)</div>
                         <div class="panel-desc">Directly query Gemini 1.5 Pro for commercial branding, graphic design architecture, and text synthesis.</div>
                         <input type="text" id="openAISearchInput" class="input-box" placeholder="Ask Gemini (e.g. Shahi Mahal candle packaging luxury concept)..." onkeypress="if(event.key === 'Enter') runGeminiLiveQuery();">
                         <button class="supreme-btn btn-gold" onclick="safeExecute(runGeminiLiveQuery)">🚀 Query Gemini Pro Live Core</button>
@@ -596,12 +601,25 @@
                 </div>
             </div>
 
-            <!-- 11. FEEDBACK -->
+            <!-- 11. FEEDBACK & Q&A SCRIPT SUITE -->
             <div id="feedback" class="view-section">
                 <div class="command-panel">
                     <div class="panel-card gold-border">
-                        <div class="panel-title gold">💡 Direct Founder Feedback Hub</div>
-                        <p class="panel-desc">Direct correspondence to <b>shriyanshgarg555@gmail.com</b></p>
+                        <div class="panel-title gold">💡 Feedback, Suggestions & Q&A Script Suite</div>
+                        <p class="panel-desc">Direct correspondence to <b>shriyanshgarg555@gmail.com</b> along with integrated project Q&A scripts.</p>
+                        
+                        <div class="qa-box">
+                            <div class="qa-q">Q1: How does Vajra Nexus AI connect with Gemini Pro?</div>
+                            <div class="qa-a">Ans: By securely passing your paid Google AI Studio API key directly through the secure runtime bridge.</div>
+                        </div>
+                        <div class="qa-box">
+                            <div class="qa-q">Q2: What design formats are prioritized in packaging projects?</div>
+                            <div class="qa-a">Ans: Luxury aesthetics, clean outlined no-fill mockups, intricate traditional/royal motifs, and precise Hindi nomenclature (श्योपुर).</div>
+                        </div>
+                        <div class="qa-box">
+                            <div class="qa-q">Q3: How to submit direct feedback or bug reports?</div>
+                            <div class="qa-a">Ans: Direct all official inquiries and creative reviews to shriyanshgarg555@gmail.com.</div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -626,7 +644,7 @@
             </div>
             
             <div id="printablePosterArea">
-                <div class="terminal-content" id="termBody">Running Vajra V12.0 Master Suite...</div>
+                <div class="terminal-content" id="termBody">Running Vajra V14.0 Master Suite...</div>
                 <div id="imagePreviewContainer" style="margin-top: 15px; text-align: center;"></div>
             </div>
 
@@ -709,7 +727,7 @@
             document.getElementById('signupEmail').style.display = isSignupMode ? 'block' : 'none';
         }
 
-        // PERFECT TAB SWITCHING ENGINE (FIXED VISIBILITY)
+        // PERFECT TAB SWITCHING ENGINE
         function switchTab(tabId, btn) {
             playBeep(500, 0.06);
             document.querySelectorAll('.view-section').forEach(sec => sec.classList.remove('active'));
@@ -752,7 +770,7 @@
             document.getElementById('terminalBox').style.display = 'none';
         }
 
-        // GOOGLE WEB SEARCH
+        // GOOGLE WEB SEARCH & QUERY REDIRECTION
         function runGoogleWebSearchLogin() {
             const query = document.getElementById('googleSearchQueryLogin').value.trim();
             if (query) {
@@ -825,7 +843,6 @@
             box.scrollIntoView({ behavior: 'smooth' });
         }
 
-        // THEME ADVISOR & PORTFOLIO STUDIO ACTIONS
         function runThemeAdvisor() {
             const brand = sanitizeInput(document.getElementById('themeBrandInput').value || 'Shahi Mahal Candle Box');
             const vibe = document.getElementById('themeVibe').value;
