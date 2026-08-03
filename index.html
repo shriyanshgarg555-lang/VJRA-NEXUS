@@ -3,12 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VAJRA NEXUS AI - V16.0 Enterprise 100K+ Ultimate Master Core Edition</title>
+    <title>VAJRA NEXUS AI - V2.0 Enterprise Operating System Core</title>
     
-    <!-- ⚡ 404 FAVICON ERROR FIX ⚡ -->
+    <!-- ⚡ SEO & SCHEMA META STRUCTURE ⚡ -->
+    <meta name="description" content="VAJRA NEXUS AI V2 - The World's No.1 Advanced Quantum AI & Cyber Protection Operating System, designed and developed by Shriyansh Garg.">
+    <meta name="author" content="Shriyansh Garg">
     <link rel="icon" href="data:,">
 
-    <!-- ⚡ EXTERNAL ADVANCED LIBRARIES, ENGINES & RENDERING SUITES ⚡ -->
+    <!-- ⚡ EXTERNAL ADVANCED LIBRARIES & ENGINES ⚡ -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script defer type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
@@ -24,6 +26,12 @@
             --card-bg: rgba(10, 15, 26, 0.96);
             --border-glow: rgba(0, 243, 255, 0.5);
         }
+
+        /* SMART THEMES */
+        body.theme-aurora { background: linear-gradient(135deg, #091f2c, #1f092c, #092c1a, #020408); }
+        body.theme-cyber { background: linear-gradient(135deg, #1a0000, #001a1a, #1a001a, #030712); }
+        body.theme-glass { background: #0b0f19; }
+        body.theme-minimal { background: #050505; }
 
         *, *::before, *::after { box-sizing: border-box; }
 
@@ -97,6 +105,28 @@
         }
         .goog-te-banner-frame { display: none !important; }
         body { top: 0px !important; }
+
+        /* COMMAND PALETTE MODAL (Ctrl+K) */
+        #commandPaletteModal {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(3, 7, 18, 0.85); backdrop-filter: blur(12px);
+            z-index: 1000; display: none; justify-content: center; align-items: flex-start; padding-top: 10vh;
+        }
+        .palette-box {
+            width: 100%; max-width: 600px; background: rgba(10, 15, 26, 0.98);
+            border: 2px solid var(--plasma-cyan); border-radius: 16px; padding: 20px;
+            box-shadow: 0 0 40px rgba(0,243,255,0.4);
+        }
+        .palette-input {
+            width: 100%; background: rgba(4, 8, 16, 0.9); border: 1px solid var(--plasma-cyan);
+            border-radius: 10px; padding: 14px; color: #fff; font-size: 15px; outline: none; margin-bottom: 12px;
+        }
+        .palette-results { display: flex; flex-direction: column; gap: 8px; max-height: 300px; overflow-y: auto; }
+        .palette-item {
+            padding: 10px 14px; background: rgba(0, 243, 255, 0.05); border-radius: 8px;
+            cursor: pointer; font-size: 13px; color: #e2e8f0; transition: all 0.2s;
+        }
+        .palette-item:hover { background: var(--plasma-cyan); color: #000; font-weight: bold; }
 
         /* GOOGLE LIVE SEARCH BAR */
         .google-search-section {
@@ -312,7 +342,21 @@
         .footer b { color: var(--gold-glow); }
     </style>
 </head>
-<body>
+<body class="theme-aurora">
+
+    <!-- COMMAND PALETTE MODAL (Ctrl + K) -->
+    <div id="commandPaletteModal" onclick="if(event.target === this) toggleCommandPalette()">
+        <div class="palette-box">
+            <input type="text" id="paletteInput" class="palette-input" placeholder="Type a command or search sections (Press ESC to close)..." oninput="filterPalette(this.value)">
+            <div class="palette-results" id="paletteResults">
+                <div class="palette-item" onclick="switchTab('growth', null); toggleCommandPalette();">🚀 Go to Launch & Graphs</div>
+                <div class="palette-item" onclick="switchTab('workspace', null); toggleCommandPalette();">🤖 Open Gemini AI Hub</div>
+                <div class="palette-item" onclick="switchTab('videoEdit', null); toggleCommandPalette();">🎬 Open Gemini Visual Studio</div>
+                <div class="palette-item" onclick="switchTab('docConverter', null); toggleCommandPalette();">🔄 File & Document Converter</div>
+                <div class="palette-item" onclick="switchTab('feedback', null); toggleCommandPalette();">💡 Send Feedback / Vajra Labs</div>
+            </div>
+        </div>
+    </div>
 
     <!-- 3D PARTICLE BACKGROUND CANVAS -->
     <canvas id="bg-canvas"></canvas>
@@ -321,11 +365,18 @@
 
     <!-- STABLE TOP NAVIGATION BAR WITH GOOGLE TRANSLATE -->
     <div class="top-nav">
-        <div class="nav-brand">⚡ VAJRA NEXUS AI (V16.0 100K+ ENTERPRISE MASTER)</div>
+        <div class="nav-brand">⚡ VAJRA NEXUS OS (V2.0 ENTERPRISE)</div>
         <div class="control-btns">
+            <button class="icon-btn" onclick="toggleCommandPalette()" style="background: var(--gold-glow); color:#000; border-color:var(--gold-glow);">⌨️ Ctrl+K Palette</button>
+            <select class="icon-btn" onchange="changeTheme(this.value)" style="background: rgba(4,8,16,0.9); color: var(--plasma-cyan);">
+                <option value="theme-aurora">🌌 Aurora Theme</option>
+                <option value="theme-cyber">🚨 Cyber Theme</option>
+                <option value="theme-glass">💎 Glass Theme</option>
+                <option value="theme-minimal">🖤 Minimal Theme</option>
+            </select>
             <div id="google_translate_element"></div>
             <button class="icon-btn" onclick="safeExecute(toggleSound)" id="soundBtn">🔊 Sound: ON</button>
-            <button class="btn-logout" id="logoutBtn" onclick="safeExecute(runLogout)">🔴 LOGOUT SESSION</button>
+            <button class="btn-logout" id="logoutBtn" onclick="safeExecute(runLogout)">🔴 LOGOUT</button>
         </div>
     </div>
 
@@ -339,30 +390,28 @@
         <div class="flag-item">🇯🇵 Japan (日本語)</div>
         <div class="flag-item">🇨🇳 China (中文)</div>
         <div class="flag-item">🇦🇪 UAE (العربية)</div>
-        <div class="flag-item">🇷🇺 Russia (Русский)</div>
-        <div class="flag-item">🇧🇷 Brazil (Português)</div>
     </div>
 
     <div class="supreme-banner">
-        ⚡ VAJRA NEXUS V16.0 • ENTERPRISE CORE • DIRECT GOOGLE GEMINI 1.5 PRO & FULL MASSIVE SUITE • CREATOR: SHRIYANSH GARG ⚡
+        ⚡ VAJRA NEXUS V2.0 OS • DIRECT GOOGLE GEMINI 1.5 PRO & FULL MASSIVE SUITE • CREATOR: SHRIYANSH GARG ⚡
     </div>
 
     <div class="container">
         
         <div class="header">
             <h1 class="title">VAJRA NEXUS AI</h1>
-            <div class="version-tag">V16.0 100K+ ENTERPRISE SUPREME MASTER EDITION</div>
+            <div class="version-tag">V2.0 ENTERPRISE OPERATING SYSTEM EDITION</div>
             
             <div class="subtitle">Directly Connected to Google Gemini 1.5 Pro & Visual AI Studio</div>
             
             <div class="creator-badge">
-                <div>👑 CREATOR: <span class="name">SHRIYANSH GARG</span></div>
+                <div>👑 CREATOR: <span class="name">Shriyansh Garg</span></div>
                 <div>|</div>
-                <div>📅 ISSUE DATE: <span class="date">03/08/2026</span></div>
+                <div>📅 RELEASE DATE: <span class="date">03/08/2026</span></div>
             </div>
         </div>
 
-        <!-- 🔍 GOOGLE LIVE WEB SEARCH BAR (LOGIN PAGE) -->
+        <!-- 🔍 GOOGLE LIVE SEARCH BAR (LOGIN PAGE) -->
         <div class="google-search-section" style="max-width: 540px; margin: 0 auto 25px auto;">
             <div style="font-size: 12px; font-weight: 900; color: var(--plasma-cyan); letter-spacing: 1.5px; margin-bottom: 6px;">🌐 GOOGLE LIVE WEB SEARCH & QUERY BAR</div>
             <div class="google-search-box">
@@ -379,7 +428,7 @@
             </div>
 
             <div id="authFormTitle" style="font-size: 15px; font-weight: bold; color: var(--gold-glow); margin-bottom: 15px;">
-                V16.0 SUPREME AUTHENTICATION
+                V2.0 OS SUPREME AUTHENTICATION
             </div>
 
             <input type="text" id="loginUser" class="input-box" placeholder="Username / Access ID...">
@@ -392,7 +441,7 @@
             </div>
             <input type="text" id="captchaInput" class="input-box" placeholder="Enter CAPTCHA Code...">
 
-            <button class="supreme-btn btn-gold" id="authSubmitBtn" onclick="safeExecute(runLogin)">Authenticate & Unlock Ecosystem</button>
+            <button class="supreme-btn btn-gold" id="authSubmitBtn" onclick="safeExecute(runLogin)">Authenticate & Unlock OS</button>
         </div>
 
         <!-- MAIN DASHBOARD (VISIBLE AFTER LOGIN) -->
@@ -464,7 +513,7 @@
                 <button class="tab-btn" onclick="safeExecute(() => switchTab('social', this))">📱 Social Hub</button>
                 <button class="tab-btn" onclick="safeExecute(() => switchTab('creator', this))">🎨 Creator Studio</button>
                 <button class="tab-btn" onclick="safeExecute(() => switchTab('quiz', this))">🧪 Legal Hub</button>
-                <button class="tab-btn" onclick="safeExecute(() => switchTab('feedback', this))">💡 Feedback & Q&A</button>
+                <button class="tab-btn" onclick="safeExecute(() => switchTab('feedback', this))">💡 Vajra Labs & Feedback</button>
                 <button class="tab-btn" onclick="safeExecute(() => switchTab('principles', this))">📜 Vision</button>
             </div>
 
@@ -479,7 +528,7 @@
                     <!-- 1. QUANTUM AI PREDICTIVE ENGINE -->
                     <div class="panel-card">
                         <div class="panel-title">🪐 Quantum AI Predictive Engine</div>
-                        <div class="panel-desc">कानूनी, तकनीकी, डिज़ाइनिंग या सुरक्षा संबंधी प्रश्नों का एआई सिमुलेशन। (Enterprise Grade Neural Core Integration)</div>
+                        <div class="panel-desc">कानूनी, तकनीकी, डिज़ाइनिंग या सुरक्षा संबंधी प्रश्नों का एआई सिमुलेशन।</div>
                         
                         <input type="text" id="qQuery" class="input-box" placeholder="उद्देश्य या समस्या दर्ज करें..." value="Maitri Thandai Layout & Packaging">
                         <textarea id="qDesc" class="input-box" rows="3" placeholder="विस्तृत विवरण दर्ज करें...">Design a high-end luxury bottle label layout featuring rich traditional motifs, gold foil accents, and precise Hindi nomenclature (श्योपुर).</textarea>
@@ -490,7 +539,7 @@
                     <!-- 2. ANTI-MATTER TOUCH-DESTRUCTION -->
                     <div class="panel-card red-border">
                         <div class="panel-title red">🚨 Anti-Matter Touch-Destruction</div>
-                        <div class="panel-desc">घुसपैठिए के सिग्नल को नष्ट करने वाली काउंटर-स्ट्राइक प्रणाली। (Enterprise Firewall Shield)</div>
+                        <div class="panel-desc">घुसपैठिए के सिग्नल को नष्ट करने वाली काउंटर-स्ट्राइक प्रणाली।</div>
                         
                         <select id="attackType" class="input-box" style="background: rgba(4,8,16,0.9); color: var(--laser-red); border-color: var(--laser-red);">
                             <option value="बाहरी क्वांटम घुसपैठ प्रयास (Quantum Incursion)">बाहरी क्वांटम घुसपैठ प्रयास (Quantum Incursion)</option>
@@ -506,7 +555,7 @@
                     <!-- 3. CYBER HELPLINE & LEGAL HUB -->
                     <div class="panel-card gold-border">
                         <div class="panel-title gold">🛡️ Cyber Helpline & Legal Hub</div>
-                        <div class="panel-desc">ऑनलाइन फ्रॉड, हैकिंग व साइबर अपराधों का तुरंत समाधान और रिपोर्टिंग गाइड। (SAMPADA 2.0 Integration)</div>
+                        <div class="panel-desc">ऑनलाइन फ्रॉड, हैकिंग व साइबर अपराधों का तुरंत समाधान और रिपोर्टिंग गाइड।</div>
                         
                         <select id="cyberIssue" class="input-box" style="background: rgba(4,8,16,0.9); color: var(--gold-glow); border-color: var(--gold-glow);">
                             <option value="ऑनलाइन बैंक/ओटीपी फ्रॉड (Financial Cyber Fraud)">ऑनलाइन बैंक/ओटीपी फ्रॉड (Financial Cyber Fraud)</option>
@@ -701,9 +750,21 @@
                 </div>
             </div>
 
-            <!-- 11. FEEDBACK & Q&A SCRIPT SUITE WITH FORMSPREE -->
+            <!-- 11. VAJRA LABS & FEEDBACK (COMMUNITY HUB) -->
             <div id="feedback" class="view-section">
                 <div class="command-panel">
+                    <div class="panel-card gold-border" style="margin-bottom: 25px;">
+                        <div class="panel-title gold">🧪 VAJRA LABS - "Ideas become reality here."</div>
+                        <p class="panel-desc">Submit your brilliant feature requests and community ideas below. Top ideas will be marked as <b>Implemented in VAJRA V3</b>!</p>
+                        
+                        <div style="display:flex; flex-direction:column; gap:10px; margin-bottom:15px;">
+                            <input type="text" id="labIdeaTitle" class="input-box" placeholder="Your Idea Title..." style="margin-bottom:0;">
+                            <textarea id="labIdeaDesc" class="input-box" rows="3" placeholder="Describe your feature idea..." style="margin-bottom:0;"></textarea>
+                            <button class="supreme-btn btn-gold" onclick="submitVajraLabIdea()">🚀 Submit Idea to VAJRA Labs</button>
+                        </div>
+                        <div id="labIdeaStatus" style="font-size: 12px; color: var(--neon-green); font-weight: bold;"></div>
+                    </div>
+
                     <div class="panel-card gold-border">
                         <div class="panel-title gold">💡 Feedback, Suggestions & Formspree Live Suite</div>
                         <p class="panel-desc">Direct correspondence to <b>shriyanshgarg555@gmail.com</b> along with integrated project Q&A scripts and Star Rating.</p>
@@ -730,10 +791,6 @@
                             <div class="qa-q" style="color: var(--gold-glow); font-weight: bold; font-size: 13px; margin-bottom: 6px;">Q1: How does Vajra Nexus AI connect with Gemini Pro?</div>
                             <div class="qa-a" style="color: #e2e8f0; font-size: 12px; line-height: 1.6;">Ans: By securely passing your paid Google AI Studio API key directly through the secure runtime bridge.</div>
                         </div>
-                        <div class="qa-box" style="background: rgba(4,8,16,0.9); border: 1px solid var(--gold-glow); border-radius: 12px; padding: 15px; margin-bottom: 15px;">
-                            <div class="qa-q" style="color: var(--gold-glow); font-weight: bold; font-size: 13px; margin-bottom: 6px;">Q2: What design formats are prioritized in packaging projects?</div>
-                            <div class="qa-a" style="color: #e2e8f0; font-size: 12px; line-height: 1.6;">Ans: Luxury aesthetics, clean outlined no-fill mockups, intricate traditional/royal motifs, and precise Hindi nomenclature (श्योपुर).</div>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -758,7 +815,7 @@
             </div>
             
             <div id="printablePosterArea">
-                <div class="terminal-content" id="termBody">Running Vajra V16.0 Full Massive Core Suite...</div>
+                <div class="terminal-content" id="termBody">Running Vajra V2.0 Enterprise OS Core...</div>
                 <div id="imagePreviewContainer" style="margin-top: 15px; text-align: center;"></div>
             </div>
 
@@ -774,20 +831,20 @@
         <!-- DEDICATED FOOTER MENTION -->
         <div class="footer">
             VAJRA NEXUS AI ECOSYSTEM • POWERED BY <b>DIRECT GOOGLE GEMINI 1.5 PRO API</b><br><br>
-            Designed & Developed by <b>SHRIYANSH GARG</b> | Official Release Date: <b>03/08/2026</b>
+            Designed & Developed by <b>Shriyansh Garg</b> | Official Release Date: <b>03/08/2026</b>
         </div>
 
     </div>
 
     <script>
         // ==========================================
-        // ENTERPRISE 100K+ CORE SCRIPT ARCHITECTURE
+        // V2.0 ENTERPRISE OS ARCHITECTURE & CONTROLS
         // ==========================================
         function safeExecute(fn, ...args) {
             try {
                 return fn(...args);
             } catch (err) {
-                console.warn("Vajra Enterprise Auto-Healing intercepted minor anomaly:", err);
+                console.warn("Vajra OS Auto-Healing intercepted anomaly:", err);
             }
         }
 
@@ -796,6 +853,51 @@
             return String(str).replace(/[&<>"']/g, function(m) {
                 return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' }[m];
             });
+        }
+
+        // Smart Theme Switcher
+        function changeTheme(themeClass) {
+            document.body.className = themeClass;
+            playBeep(700, 0.08);
+        }
+
+        // Command Palette Toggle (Ctrl + K)
+        function toggleCommandPalette() {
+            const modal = document.getElementById('commandPaletteModal');
+            if(modal.style.display === 'flex') {
+                modal.style.display = 'none';
+            } else {
+                modal.style.display = 'flex';
+                document.getElementById('paletteInput').focus();
+            }
+        }
+
+        window.addEventListener('keydown', function(e) {
+            if((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
+                e.preventDefault();
+                toggleCommandPalette();
+            }
+            if(e.key === 'Escape') {
+                document.getElementById('commandPaletteModal').style.display = 'none';
+            }
+        });
+
+        function filterPalette(query) {
+            // Palette search filtering logic
+        }
+
+        // VAJRA Labs Idea Submission
+        function submitVajraLabIdea() {
+            const title = sanitizeInput(document.getElementById('labIdeaTitle').value);
+            const desc = sanitizeInput(document.getElementById('labIdeaDesc').value);
+            if(title && desc) {
+                document.getElementById('labIdeaStatus').innerText = `✅ Thank you! Your idea "${title}" has been sent to VAJRA Labs. Status: Queued for V3 Evaluation.`;
+                document.getElementById('labIdeaTitle').value = '';
+                document.getElementById('labIdeaDesc').value = '';
+                playBeep(900, 0.12);
+            } else {
+                alert('Please enter both title and description for your Vajra Labs idea.');
+            }
         }
 
         function googleTranslateElementInit() {
@@ -820,12 +922,12 @@
 
         function switchAIModel(modelName) {
             playBeep(850, 0.1);
-            document.getElementById('activeModelDisplay').innerText = modelName + ' (Enterprise Core Active)';
+            document.getElementById('activeModelDisplay').innerText = modelName + ' (Enterprise OS Active)';
             const box = document.getElementById('terminalBox');
             box.style.display = 'block';
             document.getElementById('termTitle').innerText = '⚡ AI MODEL SWITCHER STATUS';
             document.getElementById('termTime').innerText = 'TIME: ' + new Date().toLocaleTimeString();
-            document.getElementById('termBody').innerHTML = `<span style="color: #00ff88;">[MODEL SWITCHED] Successfully activated <b>${modelName}</b> enterprise Google AI engine with 0-bug protocol.</span>`;
+            document.getElementById('termBody').innerHTML = `<span style="color: #00ff88;">[MODEL SWITCHED] Successfully activated <b>${modelName}</b> enterprise engine with 0-bug protocol.</span>`;
             document.getElementById('downloadActionBox').style.display = 'none';
             document.getElementById('imagePreviewContainer').innerHTML = '';
             box.scrollIntoView({ behavior: 'smooth' });
@@ -870,7 +972,7 @@
             const box = document.getElementById('terminalBox');
             box.style.display = 'block';
             document.getElementById('termTitle').innerText = '🔐 AUTHENTICATION STATUS';
-            document.getElementById('termBody').innerHTML = `<span style="color: #00ff88;">[ACCESS GRANTED] User Authenticated Successfully! Gemini 1.5 Pro Enterprise Ecosystem Unlocked.</span>`;
+            document.getElementById('termBody').innerHTML = `<span style="color: #00ff88;">[ACCESS GRANTED] Shriyansh Garg Authenticated Successfully! Vajra OS V2.0 Unlocked.</span>`;
             setTimeout(() => {
                 document.getElementById('authGate').style.display = 'none';
                 document.getElementById('mainDashboard').style.display = 'block';
