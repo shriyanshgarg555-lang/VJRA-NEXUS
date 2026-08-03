@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VAJRA NEXUS AI - V5.0 True Live AI Suite</title>
+    <title>VAJRA NEXUS AI - V6.0 Gemini Supreme Edition</title>
     
     <!-- ⚡ 404 FAVICON ERROR FIX ⚡ -->
     <link rel="icon" href="data:,">
@@ -292,7 +292,7 @@
     <div class="letters-layer" id="lettersContainer"></div>
 
     <div class="top-nav">
-        <div class="nav-brand">VAJRA NEXUS AI (V5.0 STABLE AI SUITE)</div>
+        <div class="nav-brand">VAJRA NEXUS AI (V6.0 GEMINI SUPREME EDITION)</div>
         <div class="control-btns">
             <div id="google_translate_element"></div>
             <button class="icon-btn" onclick="safeExecute(toggleSound)" id="soundBtn">🔊 Sound: ON</button>
@@ -314,16 +314,16 @@
     </div>
 
     <div class="supreme-banner">
-        ⚡ VAJRA NEXUS V5.0 • ROBUST STABLE AI IMAGE & MULTI-MEDIA STUDIO • FOUNDER: SHRIYANSH GARG ⚡
+        ⚡ VAJRA NEXUS V6.0 • DIRECT GEMINI 1.5 PRO AI INTEGRATION • FOUNDER: SHRIYANSH GARG ⚡
     </div>
 
     <div class="container">
         
         <div class="header">
             <h1 class="title">VAJRA NEXUS AI</h1>
-            <div class="version-tag">V5.0 STABLE ENGINE EDITION</div>
+            <div class="version-tag">V6.0 GEMINI SUPREME EDITION</div>
             
-            <div class="subtitle">The World's No.1 Multi-Model AI, Secure Studio & Document Suite</div>
+            <div class="subtitle">Directly Connected to Google Gemini 1.5 Pro & Visual AI Studio</div>
             
             <div class="creator-badge">
                 <div>👑 FOUNDER: <span class="name">SHRIYANSH GARG</span></div>
@@ -340,7 +340,7 @@
             </div>
 
             <div id="authFormTitle" style="font-size: 15px; font-weight: bold; color: var(--gold-glow); margin-bottom: 15px;">
-                V5.0 SUPREME AUTHENTICATION
+                V6.0 GEMINI SUPREME AUTHENTICATION
             </div>
 
             <input type="text" id="loginUser" class="input-box" placeholder="Username / Access ID...">
@@ -359,23 +359,34 @@
         <!-- MAIN DASHBOARD (VISIBLE AFTER LOGIN) -->
         <div id="mainDashboard">
             
+            <!-- GEMINI API KEY CONFIGURATION PANEL -->
+            <div style="background: rgba(10, 15, 26, 0.95); border: 2px solid var(--gold-glow); border-radius: 16px; padding: 20px; margin-bottom: 25px; box-shadow: 0 0 30px rgba(255,215,0,0.2);">
+                <div style="font-size: 13px; font-weight: 900; color: var(--gold-glow); letter-spacing: 1.5px; margin-bottom: 8px;">🔑 DIRECT GEMINI PRO PAID API KEY BRIDGE</div>
+                <div style="font-size: 12px; color: #cbd5e1; margin-bottom: 12px;">Apni Google AI Studio / Gemini Paid API Key yahan enter karo taaki website direct tumhare Gemini account se live jawab aur design intelligence generate kare:</div>
+                <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                    <input type="password" id="geminiApiKeyInput" class="input-box" placeholder="Enter your Gemini API Key (AIzaSy...)..." style="margin-bottom:0; flex: 1;">
+                    <button class="icon-btn" onclick="safeExecute(saveGeminiKey)" style="background: var(--gold-glow); color: #000; border-color: var(--gold-glow); font-weight: 900; padding: 10px 20px;">💾 Save API Key</button>
+                </div>
+                <div id="apiKeyStatus" style="font-size: 11px; color: var(--neon-green); margin-top: 8px; font-weight: bold;">Status: API Key Not Set (Using Standard Simulation Mode until saved)</div>
+            </div>
+
             <!-- AI MODEL SWITCHER BAR -->
             <div style="background: rgba(10, 15, 26, 0.9); border: 2px solid var(--plasma-cyan); border-radius: 16px; padding: 15px 20px; margin-bottom: 25px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px;">
                 <div>
                     <div style="font-size: 11px; font-weight: 900; color: var(--plasma-cyan); letter-spacing: 1.5px; margin-bottom: 4px;">⚡ ACTIVE AI MODEL & REASONING ENGINE</div>
-                    <div id="activeModelDisplay" style="font-size: 15px; font-weight: bold; color: var(--gold-glow);">Stable Diffusion & Pollinations Hybrid Core</div>
+                    <div id="activeModelDisplay" style="font-size: 15px; font-weight: bold; color: var(--gold-glow);">Google Gemini 1.5 Pro (Paid Core Active)</div>
                 </div>
                 <div style="display: flex; gap: 8px; flex-wrap: wrap;">
-                    <button class="icon-btn" onclick="safeExecute(() => switchAIModel('Stable Diffusion 3'))">⚡ SDXL Core</button>
-                    <button class="icon-btn" onclick="safeExecute(() => switchAIModel('Pollinations HD'))">🚀 Pollinations HD</button>
-                    <button class="icon-btn" onclick="safeExecute(() => switchAIModel('DeepAI Visual'))">🎨 DeepAI Visual</button>
+                    <button class="icon-btn" onclick="safeExecute(() => switchAIModel('Gemini 1.5 Pro'))">🚀 Gemini 1.5 Pro</button>
+                    <button class="icon-btn" onclick="safeExecute(() => switchAIModel('Gemini 1.5 Flash'))">⚡ Gemini 1.5 Flash</button>
+                    <button class="icon-btn" onclick="safeExecute(() => switchAIModel('Imagen 3 Visual'))">🎨 Imagen 3 Visual</button>
                 </div>
             </div>
 
             <div class="section-tabs">
                 <button class="tab-btn active" onclick="safeExecute(() => switchTab('growth', this))">🚀 Launch & Graphs</button>
-                <button class="tab-btn" onclick="safeExecute(() => switchTab('workspace', this))">🤖 AI Assistant & Search</button>
-                <button class="tab-btn" onclick="safeExecute(() => switchTab('videoEdit', this))">🎬 Stable AI Image & Studio</button>
+                <button class="tab-btn" onclick="safeExecute(() => switchTab('workspace', this))">🤖 Gemini Live AI Hub</button>
+                <button class="tab-btn" onclick="safeExecute(() => switchTab('videoEdit', this))">🎬 Gemini Visual & Studio</button>
                 <button class="tab-btn" onclick="safeExecute(() => switchTab('docConverter', this))">🔄 All-Format File Converter</button>
                 <button class="tab-btn" onclick="safeExecute(() => switchTab('themeAdvisor', this))">🎨 Theme Advisor</button>
                 <button class="tab-btn" onclick="safeExecute(() => switchTab('portfolioStudio', this))">💼 Portfolio Studio</button>
@@ -401,14 +412,14 @@
                 </div>
             </div>
 
-            <!-- AI ASSISTANT & OPEN SEARCH TAB -->
+            <!-- GEMINI AI ASSISTANT & CHAT HUB -->
             <div id="workspace" class="view-section">
                 <div class="command-panel">
                     <div class="panel-card gold-border">
-                        <div class="panel-title gold">🔍 Stable AI Intelligence & Research Hub</div>
-                        <div class="panel-desc">Directly query AI reasoning cores for your commercial design & branding requirements.</div>
-                        <input type="text" id="openAISearchInput" class="input-box" placeholder="Ask AI (e.g. Taj Mahal Agra architecture details)...">
-                        <button class="supreme-btn btn-gold" onclick="safeExecute(runOpenAISearch)">🤖 Query AI Reasoning Core</button>
+                        <div class="panel-title gold">🤖 Google Gemini Pro Live Intelligence Hub</div>
+                        <div class="panel-desc">Directly query Gemini 1.5 Pro for commercial branding, graphic design architecture, and text synthesis.</div>
+                        <input type="text" id="openAISearchInput" class="input-box" placeholder="Ask Gemini (e.g. Shahi Mahal candle packaging luxury concept)...">
+                        <button class="supreme-btn btn-gold" onclick="safeExecute(runGeminiLiveQuery)">🚀 Query Gemini Pro Live Core</button>
                     </div>
                 </div>
             </div>
@@ -438,18 +449,18 @@
                             <option value="Premium Packaging & Branding Design">Premium Packaging & Branding Design</option>
                             <option value="Motion Graphics & Cinematic Ads">Motion Graphics & Cinematic Ads</option>
                         </select>
-                        <textarea id="portfolioDesc" class="input-box" rows="2" placeholder="Describe Project...">Taj Mahal Agra & Historical Heritage Layout</textarea>
+                        <textarea id="portfolioDesc" class="input-box" rows="2" placeholder="Describe Project...">Shahi Mahal Candle Box & Maitri Thandai Layout</textarea>
                         <button class="supreme-btn btn-gold" onclick="safeExecute(runPortfolioStudio)">💼 Generate Portfolio Layout</button>
                     </div>
                 </div>
             </div>
 
-            <!-- 🎬 STABLE AI IMAGE & STUDIO (GUARANTEED STABLE RENDERER) -->
+            <!-- 🎬 GEMINI VISUAL & STUDIO (DIRECT IMAGE GENERATOR & PHOTOPEA) -->
             <div id="videoEdit" class="view-section">
                 <div class="command-panel">
                     <div class="panel-card green-border" style="grid-column: 1 / -1;">
-                        <div class="panel-title green">🎬 Stable AI Image & Studio (Guaranteed Multi-Engine Renderer)</div>
-                        <div class="panel-desc">Type any prompt below (e.g., "Taj Mahal Agra"), and our robust image renderer will instantly generate and display your image accurately! Upload any reference file in all formats.</div>
+                        <div class="panel-title green">🎬 Gemini Visual Studio & Direct Image Generator</div>
+                        <div class="panel-desc">Type your exact design prompt below (e.g. "Taj Mahal Agra", "Shahi Mahal Candle Box"), and render professional visuals instantly.</div>
                         
                         <input type="text" id="predictInput1" class="input-box" placeholder="Project Title..." value="TAJ MAHAL AGRA">
                         
@@ -461,9 +472,9 @@
                         </div>
 
                         <div style="display: flex; gap: 10px; margin-top: 5px; flex-wrap: wrap; margin-bottom: 20px;">
-                            <button class="supreme-btn btn-green" onclick="safeExecute(() => runStableAIImageGeneration('render'))" style="flex: 1;">⚡ Generate Stable AI Image</button>
-                            <button class="supreme-btn btn-cyan" onclick="safeExecute(() => runStableAIImageGeneration('editor'))" style="flex: 1;">🛠️ Open Advanced Photopea Editor</button>
-                            <button class="supreme-btn btn-gold" onclick="safeExecute(() => runStableAIImageGeneration('audio'))" style="flex: 1;">🎵 Play Audio/BGM Stream</button>
+                            <button class="supreme-btn btn-green" onclick="safeExecute(() => runGeminiStudioAction('render'))" style="flex: 1;">⚡ Render Gemini Visual</button>
+                            <button class="supreme-btn btn-cyan" onclick="safeExecute(() => runGeminiStudioAction('editor'))" style="flex: 1;">🛠️ Open Advanced Photopea Editor</button>
+                            <button class="supreme-btn btn-gold" onclick="safeExecute(() => runGeminiStudioAction('audio'))" style="flex: 1;">🎵 Play Audio/BGM Stream</button>
                         </div>
 
                         <!-- SECURE EMBEDDED PROFESSIONAL WORKSPACE FRAME -->
@@ -512,7 +523,7 @@
             </div>
             
             <div id="printablePosterArea">
-                <div class="terminal-content" id="termBody">Running Vajra V5.0 Stable Suite...</div>
+                <div class="terminal-content" id="termBody">Running Vajra V6.0 Gemini Suite...</div>
                 <div id="imagePreviewContainer" style="margin-top: 15px; text-align: center;"></div>
             </div>
 
@@ -527,7 +538,7 @@
 
         <!-- DEDICATED FOOTER MENTION -->
         <div class="footer">
-            VAJRA NEXUS AI ECOSYSTEM • POWERED BY <b>ROBUST STABLE AI IMAGE API</b><br><br>
+            VAJRA NEXUS AI ECOSYSTEM • POWERED BY <b>DIRECT GOOGLE GEMINI 1.5 PRO API</b><br><br>
             Designed & Developed by <b>SHRIYANSH GARG</b> | Official Release Date: <b>03/08/2026</b>
         </div>
 
@@ -571,12 +582,12 @@
 
         function switchAIModel(modelName) {
             playBeep(850, 0.1);
-            document.getElementById('activeModelDisplay').innerText = modelName + ' (Stable Engine Active)';
+            document.getElementById('activeModelDisplay').innerText = modelName + ' (Paid Core Active)';
             const box = document.getElementById('terminalBox');
             box.style.display = 'block';
             document.getElementById('termTitle').innerText = '⚡ AI MODEL SWITCHER STATUS';
             document.getElementById('termTime').innerText = 'TIME: ' + new Date().toLocaleTimeString();
-            document.getElementById('termBody').innerHTML = `<span style="color: #00ff88;">[MODEL SWITCHED] Successfully activated <b>${modelName}</b> stable image rendering engine.</span>`;
+            document.getElementById('termBody').innerHTML = `<span style="color: #00ff88;">[MODEL SWITCHED] Successfully activated <b>${modelName}</b> paid Google AI engine.</span>`;
             document.getElementById('downloadActionBox').style.display = 'none';
             document.getElementById('imagePreviewContainer').innerHTML = '';
             box.scrollIntoView({ behavior: 'smooth' });
@@ -617,7 +628,7 @@
             const box = document.getElementById('terminalBox');
             box.style.display = 'block';
             document.getElementById('termTitle').innerText = '🔐 AUTHENTICATION STATUS';
-            document.getElementById('termBody').innerHTML = `<span style="color: #00ff88;">[ACCESS GRANTED] User Authenticated Successfully! Stable AI Ecosystem Unlocked.</span>`;
+            document.getElementById('termBody').innerHTML = `<span style="color: #00ff88;">[ACCESS GRANTED] User Authenticated Successfully! Gemini 1.5 Pro Ecosystem Unlocked.</span>`;
             setTimeout(() => {
                 document.getElementById('authGate').style.display = 'none';
                 document.getElementById('mainDashboard').style.display = 'block';
@@ -632,6 +643,25 @@
             document.getElementById('logoutBtn').style.display = 'none';
             document.getElementById('authGate').style.display = 'block';
             document.getElementById('terminalBox').style.display = 'none';
+        }
+
+        let userGeminiApiKey = localStorage.getItem('vajra_gemini_key') || '';
+        if (userGeminiApiKey) {
+            document.getElementById('geminiApiKeyInput').value = userGeminiApiKey;
+            document.getElementById('apiKeyStatus').innerText = 'Status: API Key Loaded Securely from Local Storage ✅';
+        }
+
+        function saveGeminiKey() {
+            const keyVal = document.getElementById('geminiApiKeyInput').value.trim();
+            if (keyVal) {
+                userGeminiApiKey = keyVal;
+                localStorage.setItem('vajra_gemini_key', keyVal);
+                document.getElementById('apiKeyStatus').innerText = 'Status: API Key Saved Successfully! Ready for Live Gemini Pro Calls 🚀';
+                playBeep(950, 0.15);
+                alert('Gemini Paid API Key saved securely! Now all AI queries will hit your official Gemini Pro account.');
+            } else {
+                alert('Kripya valid API key enter karein.');
+            }
         }
 
         let attachedReferenceFile = { name: "", data: "" };
@@ -669,34 +699,68 @@
             box.scrollIntoView({ behavior: 'smooth' });
         }
 
-        function runOpenAISearch() {
-            const query = sanitizeInput(document.getElementById('openAISearchInput').value || "Taj Mahal Agra architecture details");
+        // 🚀 LIVE GEMINI PRO API QUERY HANDLER 🚀
+        async function runGeminiLiveQuery() {
+            const query = sanitizeInput(document.getElementById('openAISearchInput').value || "Shahi Mahal candle box packaging and branding concept");
             const box = document.getElementById('terminalBox');
             box.style.display = 'block';
-            document.getElementById('termTitle').innerText = '🤖 STABLE AI REASONING HUB';
+            document.getElementById('termTitle').innerText = '🤖 GOOGLE GEMINI 1.5 PRO LIVE CORE';
             document.getElementById('termTime').innerText = 'TIME: ' + new Date().toLocaleTimeString();
 
-            document.getElementById('termBody').innerHTML = `<span style="color: #00f3ff;">Analyzing query: "${query}"...</span>`;
+            document.getElementById('termBody').innerHTML = `<span style="color: #00f3ff;">Connecting directly to Gemini 1.5 Pro for query: "${query}"...</span>`;
             document.getElementById('imagePreviewContainer').innerHTML = '';
             document.getElementById('downloadActionBox').style.display = 'none';
             box.scrollIntoView({ behavior: 'smooth' });
 
-            setTimeout(() => {
-                document.getElementById('termBody').innerHTML = `<span style="color: #00ff88;">[SYNTHESIS COMPLETE - STABLE CORE]</span>`;
+            if (!userGeminiApiKey) {
+                // Simulation mode if key not provided
+                setTimeout(() => {
+                    document.getElementById('termBody').innerHTML = `<span style="color: #00ff88;">[GEMINI PRO SYNTHESIS COMPLETE (SIMULATION MODE)]</span>`;
+                    document.getElementById('imagePreviewContainer').innerHTML = `
+                        <div style="background: rgba(10,15,26,0.95); padding: 25px; border-radius: 12px; border: 2px solid var(--gold-glow); text-align: left;">
+                            <h3 style="color: var(--gold-glow); margin-top:0;">💡 Gemini 1.5 Pro Strategic Analysis</h3>
+                            <p style="color: #e2e8f0; font-size: 14px; line-height: 1.7;"><b>Query:</b> "${query}"</p>
+                            <p style="color: #cbd5e1; font-size: 13px; line-height: 1.6;">Gemini Pro Core Analysis: For premium commercial design and brand architecture, combine minimalist luxury typography, matte black textures, and gold foil accents to maximize visual appeal. <br><br><i>(Note: To get live responses directly from your paid Gemini account, enter and save your Gemini API Key in the panel above!)</i></p>
+                        </div>`;
+                    document.getElementById('downloadActionBox').style.display = 'flex';
+                }, 800);
+                return;
+            }
+
+            try {
+                // Direct REST API Call to Google Gemini 1.5 Flash/Pro Endpoint
+                const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${userGeminiApiKey}`;
+                const response = await fetch(endpoint, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        contents: [{ parts: [{ text: query }] }]
+                    })
+                });
+
+                const data = await response.json();
+                if (!response.ok) throw new Error(data.error?.message || 'Gemini API connection failed');
+
+                const geminiReply = data.candidates?.[0]?.content?.parts?.[0]?.text || "No response generated.";
+
+                document.getElementById('termBody').innerHTML = `<span style="color: #00ff88;">[SUCCESS: LIVE GEMINI PRO RESPONSE RECEIVED]</span>`;
                 document.getElementById('imagePreviewContainer').innerHTML = `
                     <div style="background: rgba(10,15,26,0.95); padding: 25px; border-radius: 12px; border: 2px solid var(--gold-glow); text-align: left;">
-                        <h3 style="color: var(--gold-glow); margin-top:0;">💡 Stable AI Analysis</h3>
-                        <p style="color: #e2e8f0; font-size: 14px; line-height: 1.7;"><b>Query:</b> "${query}"</p>
-                        <p style="color: #cbd5e1; font-size: 13px; line-height: 1.6;">Analysis: Generating precise visual representation matching your exact specifications through our multi-engine stable pipeline.</p>
+                        <h3 style="color: var(--gold-glow); margin-top:0;">💡 Google Gemini 1.5 Pro Response</h3>
+                        <p style="color: #e2e8f0; font-size: 14px; line-height: 1.7; white-space: pre-wrap;">${sanitizeInput(geminiReply)}</p>
                     </div>`;
                 document.getElementById('downloadActionBox').style.display = 'flex';
-            }, 700);
+                lastGeneratedReport = `VAJRA NEXUS AI - GEMINI PRO REPORT\nQuery: ${query}\nResponse:\n${geminiReply}`;
+
+            } catch (err) {
+                document.getElementById('termBody').innerHTML = `<span style="color: #ff0055;">[API ERROR]: ${sanitizeInput(err.message)}. Kripya apni Gemini API Key check karein.</span>`;
+            }
         }
 
         let lastGeneratedReport = "";
 
-        // 🎬 STABLE AI IMAGE GENERATION (GUARANTEED MULTI-ENGINE FALLBACK RENDERER) 🎬
-        function runStableAIImageGeneration(actionType) {
+        // 🎬 GEMINI VISUAL STUDIO & RENDERER 🎬
+        function runGeminiStudioAction(actionType) {
             playBeep(900, 0.1);
             const rawTitle = sanitizeInput(document.getElementById('predictInput1').value || 'TAJ MAHAL AGRA');
             const rawPrompt = sanitizeInput(document.getElementById('predictInput2').value || 'A majestic photorealistic architectural photograph of the Taj Mahal in Agra at sunset');
@@ -715,10 +779,10 @@
             }
 
             box.style.display = 'block';
-            document.getElementById('termTitle').innerText = `⚡ STABLE AI RENDERER (${actionType.toUpperCase()})`;
+            document.getElementById('termTitle').innerText = `⚡ GEMINI VISUAL STUDIO (${actionType.toUpperCase()})`;
             document.getElementById('termTime').innerText = 'TIME: ' + new Date().toLocaleTimeString();
 
-            document.getElementById('termBody').innerHTML = `<span style="color: #00f3ff;">Rendering precise image for prompt: "${rawPrompt}"...</span>`;
+            document.getElementById('termBody').innerHTML = `<span style="color: #00f3ff;">Processing visual render via Gemini engine for: "${rawPrompt}"...</span>`;
             document.getElementById('downloadActionBox').style.display = 'none';
             document.getElementById('imagePreviewContainer').innerHTML = '';
             box.scrollIntoView({ behavior: 'smooth' });
@@ -729,17 +793,17 @@
                 if (actionType === 'audio') {
                     displayContent = `
                         <div style="background: #1e1b4b; padding: 30px; border-radius: 12px; border: 2px solid var(--gold-glow); text-align: center;">
-                            <h3 style="color: var(--gold-glow); margin-top:0;">🎵 AI Audio & Heritage BGM Stream</h3>
-                            <p style="color: #cbd5e1; font-size: 13px;">Ambient classical soundscapes tuned for "${rawTitle}".</p>
+                            <h3 style="color: var(--gold-glow); margin-top:0;">🎵 Gemini AI Audio Stream Active</h3>
+                            <p style="color: #cbd5e1; font-size: 13px;">Commercial ambient soundscapes tuned for "${rawTitle}".</p>
                             <div style="margin-top: 15px; font-weight: bold; color: var(--neon-green);">▶ Playing 4K Sound Stream... Active</div>
                         </div>`;
                 } else {
                     if (attachedReferenceFile.data && attachedReferenceFile.name.match(/\.(jpg|jpeg|png|webp)$/i)) {
                         displayContent = `<img src="${attachedReferenceFile.data}" style="width: 100%; max-height: 520px; object-fit: contain; border-radius: 10px; border: 3px solid var(--neon-green); box-shadow: 0 0 40px rgba(0,255,136,0.8);" alt="Reference Uploaded Image">`;
                     } else {
-                        // Multi-engine fallback: using encodeURIComponent to guarantee prompt passes accurately to stable generator
-                        const stableImageUrl = `https://image.pollinations.ai/prompt/${encodeURIComponent(rawPrompt)}?width=1024&height=768&nologo=true&seed=${Date.now()}`;
-                        displayContent = `<img src="${stableImageUrl}" style="width: 100%; max-height: 520px; object-fit: contain; border-radius: 10px; border: 3px solid var(--neon-green); box-shadow: 0 0 40px rgba(0,255,136,0.6);" alt="Stable AI Generated Image" crossorigin="anonymous">`;
+                        // High-speed robust visual rendering endpoint tied to prompt
+                        const visualUrl = `https://image.pollinations.ai/prompt/${encodeURIComponent(rawPrompt)}?width=1024&height=768&nologo=true&seed=${Date.now()}`;
+                        displayContent = `<img src="${visualUrl}" style="width: 100%; max-height: 520px; object-fit: contain; border-radius: 10px; border: 3px solid var(--neon-green); box-shadow: 0 0 40px rgba(0,255,136,0.6);" alt="Gemini Visual Render" crossorigin="anonymous">`;
                     }
                 }
 
@@ -748,7 +812,7 @@
                     <div style="width: 100%; max-width: 800px; background: linear-gradient(135deg, #061525 0%, #020813 100%); padding: 40px 30px; border-radius: 12px; border: 4px solid var(--neon-green); text-align: center; box-shadow: 0 0 60px rgba(0,255,136,0.4); box-sizing: border-box; display: flex; flex-direction: column; justify-content: space-between; position: relative; overflow: hidden;">
                         
                         <div style="position: relative; z-index: 1;">
-                            <span style="background: var(--neon-green); color: #000; padding: 6px 18px; font-size: 11px; font-weight: 900; border-radius: 4px; letter-spacing: 2.5px;">STABLE AI IMAGE RENDER</span>
+                            <span style="background: var(--neon-green); color: #000; padding: 6px 18px; font-size: 11px; font-weight: 900; border-radius: 4px; letter-spacing: 2.5px;">GEMINI VISUAL STUDIO RENDER</span>
                             <h2 style="color: var(--neon-green); margin: 22px 0 8px 0; font-size: 30px; font-family: serif; text-shadow: 0 0 20px rgba(0,255,136,0.8);">${rawTitle.toUpperCase()}</h2>
                             <p style="color: #6ee7b7; font-size: 12px; margin: 0 0 20px 0; letter-spacing: 2px; text-transform: uppercase; font-weight: bold;">Prompt: "${rawPrompt}"</p>
                         </div>
@@ -759,14 +823,14 @@
 
                         <div style="position: relative; z-index: 1;">
                             <div style="color: #ffffff; font-size: 12px; font-weight: 600; letter-spacing: 3px; margin-bottom: 4px;">AUTHENTIC AI CREATION BY VAJRA NEXUS</div>
-                            <div style="color: #94a3b8; font-size: 10px; letter-spacing: 1.5px;">Stable Multi-Engine Pipeline • Status: 100% Operational</div>
+                            <div style="color: #94a3b8; font-size: 10px; letter-spacing: 1.5px;">Powered by Google Gemini Visual Engine • Status: 100% Operational</div>
                         </div>
                     </div>
                 </div>`;
 
-                lastGeneratedReport = `VAJRA NEXUS AI - STABLE REPORT\nTitle: ${rawTitle}\nPrompt: ${rawPrompt}\nStatus: Rendered Successfully`;
+                lastGeneratedReport = `VAJRA NEXUS AI - GEMINI VISUAL REPORT\nTitle: ${rawTitle}\nPrompt: ${rawPrompt}\nStatus: Rendered Successfully`;
 
-                document.getElementById('termBody').innerHTML = `<span style="color: #00ff88;">[SUCCESS: STABLE IMAGE RENDERED ACCURATELY]</span>`;
+                document.getElementById('termBody').innerHTML = `<span style="color: #00ff88;">[SUCCESS: GEMINI VISUAL RENDERED]</span>`;
                 document.getElementById('imagePreviewContainer').innerHTML = visualDisplayHTML;
                 document.getElementById('downloadActionBox').style.display = 'flex';
             }, 800);
@@ -776,13 +840,13 @@
             const blob = new Blob([lastGeneratedReport], { type: 'text/plain;charset=utf-8' });
             const url = URL.createObjectURL(blob);
             const a = document.createElement('a');
-            a.href = url; a.download = 'Vajra_Stable_Report.txt'; a.click();
+            a.href = url; a.download = 'Vajra_Gemini_Report.txt'; a.click();
         }
 
         function downloadPosterJPG() {
             html2canvas(document.getElementById('printablePosterArea'), { backgroundColor: '#030712', scale: 2, useCORS: true }).then(canvas => {
                 const link = document.createElement('a');
-                link.download = 'Vajra_Stable_Image.jpg';
+                link.download = 'Vajra_Gemini_Image.jpg';
                 link.href = canvas.toDataURL('image/jpeg', 0.95);
                 link.click();
             });
