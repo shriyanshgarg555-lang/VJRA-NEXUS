@@ -314,7 +314,7 @@
     </div>
 
     <div class="supreme-banner">
-        ⚡ VAJRA NEXUS V5.0 • OPEN AI SEARCH, CHATGPT/GEMINI & MULTI-MEDIA SUITE • FOUNDER: SHRIYANSH GARG ⚡
+        ⚡ VAJRA NEXUS V5.0 • CHATGPT/GEMINI & MULTI-MEDIA SUITE • FOUNDER: SHRIYANSH GARG ⚡
     </div>
 
     <div class="container">
@@ -401,7 +401,7 @@
                 </div>
             </div>
 
-            <!-- AI ASSISTANT & OPEN SEARCH TAB (ChatGPT / Gemini Style) -->
+            <!-- AI ASSISTANT & OPEN SEARCH TAB -->
             <div id="workspace" class="view-section">
                 <div class="command-panel">
                     <div class="panel-card gold-border">
@@ -446,7 +446,7 @@
                 </div>
             </div>
 
-            <!-- 🎬 CRYSTAL CLEAR MEDIA & POSTER STUDIO (PHOTO, AUDIO, VIDEO & ALL-FORMAT REFERENCE) 🎬 -->
+            <!-- 🎬 CRYSTAL CLEAR MEDIA & POSTER STUDIO (ALL FORMATS ATTACHMENT) -->
             <div id="videoEdit" class="view-section">
                 <div class="command-panel">
                     <div class="panel-card green-border">
@@ -457,7 +457,6 @@
                         
                         <textarea id="predictInput2" class="input-box" rows="3" placeholder="Enter detailed AI Image/Poster Prompt...">A photorealistic close-up studio photograph of a luxury pyramidal gift box for 'Shahi Mahal'. The box has a light cream/off-white textured paper finish. On the front face, a detailed embossed gold foil circular logo featuring an ornate Indian Mughal archway with a central diya and letters 'SM'. Below logo, golden serif font 'SHAHI MAHAL CANDLE' and 'Aromatic Luxury for Royal Spaces'. Commercial 4K product photography.</textarea>
                         
-                        <!-- ALL-FORMAT REFERENCE FILE ATTACHMENT -->
                         <div class="upload-wrapper" style="border-color: var(--neon-green);">
                             <label for="assetUpload" id="uploadLabel" style="color: var(--neon-green); font-weight: bold;">📁 ATTACH REFERENCE FILE (ALL FORMATS: Image, Audio, Video, PDF, PSD, AI, ZIP...)</label>
                             <input type="file" id="assetUpload" accept="*" onchange="safeExecute(handleAllFormatUpload)">
@@ -472,7 +471,7 @@
                 </div>
             </div>
 
-            <!-- 🔄 ALL-FORMAT UNIVERSAL FILE & PDF CONVERTER SUITE 🔄 -->
+            <!-- 🔄 ALL-FORMAT UNIVERSAL FILE & PDF CONVERTER SUITE -->
             <div id="docConverter" class="view-section">
                 <div class="command-panel">
                     <div class="panel-card gold-border">
@@ -727,12 +726,8 @@
                             <div style="margin-top: 15px; color: #f43f5e; font-weight: bold;">▶ Video Rendered Successfully (MP4 Format Ready)</div>
                         </div>`;
                 } else {
-                    if (attachedReferenceFile.data && attachedReferenceFile.name.match(/\.(jpg|jpeg|png|webp)$/i)) {
-                        displayContent = `<img src="${attachedReferenceFile.data}" style="width: 100%; max-height: 520px; object-fit: contain; border-radius: 10px; border: 3px solid var(--neon-green); box-shadow: 0 0 40px rgba(0,255,136,0.8);" alt="Reference Based Render">`;
-                    } else {
-                        const liveAIImageUrl = `https://pollinations.ai/p/${encodeURIComponent(rawPrompt + ", ultra HD, 8k resolution, highly detailed commercial studio lighting, sharp focus, photorealistic")}?width=1200&height=900&seed=${Math.floor(Math.random() * 999999)}&nologo=true`;
-                        displayContent = `<img src="${liveAIImageUrl}" style="width: 100%; max-height: 520px; object-fit: contain; border-radius: 10px; border: 3px solid var(--neon-green); box-shadow: 0 0 40px rgba(0,255,136,0.6);" alt="Crystal Clear AI Poster" crossorigin="anonymous">`;
-                    }
+                    const cleanImageUrl = `https://image.pollinations.ai/prompt/${encodeURIComponent(rawPrompt + ", ultra HD, 8k resolution, highly detailed commercial studio lighting, photorealistic")}?width=1200&height=900&nologo=true`;
+                    displayContent = `<img src="${cleanImageUrl}" style="width: 100%; max-height: 520px; object-fit: contain; border-radius: 10px; border: 3px solid var(--neon-green); box-shadow: 0 0 40px rgba(0,255,136,0.6);" alt="Crystal Clear AI Poster" crossorigin="anonymous">`;
                 }
 
                 let visualDisplayHTML = `
