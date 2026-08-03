@@ -44,7 +44,21 @@
         /* 3D PARTICLE BACKGROUND CANVAS */
         #bg-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
 
+        /* FLYING LETTERS BACKGROUND ANIMATION */
         .letters-layer { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1; overflow: hidden; }
+
+        .flying-letter {
+            position: absolute; font-weight: 900; font-size: 26px;
+            user-select: none; animation: letterFlight linear infinite;
+            filter: drop-shadow(0 0 12px currentColor);
+        }
+
+        @keyframes letterFlight {
+            0% { transform: translate(0, 105vh) rotate(0deg) scale(0.6); opacity: 0; }
+            15% { opacity: 0.7; }
+            85% { opacity: 0.7; }
+            100% { transform: translate(15vw, -15vh) rotate(360deg) scale(1.4); opacity: 0; }
+        }
 
         /* Top Nav Control Bar */
         .top-nav {
@@ -274,6 +288,7 @@
 
     <!-- 3D PARTICLE BACKGROUND CANVAS -->
     <canvas id="bg-canvas"></canvas>
+    <!-- FLYING LETTERS BACKGROUND ANIMATION LAYER -->
     <div class="letters-layer" id="lettersContainer"></div>
 
     <div class="top-nav">
@@ -712,7 +727,6 @@
                             <div style="margin-top: 15px; color: #f43f5e; font-weight: bold;">▶ Video Rendered Successfully (MP4 Format Ready)</div>
                         </div>`;
                 } else {
-                    // Poster / Photo generation
                     if (attachedReferenceFile.data && attachedReferenceFile.name.match(/\.(jpg|jpeg|png|webp)$/i)) {
                         displayContent = `<img src="${attachedReferenceFile.data}" style="width: 100%; max-height: 520px; object-fit: contain; border-radius: 10px; border: 3px solid var(--neon-green); box-shadow: 0 0 40px rgba(0,255,136,0.8);" alt="Reference Based Render">`;
                     } else {
@@ -782,6 +796,20 @@
                 printWindow.document.write(`<html><head><title>Print PDF</title></head><body style="margin:0; background:#000; display:flex; justify-content:center; align-items:center; height:100vh;"><img src="${imgData}" style="max-width:100%; max-height:100%;" onload="window.print(); window.close();"/></body></html>`);
                 printWindow.document.close();
             });
+        }
+
+        // FLYING LETTERS BACKGROUND ANIMATION GENERATOR
+        const lettersContainer = document.getElementById('lettersContainer');
+        const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789§-+=*#@&ΩΨΞ";
+        for(let i=0; i<30; i++) {
+            const span = document.createElement('span');
+            span.className = 'flying-letter';
+            span.innerText = alphabet.charAt(Math.floor(Math.random() * alphabet.length));
+            span.style.left = Math.random() * 100 + 'vw';
+            span.style.animationDuration = (Math.random() * 8 + 6) + 's';
+            span.style.animationDelay = (Math.random() * 5) + 's';
+            span.style.color = Math.random() > 0.5 ? '#00f3ff' : '#ffd700';
+            lettersContainer.appendChild(span);
         }
 
         // CHARTS DRAWING ENGINE
