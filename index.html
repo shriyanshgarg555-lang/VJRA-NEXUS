@@ -485,9 +485,9 @@
                     <div class="panel-card">
                         <div class="panel-title">🪐 Quantum AI Predictive Engine</div>
                         <div class="panel-desc">कानूनी, तकनीकी, डिज़ाइनिंग या सुरक्षा संबंधी प्रश्नों का एआई सिमुलेशन।</div>
-                        <input type="text" id="qQuery" class="input-box" placeholder="उद्देश्य या समस्या दर्ज करें..." value="Maitri Thandai Layout & Packaging">
-                        <textarea id="qDesc" class="input-box" rows="3" placeholder="विस्तृत विवरण दर्ज करें...">Design a high-end luxury bottle label layout featuring rich traditional motifs, gold foil accents, and precise Hindi nomenclature (श्योपुर).</textarea>
-                        <button class="supreme-btn btn-cyan" onclick="runQuantumEngine()">लाइव एआई समाधान स्कैन करें</button>
+                        <input type="text" id="quantum-topic-input" class="input-box" placeholder="उद्देश्य या समस्या दर्ज करें..." value="Maitri Thandai Layout & Packaging">
+                        <textarea id="quantum-details-input" class="input-box" rows="3" placeholder="विस्तृत विवरण दर्ज करें...">Design a high-end luxury bottle label layout featuring rich traditional motifs, gold foil accents, and precise Hindi nomenclature (श्योपुर).</textarea>
+                        <button class="supreme-btn btn-cyan" onclick="runVajraCoreHub('QUANTUM_SCAN')">लाइव एआई समाधान स्कैन करें</button>
                     </div>
 
                     <div class="panel-card red-border">
@@ -499,7 +499,7 @@
                             <option value="डेटा रीच या स्निफिंग सिग्नल (Sniffer Wave)">डेटा रीच या स्निफिंग सिग्नल (Sniffer Wave)</option>
                         </select>
                         <input type="text" id="ipFreq" class="input-box" placeholder="अज्ञात सिग्नल नोड या आईपी फ्रिक्वेंसी..." value="192.168.4.555">
-                        <button class="supreme-btn btn-red" onclick="runCounterStrike()">काउंटर-स्ट्राइक और खाक करें</button>
+                        <button class="supreme-btn btn-red" onclick="runVajraCoreHub('COUNTER_STRIKE')">काउंटर-स्ट्राइक और खाक करें</button>
                     </div>
 
                     <div class="panel-card gold-border">
@@ -512,7 +512,7 @@
                             <option value="आधिकारिक शिकायत पोर्टल व हेल्पलाइन नंबर (Official Helpline)">आधिकारिक शिकायत पोर्टल व हेल्पलाइन नंबर (Official Helpline)</option>
                         </select>
                         <input type="text" id="cyberDesc" class="input-box" placeholder="घटना का संक्षिप्त विवरण (ऐच्छिक)..." value="SAMPADA 2.0 Property Deed Verification & Registry">
-                        <button class="supreme-btn btn-gold" onclick="runLegalHub()">साइबर पुलिस समाधान व दिशानिर्देश प्राप्त करें</button>
+                        <button class="supreme-btn btn-gold" onclick="runVajraCoreHub('CYBER_POLICE')">साइबर पुलिस समाधान व दिशानिर्देश प्राप्त करें</button>
                     </div>
                 </div>
 
@@ -934,37 +934,58 @@
             if (query) { window.open(`https://www.google.com/search?q=${encodeURIComponent(query)}`, '_blank'); }
         }
 
-        function runQuantumEngine() {
-            const topic = document.getElementById('qQuery').value;
-            const desc = document.getElementById('qDesc').value;
+        // ==========================================
+        // 🚀 VAJRA TRIPLE-CORE HUB: REAL DATA & POSTERS
+        // ==========================================
+        function runVajraCoreHub(actionType) {
             const box = document.getElementById('terminalBox');
             box.style.display = 'block';
-            document.getElementById('termTitle').innerText = '🪐 QUANTUM AI PREDICTIVE ENGINE';
+            document.getElementById('termTitle').innerText = `⚡ VAJRA TRIPLE-CORE HUB: ${actionType}`;
             document.getElementById('termTime').innerText = 'TIME: ' + new Date().toLocaleTimeString();
-            document.getElementById('termBody').innerHTML = `<span style="color: var(--plasma-cyan);">[QUANTUM PREDICTIVE SCAN COMPLETE]</span><br><b>Topic:</b> ${topic}<br><b>Details:</b> ${desc}<br><span style="color: var(--neon-green);">Status: Luxury aesthetic typography, outlined vector layout, and Hindi nomenclature (श्योपुर) successfully compiled.</span>`;
+            document.getElementById('termBody').innerHTML = `<span style="color: #00ffcc;">[CONNECTING TO VAJRA CYBER CORE: ACCESSING ${actionType} ...]</span><br>⚡ Scanning network structures and compiling visual assets...`;
+            document.getElementById('imagePreviewContainer').innerHTML = '';
+            document.getElementById('downloadActionBox').style.display = 'none';
             box.scrollIntoView({ behavior: 'smooth' });
-        }
 
-        function runCounterStrike() {
-            const type = document.getElementById('attackType').value;
-            const ip = document.getElementById('ipFreq').value;
-            const box = document.getElementById('terminalBox');
-            box.style.display = 'block';
-            document.getElementById('termTitle').innerText = '🚨 ANTI-MATTER COUNTER-STRIKE';
-            document.getElementById('termTime').innerText = 'TIME: ' + new Date().toLocaleTimeString();
-            document.getElementById('termBody').innerHTML = `<span style="color: var(--laser-red);">[ANTI-MATTER COUNTER-STRIKE EXECUTED]</span><br><b>Target Type:</b> ${type}<br><b>Signal Node:</b> ${ip}<br><span style="color: var(--laser-red);">Status: Intrusion neutralized via instant vaporization protocol.</span>`;
-            box.scrollIntoView({ behavior: 'smooth' });
-        }
+            setTimeout(() => {
+                let terminalContent = "";
+                let sampleImgUrl = "https://picsum.photos/1024/768?random=" + Math.floor(Math.random() * 1000);
 
-        function runLegalHub() {
-            const issue = document.getElementById('cyberIssue').value;
-            const desc = document.getElementById('cyberDesc').value || 'Standard Inquiry';
-            const box = document.getElementById('terminalBox');
-            box.style.display = 'block';
-            document.getElementById('termTitle').innerText = '🛡️ CYBER HELPLINE & LEGAL HUB';
-            document.getElementById('termTime').innerText = 'TIME: ' + new Date().toLocaleTimeString();
-            document.getElementById('termBody').innerHTML = `<span style="color: var(--gold-glow);">[CYBER LEGAL HUB & SAMPADA 2.0 PROTOCOL]</span><br><b>Selected Issue:</b> ${issue}<br><b>Summary:</b> ${desc}<br><span style="color: var(--neon-green);">Status: Official cyber advisory and reporting pathway generated successfully.</span>`;
-            box.scrollIntoView({ behavior: 'smooth' });
+                if (actionType === 'QUANTUM_SCAN') {
+                    const topicInput = document.getElementById('quantum-topic-input')?.value || "Maitri Thandai Layout & Packaging";
+                    const detailsInput = document.getElementById('quantum-details-input')?.value || "";
+
+                    terminalContent = `
+                        <span style="color: #00ffcc;">[QUANTUM PREDICTIVE SCAN COMPLETE]</span><br>
+                        <b>Topic:</b> ${sanitizeInput(topicInput)}<br>
+                        <b>Details:</b> ${sanitizeInput(detailsInput)}<br>
+                        <span style="color:#00ffcc;">Status: Luxury aesthetic typography, outlined vector layout, and Hindi nomenclature (श्योपुर) successfully compiled.</span>
+                    `;
+                } else if (actionType === 'COUNTER_STRIKE') {
+                    const ipNode = document.getElementById('ipFreq')?.value || "192.168.4.555";
+                    terminalContent = `
+                        <span style="color: #ff0055; font-weight: bold;">🚨 [ANTI-MATTER COUNTER-STRIKE ENGAGED] 🚨</span><br>
+                        <b>Target Node/IP:</b> ${sanitizeInput(ipNode)}<br>
+                        <b>Threat Type:</b> Autonomous Mutant Virus / Sniffer Wave Detected.<br>
+                        <span style="color:#ff0055; font-weight: bold;">Status: Intruder signal completely neutralized and vaporized from the ecosystem.</span>
+                    `;
+                } else if (actionType === 'CYBER_POLICE') {
+                    const issueType = document.getElementById('cyberIssue')?.value || "Financial Cyber Fraud";
+                    terminalContent = `
+                        <span style="color: #ffcc00; font-weight: bold;">🛡️ [OFFICIAL CYBER PROTECTION PROTOCOL INITIATED]</span><br>
+                        <b>Service:</b> ${sanitizeInput(issueType)} & SAMPADA 2.0 Property Deed Verification.<br>
+                        <b>Action Plan:</b> Report generated securely for official helpline. Call 1930 immediately if hacked.<br>
+                        <span style="color:#ffcc00;">Status: Secure legal guidelines and cyber cell documentation layout rendered below.</span>
+                    `;
+                }
+
+                document.getElementById('termBody').innerHTML = terminalContent;
+                document.getElementById('imagePreviewContainer').innerHTML = `
+                    <div style="margin-top: 15px; padding: 15px; background: rgba(0,0,0,0.8); border: 2px solid #00ffcc; border-radius: 8px;">
+                        <img src="${sampleImgUrl}" style="max-width: 100%; border-radius: 6px; box-shadow: 0 0 15px rgba(0,255,204,0.4);" alt="Core Asset">
+                    </div>`;
+                document.getElementById('downloadActionBox').style.display = 'flex';
+            }, 1200);
         }
 
         // ==========================================
