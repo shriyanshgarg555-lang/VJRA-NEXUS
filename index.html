@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VAJRA NEXUS AI - V14.0 Ultimate Master Suite</title>
+    <title>VAJRA NEXUS AI - V16.0 Full Massive Core Edition</title>
     
     <!-- ⚡ 404 FAVICON ERROR FIX ⚡ -->
     <link rel="icon" href="data:,">
@@ -292,11 +292,6 @@
             border-top: 1px solid rgba(255, 255, 255, 0.1); padding: 25px 0; width: 100%; position: relative; z-index: 10;
         }
         .footer b { color: var(--gold-glow); }
-
-        /* Q&A SCRIPT STYLES */
-        .qa-box { background: rgba(4,8,16,0.9); border: 1px solid var(--gold-glow); border-radius: 12px; padding: 15px; margin-bottom: 15px; }
-        .qa-q { color: var(--gold-glow); font-weight: bold; font-size: 13px; margin-bottom: 6px; }
-        .qa-a { color: #e2e8f0; font-size: 12px; line-height: 1.6; }
     </style>
 </head>
 <body>
@@ -308,7 +303,7 @@
 
     <!-- STABLE TOP NAVIGATION BAR WITH GOOGLE TRANSLATE -->
     <div class="top-nav">
-        <div class="nav-brand">⚡ VAJRA NEXUS AI (V14.0 SUPREME MASTER SUITE)</div>
+        <div class="nav-brand">⚡ VAJRA NEXUS AI (V16.0 FULL MASSIVE CORE)</div>
         <div class="control-btns">
             <div id="google_translate_element"></div>
             <button class="icon-btn" onclick="safeExecute(toggleSound)" id="soundBtn">🔊 Sound: ON</button>
@@ -331,14 +326,14 @@
     </div>
 
     <div class="supreme-banner">
-        ⚡ VAJRA NEXUS V14.0 • DIRECT GOOGLE GEMINI 1.5 PRO & FULL FEEDBACK / Q&A SCRIPT SUITE • FOUNDER: SHRIYANSH GARG ⚡
+        ⚡ VAJRA NEXUS V16.0 • DIRECT GOOGLE GEMINI 1.5 PRO & FULL MASSIVE SUITE • FOUNDER: SHRIYANSH GARG ⚡
     </div>
 
     <div class="container">
         
         <div class="header">
             <h1 class="title">VAJRA NEXUS AI</h1>
-            <div class="version-tag">V14.0 SUPREME MASTER EDITION</div>
+            <div class="version-tag">V16.0 FULL MASSIVE CORE EDITION</div>
             
             <div class="subtitle">Directly Connected to Google Gemini 1.5 Pro & Visual AI Studio</div>
             
@@ -349,7 +344,7 @@
             </div>
         </div>
 
-        <!-- 🔍 GOOGLE LIVE WEB SEARCH & QUICK QUERY BAR (LOGIN PAGE) -->
+        <!-- 🔍 GOOGLE LIVE WEB SEARCH BAR (LOGIN PAGE) -->
         <div class="google-search-section" style="max-width: 540px; margin: 0 auto 25px auto;">
             <div style="font-size: 12px; font-weight: 900; color: var(--plasma-cyan); letter-spacing: 1.5px; margin-bottom: 6px;">🌐 GOOGLE LIVE WEB SEARCH & QUERY BAR</div>
             <div class="google-search-box">
@@ -366,7 +361,7 @@
             </div>
 
             <div id="authFormTitle" style="font-size: 15px; font-weight: bold; color: var(--gold-glow); margin-bottom: 15px;">
-                V14.0 SUPREME AUTHENTICATION
+                V16.0 SUPREME AUTHENTICATION
             </div>
 
             <input type="text" id="loginUser" class="input-box" placeholder="Username / Access ID...">
@@ -451,11 +446,11 @@
                 </div>
             </div>
 
-            <!-- 2. GEMINI LIVE AI HUB (LIVE CHAT RUNNING) -->
+            <!-- 2. GEMINI LIVE AI HUB -->
             <div id="workspace" class="view-section">
                 <div class="command-panel">
                     <div class="panel-card gold-border">
-                        <div class="panel-title gold">🤖 Google Gemini Pro Live Intelligence Hub (Active Chat)</div>
+                        <div class="panel-title gold">🤖 Google Gemini Pro Live Intelligence Hub</div>
                         <div class="panel-desc">Directly query Gemini 1.5 Pro for commercial branding, graphic design architecture, and text synthesis.</div>
                         <input type="text" id="openAISearchInput" class="input-box" placeholder="Ask Gemini (e.g. Shahi Mahal candle packaging luxury concept)..." onkeypress="if(event.key === 'Enter') runGeminiLiveQuery();">
                         <button class="supreme-btn btn-gold" onclick="safeExecute(runGeminiLiveQuery)">🚀 Query Gemini Pro Live Core</button>
@@ -601,24 +596,38 @@
                 </div>
             </div>
 
-            <!-- 11. FEEDBACK & Q&A SCRIPT SUITE -->
+            <!-- 11. FEEDBACK & Q&A SCRIPT SUITE WITH FORMSPREE -->
             <div id="feedback" class="view-section">
                 <div class="command-panel">
                     <div class="panel-card gold-border">
-                        <div class="panel-title gold">💡 Feedback, Suggestions & Q&A Script Suite</div>
-                        <p class="panel-desc">Direct correspondence to <b>shriyanshgarg555@gmail.com</b> along with integrated project Q&A scripts.</p>
+                        <div class="panel-title gold">💡 Feedback, Suggestions & Formspree Live Suite</div>
+                        <p class="panel-desc">Direct correspondence to <b>shriyanshgarg555@gmail.com</b> along with integrated project Q&A scripts and Star Rating.</p>
                         
-                        <div class="qa-box">
-                            <div class="qa-q">Q1: How does Vajra Nexus AI connect with Gemini Pro?</div>
-                            <div class="qa-a">Ans: By securely passing your paid Google AI Studio API key directly through the secure runtime bridge.</div>
+                        <form action="https://formspree.io/f/shriyanshgarg555" method="POST" style="display: flex; flex-direction: column; gap: 12px; margin-bottom: 20px;">
+                            <input type="text" name="name" class="input-box" placeholder="Your Full Name..." required style="margin-bottom:0;">
+                            <input type="email" name="email" class="input-box" placeholder="Your Email Address..." required style="margin-bottom:0;">
+                            
+                            <div style="font-size: 13px; color: var(--gold-glow); font-weight: bold; margin-top: 5px;">⭐ Rate Your Experience / Stars:</div>
+                            <select name="rating" class="input-box" style="background: rgba(4,8,16,0.9); color: var(--gold-glow); border-color: var(--gold-glow); margin-bottom:0;">
+                                <option value="5 Stars - Outstanding Experience">⭐⭐⭐⭐⭐ (5 Stars - Outstanding)</option>
+                                <option value="4 Stars - Excellent">⭐⭐⭐⭐ (4 Stars - Excellent)</option>
+                                <option value="3 Stars - Good">⭐⭐⭐ (3 Stars - Good)</option>
+                                <option value="2 Stars - Needs Improvement">⭐⭐ (2 Stars - Needs Improvement)</option>
+                                <option value="1 Star - Poor">⭐ (1 Star - Poor)</option>
+                            </select>
+
+                            <textarea name="message" class="input-box" rows="4" placeholder="Type your feedback, feature suggestions, or project comments here..." required style="margin-bottom:0;"></textarea>
+                            
+                            <button type="submit" class="supreme-btn btn-gold">🚀 Submit Feedback Securely</button>
+                        </form>
+
+                        <div class="qa-box" style="background: rgba(4,8,16,0.9); border: 1px solid var(--gold-glow); border-radius: 12px; padding: 15px; margin-bottom: 15px;">
+                            <div class="qa-q" style="color: var(--gold-glow); font-weight: bold; font-size: 13px; margin-bottom: 6px;">Q1: How does Vajra Nexus AI connect with Gemini Pro?</div>
+                            <div class="qa-a" style="color: #e2e8f0; font-size: 12px; line-height: 1.6;">Ans: By securely passing your paid Google AI Studio API key directly through the secure runtime bridge.</div>
                         </div>
-                        <div class="qa-box">
-                            <div class="qa-q">Q2: What design formats are prioritized in packaging projects?</div>
-                            <div class="qa-a">Ans: Luxury aesthetics, clean outlined no-fill mockups, intricate traditional/royal motifs, and precise Hindi nomenclature (श्योपुर).</div>
-                        </div>
-                        <div class="qa-box">
-                            <div class="qa-q">Q3: How to submit direct feedback or bug reports?</div>
-                            <div class="qa-a">Ans: Direct all official inquiries and creative reviews to shriyanshgarg555@gmail.com.</div>
+                        <div class="qa-box" style="background: rgba(4,8,16,0.9); border: 1px solid var(--gold-glow); border-radius: 12px; padding: 15px; margin-bottom: 15px;">
+                            <div class="qa-q" style="color: var(--gold-glow); font-weight: bold; font-size: 13px; margin-bottom: 6px;">Q2: What design formats are prioritized in packaging projects?</div>
+                            <div class="qa-a" style="color: #e2e8f0; font-size: 12px; line-height: 1.6;">Ans: Luxury aesthetics, clean outlined no-fill mockups, intricate traditional/royal motifs, and precise Hindi nomenclature (श्योपुर).</div>
                         </div>
                     </div>
                 </div>
@@ -644,7 +653,7 @@
             </div>
             
             <div id="printablePosterArea">
-                <div class="terminal-content" id="termBody">Running Vajra V14.0 Master Suite...</div>
+                <div class="terminal-content" id="termBody">Running Vajra V16.0 Full Massive Core Suite...</div>
                 <div id="imagePreviewContainer" style="margin-top: 15px; text-align: center;"></div>
             </div>
 
