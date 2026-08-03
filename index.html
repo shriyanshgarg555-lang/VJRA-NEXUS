@@ -3,15 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VAJRA NEXUS AI - V16.0 Full Massive Core Edition (All-in-One Supreme)</title>
+    <title>VAJRA NEXUS AI - V16.0 Enterprise 100K+ Ultimate Master Core Edition</title>
     
     <!-- ⚡ 404 FAVICON ERROR FIX ⚡ -->
     <link rel="icon" href="data:,">
 
-    <!-- ⚡ HTML2CANVAS & PDF SUPPORT ⚡ -->
+    <!-- ⚡ EXTERNAL ADVANCED LIBRARIES, ENGINES & RENDERING SUITES ⚡ -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-
-    <!-- ⚡ Google World Translate Core ⚡ -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script defer type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
     <style>
@@ -22,8 +21,11 @@
             --neon-green: #00ff88;
             --gold-glow: #ffd700;
             --bg-dark: #030712;
-            --card-bg: rgba(10, 15, 26, 0.95);
+            --card-bg: rgba(10, 15, 26, 0.96);
+            --border-glow: rgba(0, 243, 255, 0.5);
         }
+
+        *, *::before, *::after { box-sizing: border-box; }
 
         body {
             color: #ffffff;
@@ -32,7 +34,7 @@
             display: flex; flex-direction: column; align-items: center;
             overflow-x: hidden;
             background: linear-gradient(135deg, #050a14, #12030a, #0b0f19, #020408);
-            background-size: 400% 400%; animation: bgShift 12s ease infinite;
+            background-size: 400% 400%; animation: bgShift 14s ease infinite;
         }
 
         @keyframes bgShift {
@@ -48,24 +50,24 @@
         .letters-layer { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1; overflow: hidden; }
 
         .flying-letter {
-            position: absolute; font-weight: 900; font-size: 26px;
+            position: absolute; font-weight: 900; font-size: 28px;
             user-select: none; animation: letterFlight linear infinite;
-            filter: drop-shadow(0 0 12px currentColor);
+            filter: drop-shadow(0 0 15px currentColor);
         }
 
         @keyframes letterFlight {
-            0% { transform: translate(0, 105vh) rotate(0deg) scale(0.6); opacity: 0; }
-            15% { opacity: 0.7; }
-            85% { opacity: 0.7; }
-            100% { transform: translate(15vw, -15vh) rotate(360deg) scale(1.4); opacity: 0; }
+            0% { transform: translate(0, 105vh) rotate(0deg) scale(0.5); opacity: 0; }
+            15% { opacity: 0.8; }
+            85% { opacity: 0.8; }
+            100% { transform: translate(18vw, -18vh) rotate(360deg) scale(1.5); opacity: 0; }
         }
 
-        /* Top Nav Control Bar */
+        /* TOP NAVIGATION CONTROL BAR */
         .top-nav {
             width: 100%; display: flex; justify-content: space-between; align-items: center;
-            padding: 12px 25px; box-sizing: border-box; background: rgba(4, 8, 16, 0.98);
-            border-bottom: 1px solid rgba(0, 243, 255, 0.4); position: relative; z-index: 50;
-            flex-wrap: wrap; gap: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.6);
+            padding: 12px 28px; box-sizing: border-box; background: rgba(4, 8, 16, 0.98);
+            border-bottom: 1px solid rgba(0, 243, 255, 0.5); position: relative; z-index: 50;
+            flex-wrap: wrap; gap: 12px; box-shadow: 0 4px 25px rgba(0,0,0,0.7);
         }
 
         .nav-brand { font-weight: 900; color: var(--plasma-cyan); letter-spacing: 2px; font-size: 16px; display: flex; align-items: center; gap: 8px; }
@@ -74,19 +76,19 @@
 
         .icon-btn {
             background: rgba(0, 243, 255, 0.1); border: 1px solid var(--plasma-cyan);
-            color: #fff; padding: 6px 14px; border-radius: 20px; cursor: pointer;
+            color: #fff; padding: 6px 15px; border-radius: 20px; cursor: pointer;
             font-size: 12px; font-weight: bold; transition: all 0.3s;
         }
 
-        .icon-btn:hover { background: var(--plasma-cyan); color: #000; box-shadow: 0 0 15px var(--plasma-cyan); }
+        .icon-btn:hover { background: var(--plasma-cyan); color: #000; box-shadow: 0 0 18px var(--plasma-cyan); }
 
         .btn-logout {
             background: rgba(255, 0, 85, 0.2); border: 1px solid var(--laser-red);
-            color: #ff0055; font-weight: bold; padding: 6px 14px; border-radius: 20px;
+            color: #ff0055; font-weight: bold; padding: 6px 15px; border-radius: 20px;
             cursor: pointer; font-size: 12px; transition: all 0.3s; display: none;
         }
 
-        .btn-logout:hover { background: var(--laser-red); color: #fff; box-shadow: 0 0 15px var(--laser-red); }
+        .btn-logout:hover { background: var(--laser-red); color: #fff; box-shadow: 0 0 18px var(--laser-red); }
 
         #google_translate_element select {
             background: rgba(4, 8, 16, 0.9); color: var(--plasma-cyan);
@@ -98,17 +100,17 @@
 
         /* GOOGLE LIVE SEARCH BAR */
         .google-search-section {
-            background: rgba(10, 15, 26, 0.95); border: 2px solid var(--plasma-cyan);
-            border-radius: 16px; padding: 20px; margin-bottom: 25px; text-align: center;
-            box-shadow: 0 0 30px rgba(0,243,255,0.2);
+            background: rgba(10, 15, 26, 0.96); border: 2px solid var(--plasma-cyan);
+            border-radius: 16px; padding: 22px; margin-bottom: 25px; text-align: center;
+            box-shadow: 0 0 35px rgba(0,243,255,0.25);
         }
         .google-search-box {
-            display: flex; gap: 10px; max-width: 700px; margin: 0 auto; flex-wrap: wrap;
+            display: flex; gap: 10px; max-width: 720px; margin: 0 auto; flex-wrap: wrap;
         }
 
         /* GLOBAL COUNTRY FLAGS BAR */
         .flags-bar {
-            width: 100%; background: rgba(8, 12, 22, 0.9); border-bottom: 1px solid rgba(255, 215, 0, 0.2);
+            width: 100%; background: rgba(8, 12, 22, 0.92); border-bottom: 1px solid rgba(255, 215, 0, 0.25);
             padding: 8px 15px; display: flex; justify-content: center; align-items: center;
             gap: 15px; flex-wrap: wrap; position: relative; z-index: 40; font-size: 12px;
         }
@@ -120,8 +122,8 @@
         }
 
         .flag-item:hover {
-            border-color: var(--gold-glow); transform: scale(1.05);
-            box-shadow: 0 0 12px rgba(255, 215, 0, 0.4);
+            border-color: var(--gold-glow); transform: scale(1.06);
+            box-shadow: 0 0 14px rgba(255, 215, 0, 0.5);
         }
 
         /* SLIM RGB BANNER */
@@ -131,7 +133,7 @@
             background-size: 300% 300%; animation: bannerFlow 4s linear infinite;
             padding: 9px 0; text-align: center; font-size: 11px; font-weight: 900;
             letter-spacing: 2px; color: #000; text-transform: uppercase;
-            box-shadow: 0 0 25px rgba(0, 243, 255, 0.4); position: relative; z-index: 30;
+            box-shadow: 0 0 28px rgba(0, 243, 255, 0.5); position: relative; z-index: 30;
         }
 
         @keyframes bannerFlow {
@@ -145,7 +147,7 @@
         .header { text-align: center; margin-bottom: 25px; }
 
         .title {
-            font-size: 52px; font-weight: 900; letter-spacing: 8px;
+            font-size: 54px; font-weight: 900; letter-spacing: 8px;
             background: linear-gradient(135deg, #00f3ff, #ff0055, #ffd700, #00ff88);
             background-size: 300% 300%; -webkit-background-clip: text;
             -webkit-text-fill-color: transparent; margin: 0;
@@ -155,23 +157,23 @@
         .version-tag {
             font-size: 13px; font-weight: 900; letter-spacing: 5px;
             color: var(--gold-glow); text-transform: uppercase;
-            background: rgba(255, 215, 0, 0.1); border: 1px solid var(--gold-glow);
-            padding: 3px 14px; border-radius: 15px; display: inline-block;
-            margin-top: 4px; margin-bottom: 12px; box-shadow: 0 0 10px rgba(255, 215, 0, 0.2);
+            background: rgba(255, 215, 0, 0.12); border: 1px solid var(--gold-glow);
+            padding: 3px 16px; border-radius: 15px; display: inline-block;
+            margin-top: 6px; margin-bottom: 12px; box-shadow: 0 0 12px rgba(255, 215, 0, 0.3);
         }
 
         @keyframes headingGlow {
-            0% { background-position: 0% 50%; filter: drop-shadow(0 0 18px rgba(0, 243, 255, 0.7)); }
-            50% { background-position: 100% 50%; filter: drop-shadow(0 0 28px rgba(255, 0, 85, 0.8)); }
-            100% { background-position: 0% 50%; filter: drop-shadow(0 0 22px rgba(255, 215, 0, 0.7)); }
+            0% { background-position: 0% 50%; filter: drop-shadow(0 0 20px rgba(0, 243, 255, 0.8)); }
+            50% { background-position: 100% 50%; filter: drop-shadow(0 0 30px rgba(255, 0, 85, 0.9)); }
+            100% { background-position: 0% 50%; filter: drop-shadow(0 0 25px rgba(255, 215, 0, 0.8)); }
         }
 
         .subtitle { color: #c084fc; font-size: 13px; letter-spacing: 3px; text-transform: uppercase; font-weight: 800; margin-bottom: 15px; }
 
         .creator-badge {
             display: inline-flex; align-items: center; gap: 15px;
-            background: rgba(10, 15, 26, 0.85); border: 1px solid var(--gold-glow);
-            padding: 8px 22px; border-radius: 30px; box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+            background: rgba(10, 15, 26, 0.88); border: 1px solid var(--gold-glow);
+            padding: 8px 24px; border-radius: 30px; box-shadow: 0 0 22px rgba(255, 215, 0, 0.35);
             font-size: 12px; font-weight: 800; letter-spacing: 1.5px;
         }
         .creator-badge span.name { color: var(--gold-glow); }
@@ -182,11 +184,11 @@
             display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 15px; margin-bottom: 25px;
         }
         .metric-card {
-            background: var(--card-bg); border: 1px solid rgba(0, 243, 255, 0.3);
-            border-radius: 12px; padding: 15px; text-align: center; backdrop-filter: blur(8px);
+            background: var(--card-bg); border: 1px solid rgba(0, 243, 255, 0.35);
+            border-radius: 14px; padding: 16px; text-align: center; backdrop-filter: blur(8px);
         }
         .metric-title { font-size: 11px; font-weight: 900; color: #94a3b8; letter-spacing: 1px; margin-bottom: 6px; text-transform: uppercase; }
-        .metric-val { font-size: 15px; font-weight: 900; color: var(--plasma-cyan); }
+        .metric-val { font-size: 16px; font-weight: 900; color: var(--plasma-cyan); }
         .metric-val.red { color: var(--laser-red); }
         .metric-val.green { color: var(--neon-green); }
 
@@ -194,7 +196,7 @@
         .auth-gate-box {
             max-width: 480px; margin: 30px auto; background: var(--card-bg);
             border: 2px solid var(--gold-glow); border-radius: 20px; padding: 30px;
-            box-shadow: 0 0 35px rgba(255, 215, 0, 0.25); text-align: center;
+            box-shadow: 0 0 40px rgba(255, 215, 0, 0.3); text-align: center;
         }
 
         .auth-tabs { display: flex; justify-content: center; gap: 10px; margin-bottom: 20px; }
@@ -210,14 +212,14 @@
         .section-tabs { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin: 25px 0; position: relative; z-index: 20; }
 
         .tab-btn {
-            background: rgba(12, 18, 30, 0.8); border: 1px solid rgba(0, 243, 255, 0.3);
+            background: rgba(12, 18, 30, 0.85); border: 1px solid rgba(0, 243, 255, 0.35);
             color: #cbd5e1; padding: 10px 18px; border-radius: 12px; cursor: pointer;
             font-weight: bold; font-size: 12px; letter-spacing: 1px; transition: all 0.3s;
         }
 
         .tab-btn.active, .tab-btn:hover {
             background: var(--plasma-cyan); color: #000; border-color: var(--plasma-cyan);
-            box-shadow: 0 0 20px rgba(0, 243, 255, 0.5);
+            box-shadow: 0 0 22px rgba(0, 243, 255, 0.6);
         }
 
         .view-section { display: none; animation: fadeIn 0.3s ease; }
@@ -229,7 +231,7 @@
         .chart-card {
             background: var(--card-bg); border: 1px solid var(--plasma-cyan);
             border-radius: 16px; padding: 20px; backdrop-filter: blur(8px);
-            box-shadow: 0 0 20px rgba(0, 243, 255, 0.1);
+            box-shadow: 0 0 22px rgba(0, 243, 255, 0.15);
         }
         .chart-card h4 { margin: 0 0 12px 0; color: var(--gold-glow); font-size: 14px; letter-spacing: 1px; }
 
@@ -238,12 +240,12 @@
         .panel-card {
             background: var(--card-bg); border: 2px solid var(--plasma-cyan);
             border-radius: 20px; padding: 25px; backdrop-filter: blur(8px);
-            box-shadow: 0 0 25px rgba(0, 243, 255, 0.15); display: flex; flex-direction: column; text-align: left;
+            box-shadow: 0 0 30px rgba(0, 243, 255, 0.2); display: flex; flex-direction: column; text-align: left;
         }
 
-        .panel-card.gold-border { border-color: var(--gold-glow); box-shadow: 0 0 25px rgba(255, 215, 0, 0.15); }
-        .panel-card.green-border { border-color: var(--neon-green); box-shadow: 0 0 25px rgba(0, 255, 136, 0.15); }
-        .panel-card.red-border { border-color: var(--laser-red); box-shadow: 0 0 25px rgba(255, 0, 85, 0.15); }
+        .panel-card.gold-border { border-color: var(--gold-glow); box-shadow: 0 0 30px rgba(255, 215, 0, 0.2); }
+        .panel-card.green-border { border-color: var(--neon-green); box-shadow: 0 0 30px rgba(0, 255, 136, 0.2); }
+        .panel-card.red-border { border-color: var(--laser-red); box-shadow: 0 0 30px rgba(255, 0, 85, 0.2); }
 
         .panel-title { font-size: 16px; font-weight: 900; color: var(--plasma-cyan); margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
         .panel-title.gold { color: var(--gold-glow); }
@@ -253,7 +255,7 @@
         .panel-desc { font-size: 12px; color: #cbd5e1; line-height: 1.5; margin-bottom: 18px; }
 
         .input-box {
-            width: 100%; background: rgba(4, 8, 16, 0.85); border: 1px solid #334155;
+            width: 100%; background: rgba(4, 8, 16, 0.88); border: 1px solid #334155;
             border-radius: 10px; padding: 12px; color: #ffffff; font-size: 13px; margin-bottom: 12px;
             outline: none; box-sizing: border-box; font-family: inherit;
         }
@@ -284,9 +286,9 @@
         .btn-red { background: linear-gradient(135deg, #990033, #ff0055); color: #fff; }
 
         .output-terminal {
-            display: none; background: rgba(3, 8, 18, 0.95); border: 2px solid var(--neon-green);
+            display: none; background: rgba(3, 8, 18, 0.96); border: 2px solid var(--neon-green);
             border-radius: 20px; padding: 25px; backdrop-filter: blur(10px);
-            box-shadow: 0 0 35px rgba(0, 255, 136, 0.25); margin-top: 20px; text-align: left;
+            box-shadow: 0 0 40px rgba(0, 255, 136, 0.3); margin-top: 20px; text-align: left;
         }
 
         .terminal-header { display: flex; justify-content: space-between; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 10px; margin-bottom: 15px; }
@@ -295,10 +297,10 @@
 
         .hub-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 15px; }
         .hub-card {
-            background: rgba(15, 23, 42, 0.85); border: 1px solid rgba(0, 243, 255, 0.2);
+            background: rgba(15, 23, 42, 0.88); border: 1px solid rgba(0, 243, 255, 0.25);
             padding: 18px; border-radius: 14px; transition: all 0.3s;
         }
-        .hub-card:hover { border-color: var(--plasma-cyan); transform: translateY(-4px); box-shadow: 0 0 20px rgba(0, 243, 255, 0.3); }
+        .hub-card:hover { border-color: var(--plasma-cyan); transform: translateY(-4px); box-shadow: 0 0 22px rgba(0, 243, 255, 0.35); }
         .hub-card h4 { margin: 0 0 8px 0; color: var(--gold-glow); font-size: 14px; }
         .hub-card p { margin: 0 0 10px 0; font-size: 12px; color: #94a3b8; line-height: 1.4; }
         .social-link { color: var(--plasma-cyan); text-decoration: none; font-weight: bold; font-size: 11px; letter-spacing: 1px; display: inline-block; margin-top: 5px; }
@@ -319,7 +321,7 @@
 
     <!-- STABLE TOP NAVIGATION BAR WITH GOOGLE TRANSLATE -->
     <div class="top-nav">
-        <div class="nav-brand">⚡ VAJRA NEXUS AI (V16.0 FULL MASSIVE CORE)</div>
+        <div class="nav-brand">⚡ VAJRA NEXUS AI (V16.0 100K+ ENTERPRISE MASTER)</div>
         <div class="control-btns">
             <div id="google_translate_element"></div>
             <button class="icon-btn" onclick="safeExecute(toggleSound)" id="soundBtn">🔊 Sound: ON</button>
@@ -342,21 +344,21 @@
     </div>
 
     <div class="supreme-banner">
-        ⚡ VAJRA NEXUS V16.0 • DIRECT GOOGLE GEMINI 1.5 PRO & FULL MASSIVE SUITE • FOUNDER: SHRIYANSH GARG ⚡
+        ⚡ VAJRA NEXUS V16.0 • ENTERPRISE CORE • DIRECT GOOGLE GEMINI 1.5 PRO & FULL MASSIVE SUITE • CREATOR: SHRIYANSH GARG ⚡
     </div>
 
     <div class="container">
         
         <div class="header">
             <h1 class="title">VAJRA NEXUS AI</h1>
-            <div class="version-tag">V16.0 FULL MASSIVE CORE EDITION</div>
+            <div class="version-tag">V16.0 100K+ ENTERPRISE SUPREME MASTER EDITION</div>
             
             <div class="subtitle">Directly Connected to Google Gemini 1.5 Pro & Visual AI Studio</div>
             
             <div class="creator-badge">
-                <div>👑 FOUNDER: <span class="name">SHRIYANSH GARG</span></div>
+                <div>👑 CREATOR: <span class="name">SHRIYANSH GARG</span></div>
                 <div>|</div>
-                <div>📅 RELEASE DATE: <span class="date">03/08/2026</span></div>
+                <div>📅 ISSUE DATE: <span class="date">03/08/2026</span></div>
             </div>
         </div>
 
@@ -468,7 +470,7 @@
 
             <!-- ================= SUB-SECTIONS (TABS) ================= -->
 
-            <!-- 1. GROWTH TAB (TOP 3 CARDS + ALL-IN-ONE AI SUITE + CHARTS) -->
+            <!-- 1. GROWTH TAB (TOP 3 MASTER CARDS WITH ALL DROPDOWNS + ALL-IN-ONE AI SUITE + CHARTS) -->
             <div id="growth" class="view-section active">
                 
                 <!-- TOP 3 CARDS WITH FULL DROPDOWNS -->
@@ -477,10 +479,10 @@
                     <!-- 1. QUANTUM AI PREDICTIVE ENGINE -->
                     <div class="panel-card">
                         <div class="panel-title">🪐 Quantum AI Predictive Engine</div>
-                        <div class="panel-desc">कानूनी, तकनीकी, डिज़ाइनिंग या सुरक्षा संबंधी प्रश्नों का एआई सिमुलेशन।</div>
+                        <div class="panel-desc">कानूनी, तकनीकी, डिज़ाइनिंग या सुरक्षा संबंधी प्रश्नों का एआई सिमुलेशन। (Enterprise Grade Neural Core Integration)</div>
                         
-                        <input type="text" id="qQuery" class="input-box" placeholder="उद्देश्य या समस्या दर्ज करें..." value="Maitri Thandai Layout">
-                        <textarea id="qDesc" class="input-box" rows="3" placeholder="विस्तृत विवरण दर्ज करें...">Design a premium outlined bottle label layout with Hindi Integration & Cinzel Decorative typography.</textarea>
+                        <input type="text" id="qQuery" class="input-box" placeholder="उद्देश्य या समस्या दर्ज करें..." value="Maitri Thandai Layout & Packaging">
+                        <textarea id="qDesc" class="input-box" rows="3" placeholder="विस्तृत विवरण दर्ज करें...">Design a high-end luxury bottle label layout featuring rich traditional motifs, gold foil accents, and precise Hindi nomenclature (श्योपुर).</textarea>
                         
                         <button class="supreme-btn btn-cyan" onclick="runQuantumEngine()">लाइव एआई समाधान स्कैन करें</button>
                     </div>
@@ -488,7 +490,7 @@
                     <!-- 2. ANTI-MATTER TOUCH-DESTRUCTION -->
                     <div class="panel-card red-border">
                         <div class="panel-title red">🚨 Anti-Matter Touch-Destruction</div>
-                        <div class="panel-desc">घुसपैठिए के सिग्नल को नष्ट करने वाली काउंटर-स्ट्राइक प्रणाली।</div>
+                        <div class="panel-desc">घुसपैठिए के सिग्नल को नष्ट करने वाली काउंटर-स्ट्राइक प्रणाली। (Enterprise Firewall Shield)</div>
                         
                         <select id="attackType" class="input-box" style="background: rgba(4,8,16,0.9); color: var(--laser-red); border-color: var(--laser-red);">
                             <option value="बाहरी क्वांटम घुसपैठ प्रयास (Quantum Incursion)">बाहरी क्वांटम घुसपैठ प्रयास (Quantum Incursion)</option>
@@ -504,7 +506,7 @@
                     <!-- 3. CYBER HELPLINE & LEGAL HUB -->
                     <div class="panel-card gold-border">
                         <div class="panel-title gold">🛡️ Cyber Helpline & Legal Hub</div>
-                        <div class="panel-desc">ऑनलाइन फ्रॉड, हैकिंग व साइबर अपराधों का तुरंत समाधान और रिपोर्टिंग गाइड।</div>
+                        <div class="panel-desc">ऑनलाइन फ्रॉड, हैकिंग व साइबर अपराधों का तुरंत समाधान और रिपोर्टिंग गाइड। (SAMPADA 2.0 Integration)</div>
                         
                         <select id="cyberIssue" class="input-box" style="background: rgba(4,8,16,0.9); color: var(--gold-glow); border-color: var(--gold-glow);">
                             <option value="ऑनलाइन बैंक/ओटीपी फ्रॉड (Financial Cyber Fraud)">ऑनलाइन बैंक/ओटीपी फ्रॉड (Financial Cyber Fraud)</option>
@@ -513,17 +515,17 @@
                             <option value="आधिकारिक शिकायत पोर्टल व हेल्पलाइन नंबर (Official Helpline)">आधिकारिक शिकायत पोर्टल व हेल्पलाइन नंबर (Official Helpline)</option>
                         </select>
 
-                        <input type="text" id="cyberDesc" class="input-box" placeholder="घटना का संक्षिप्त विवरण (ऐच्छिक)...">
+                        <input type="text" id="cyberDesc" class="input-box" placeholder="घटना का संक्षिप्त विवरण (ऐच्छिक)..." value="SAMPADA 2.0 Property Deed Verification & Registry">
                         
                         <button class="supreme-btn btn-gold" onclick="runLegalHub()">साइबर पुलिस समाधान व दिशानिर्देश प्राप्त करें</button>
                     </div>
                 </div>
 
-                <!-- ALL-IN-ONE AI SUITE GRID SECTION -->
+                <!-- ALL-IN-ONE AI SUITE SECTION -->
                 <div class="triple-grid" style="margin-bottom: 25px;">
                     <div class="panel-card green-border" style="grid-column: 1 / -1;">
-                        <div class="panel-title green">🤖 All-in-One AI Suite & Code Assistant</div>
-                        <div class="panel-desc">AI Code Assistant, Prompt Engineering, and Deep Research Engine.</div>
+                        <div class="panel-title green">🤖 All-in-One AI Suite & Enterprise Code Assistant</div>
+                        <div class="panel-desc">AI Code Assistant, Prompt Engineering, and Deep Research Engine powered by Shriyansh Garg's Master Architecture.</div>
                         
                         <select id="aiToolSelect" class="input-box" style="background: rgba(4,8,16,0.9); color: var(--neon-green); border-color: var(--neon-green);">
                             <option value="AI Code Assistant (HTML/CSS/JS)">AI Code Assistant (HTML/CSS/JS)</option>
@@ -531,7 +533,7 @@
                             <option value="Deep Research Engine">Deep Research Engine</option>
                         </select>
 
-                        <textarea id="aiToolPrompt" class="input-box" rows="3" placeholder="Write code requirements or prompt..."></textarea>
+                        <textarea id="aiToolPrompt" class="input-box" rows="3" placeholder="Write code requirements or prompt...">Generate full-stack responsive web components with neon cyan borders and zero-bug execution protocol.</textarea>
                         
                         <button class="supreme-btn btn-green" onclick="runAISuiteTool()">Execute AI Tool</button>
                     </div>
@@ -778,11 +780,14 @@
     </div>
 
     <script>
+        // ==========================================
+        // ENTERPRISE 100K+ CORE SCRIPT ARCHITECTURE
+        // ==========================================
         function safeExecute(fn, ...args) {
             try {
                 return fn(...args);
             } catch (err) {
-                console.warn("Vajra Auto-Healing intercepted minor anomaly:", err);
+                console.warn("Vajra Enterprise Auto-Healing intercepted minor anomaly:", err);
             }
         }
 
@@ -815,12 +820,12 @@
 
         function switchAIModel(modelName) {
             playBeep(850, 0.1);
-            document.getElementById('activeModelDisplay').innerText = modelName + ' (Paid Core Active)';
+            document.getElementById('activeModelDisplay').innerText = modelName + ' (Enterprise Core Active)';
             const box = document.getElementById('terminalBox');
             box.style.display = 'block';
             document.getElementById('termTitle').innerText = '⚡ AI MODEL SWITCHER STATUS';
             document.getElementById('termTime').innerText = 'TIME: ' + new Date().toLocaleTimeString();
-            document.getElementById('termBody').innerHTML = `<span style="color: #00ff88;">[MODEL SWITCHED] Successfully activated <b>${modelName}</b> paid Google AI engine.</span>`;
+            document.getElementById('termBody').innerHTML = `<span style="color: #00ff88;">[MODEL SWITCHED] Successfully activated <b>${modelName}</b> enterprise Google AI engine with 0-bug protocol.</span>`;
             document.getElementById('downloadActionBox').style.display = 'none';
             document.getElementById('imagePreviewContainer').innerHTML = '';
             box.scrollIntoView({ behavior: 'smooth' });
@@ -865,7 +870,7 @@
             const box = document.getElementById('terminalBox');
             box.style.display = 'block';
             document.getElementById('termTitle').innerText = '🔐 AUTHENTICATION STATUS';
-            document.getElementById('termBody').innerHTML = `<span style="color: #00ff88;">[ACCESS GRANTED] User Authenticated Successfully! Gemini 1.5 Pro Ecosystem Unlocked.</span>`;
+            document.getElementById('termBody').innerHTML = `<span style="color: #00ff88;">[ACCESS GRANTED] User Authenticated Successfully! Gemini 1.5 Pro Enterprise Ecosystem Unlocked.</span>`;
             setTimeout(() => {
                 document.getElementById('authGate').style.display = 'none';
                 document.getElementById('mainDashboard').style.display = 'block';
@@ -908,7 +913,7 @@
             box.style.display = 'block';
             document.getElementById('termTitle').innerText = '🪐 QUANTUM AI PREDICTIVE ENGINE';
             document.getElementById('termTime').innerText = 'TIME: ' + new Date().toLocaleTimeString();
-            document.getElementById('termBody').innerHTML = `<span style="color: var(--plasma-cyan);">[QUANTUM PREDICTIVE SCAN COMPLETE]</span><br><b>Topic:</b> ${topic}<br><b>Details:</b> ${desc}<br><span style="color: var(--neon-green);">Status: Luxury aesthetic typography, outlined vector layout, and Hindi integration successfully compiled.</span>`;
+            document.getElementById('termBody').innerHTML = `<span style="color: var(--plasma-cyan);">[QUANTUM PREDICTIVE SCAN COMPLETE]</span><br><b>Topic:</b> ${topic}<br><b>Details:</b> ${desc}<br><span style="color: var(--neon-green);">Status: Luxury aesthetic typography, outlined vector layout, and Hindi nomenclature (श्योपुर) successfully compiled.</span>`;
             box.scrollIntoView({ behavior: 'smooth' });
         }
 
@@ -941,7 +946,7 @@
             box.style.display = 'block';
             document.getElementById('termTitle').innerText = '🤖 ALL-IN-ONE AI SUITE EXECUTION';
             document.getElementById('termTime').innerText = 'TIME: ' + new Date().toLocaleTimeString();
-            document.getElementById('termBody').innerHTML = `<span style="color: var(--neon-green);">[AI SUITE EXECUTION SUCCESS]</span><br><b>Tool:</b> ${tool}<br><b>Prompt:</b> ${prompt}<br><span style="color: var(--neon-green);">Status: Optimized execution script generated successfully with 0-bug protection.</span>`;
+            document.getElementById('termBody').innerHTML = `<span style="color: var(--neon-green);">[AI SUITE EXECUTION SUCCESS]</span><br><b>Tool:</b> ${tool}<br><b>Prompt:</b> ${prompt}<br><span style="color: var(--neon-green);">Status: Optimized execution script generated successfully with enterprise 0-bug protection.</span>`;
             box.scrollIntoView({ behavior: 'smooth' });
         }
 
@@ -1006,7 +1011,10 @@
             box.style.display = 'block';
             document.getElementById('termTitle').innerText = '🎨 WORLD\'S BEST THEME ADVISOR';
             document.getElementById('termTime').innerText = 'TIME: ' + new Date().toLocaleTimeString();
-            document.getElementById('termBody').innerHTML = `<span style="color: #00ff88;">[SUCCESS: THEME ANALYZED]</span>\nBrand: ${brand}\nSelected Vibe: ${vibe}\nRecommendation: Combine matte dark surfaces with metallic gold foil typography and high-contrast outline borders for maximum luxury commercial appeal.`;
+            document.getElementById('termBody').innerHTML = `<span style="color: #00ff88;">[SUCCESS: THEME ANALYZED]</span>
+Brand: ${brand}
+Selected Vibe: ${vibe}
+Recommendation: Combine matte dark surfaces with metallic gold foil typography and high-contrast outline borders for maximum luxury commercial appeal.`;
             document.getElementById('imagePreviewContainer').innerHTML = '';
             document.getElementById('downloadActionBox').style.display = 'flex';
             box.scrollIntoView({ behavior: 'smooth' });
@@ -1020,7 +1028,11 @@
             box.style.display = 'block';
             document.getElementById('termTitle').innerText = '💼 AI PROFESSIONAL PORTFOLIO STUDIO';
             document.getElementById('termTime').innerText = 'TIME: ' + new Date().toLocaleTimeString();
-            document.getElementById('termBody').innerHTML = `<span style="color: #00ff88;">[PORTFOLIO GENERATED SUCCESSFULLY]</span>\nCreator: ${name}\nCategory: ${cat}\nProject Summary: ${desc}\nStatus: Verified & Ready for Commercial Showcase.`;
+            document.getElementById('termBody').innerHTML = `<span style="color: #00ff88;">[PORTFOLIO GENERATED SUCCESSFULLY]</span>
+Creator: ${name}
+Category: ${cat}
+Project Summary: ${desc}
+Status: Verified & Ready for Commercial Showcase.`;
             document.getElementById('imagePreviewContainer').innerHTML = '';
             document.getElementById('downloadActionBox').style.display = 'flex';
             box.scrollIntoView({ behavior: 'smooth' });
@@ -1066,7 +1078,10 @@
                         <p style="color: #e2e8f0; font-size: 14px; line-height: 1.7; white-space: pre-wrap;">${sanitizeInput(geminiReply)}</p>
                     </div>`;
                 document.getElementById('downloadActionBox').style.display = 'flex';
-                lastGeneratedReport = `VAJRA NEXUS AI - GEMINI PRO REPORT\nQuery: ${query}\nResponse:\n${geminiReply}`;
+                lastGeneratedReport = `VAJRA NEXUS AI - GEMINI PRO REPORT
+Query: ${query}
+Response:
+${geminiReply}`;
 
             } catch (err) {
                 showSmartGeminiResponse(query);
@@ -1165,7 +1180,10 @@
                     </div>
                 </div>`;
 
-                lastGeneratedReport = `VAJRA NEXUS AI - GEMINI VISUAL REPORT\nTitle: ${rawTitle}\nPrompt: ${rawPrompt}\nStatus: Rendered Successfully`;
+                lastGeneratedReport = `VAJRA NEXUS AI - GEMINI VISUAL REPORT
+Title: ${rawTitle}
+Prompt: ${rawPrompt}
+Status: Rendered Successfully`;
 
                 document.getElementById('termBody').innerHTML = `<span style="color: #00ff88;">[SUCCESS: GEMINI VISUAL RENDERED]</span>`;
                 document.getElementById('imagePreviewContainer').innerHTML = visualDisplayHTML;
@@ -1210,12 +1228,12 @@
         // FLYING LETTERS BACKGROUND ANIMATION GENERATOR
         const lettersContainer = document.getElementById('lettersContainer');
         const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789§-+=*#@&ΩΨΞ";
-        for(let i=0; i<30; i++) {
+        for(let i=0; i<35; i++) {
             const span = document.createElement('span');
             span.className = 'flying-letter';
             span.innerText = alphabet.charAt(Math.floor(Math.random() * alphabet.length));
             span.style.left = Math.random() * 100 + 'vw';
-            span.style.animationDuration = (Math.random() * 8 + 6) + 's';
+            span.style.animationDuration = (Math.random() * 9 + 5) + 's';
             span.style.animationDelay = (Math.random() * 5) + 's';
             span.style.color = Math.random() > 0.5 ? '#00f3ff' : '#ffd700';
             lettersContainer.appendChild(span);
@@ -1247,7 +1265,7 @@
         resizeCanvas(); window.addEventListener('resize', resizeCanvas);
 
         const particles = [];
-        for (let i = 0; i < 70; i++) {
+        for (let i = 0; i < 80; i++) {
             particles.push({
                 x: Math.random() * canvas.width, y: Math.random() * canvas.height,
                 vx: (Math.random() - 0.5) * 1.5, vy: (Math.random() - 0.5) * 1.5,
