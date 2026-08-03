@@ -785,7 +785,7 @@
 
         function changeTheme(themeClass) {
             document.body.className = themeClass;
-            playBeep(700, 0.08);
+            playVajraSound('SCAN');
         }
 
         function toggleCommandPalette() {
@@ -830,7 +830,7 @@
                 document.getElementById('labIdeaStatus').innerText = `✅ Thank you! Your idea "${title}" has been sent to VAJRA Labs. Status: Queued for V3 Evaluation.`;
                 document.getElementById('labIdeaTitle').value = '';
                 document.getElementById('labIdeaDesc').value = '';
-                playBeep(900, 0.12);
+                playVajraSound('SUCCESS');
             } else {
                 alert('Please enter both title and description for your Vajra Labs idea.');
             }
@@ -842,22 +842,53 @@
             } catch(e) {}
         }
 
+        // ==========================================
+        // 🔊 ADVANCED CYBER SOUND EFFECTS ENGINE
+        // ==========================================
         let soundEnabled = true;
         const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-        function playBeep(freq = 600, duration = 0.08) {
+        
+        function playVajraSound(type) {
             if (!soundEnabled) return;
             try {
                 const osc = audioCtx.createOscillator();
                 const gain = audioCtx.createGain();
-                osc.type = 'sine'; osc.frequency.value = freq;
-                gain.gain.setValueAtTime(0.05, audioCtx.currentTime);
-                osc.connect(gain); gain.connect(audioCtx.destination);
-                osc.start(); osc.stop(audioCtx.currentTime + duration);
-            } catch(e){}
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+
+                if (type === 'SCAN') {
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(880, audioCtx.currentTime);
+                    gain.gain.setValueAtTime(0.05, audioCtx.currentTime);
+                    osc.start();
+                    osc.stop(audioCtx.currentTime + 0.1);
+                } else if (type === 'ALARM') {
+                    osc.type = 'sawtooth';
+                    osc.frequency.setValueAtTime(180, audioCtx.currentTime);
+                    osc.frequency.linearRampToValueAtTime(360, audioCtx.currentTime + 0.3);
+                    gain.gain.setValueAtTime(0.1, audioCtx.currentTime);
+                    osc.start();
+                    osc.stop(audioCtx.currentTime + 0.3);
+                } else if (type === 'SUCCESS') {
+                    osc.type = 'triangle';
+                    osc.frequency.setValueAtTime(523.25, audioCtx.currentTime);
+                    osc.frequency.setValueAtTime(659.25, audioCtx.currentTime + 0.1);
+                    gain.gain.setValueAtTime(0.08, audioCtx.currentTime);
+                    osc.start();
+                    osc.stop(audioCtx.currentTime + 0.4);
+                }
+            } catch (e) {
+                console.warn("AudioContext constraint:", e);
+            }
+        }
+
+        function toggleSound() {
+            soundEnabled = !soundEnabled;
+            document.getElementById('soundBtn').innerText = soundEnabled ? '🔊 Sound: ON' : '🔇 Sound: OFF';
         }
 
         function switchAIModel(modelName) {
-            playBeep(850, 0.1);
+            playVajraSound('SUCCESS');
             document.getElementById('activeModelDisplay').innerText = modelName + ' (Hybrid OS Active)';
             const box = document.getElementById('terminalBox');
             box.style.display = 'block';
@@ -869,11 +900,6 @@
             box.scrollIntoView({ behavior: 'smooth' });
         }
 
-        function toggleSound() {
-            soundEnabled = !soundEnabled;
-            document.getElementById('soundBtn').innerText = soundEnabled ? '🔊 Sound: ON' : '🔇 Sound: OFF';
-        }
-
         let isSignupMode = false;
         function switchAuthMode(mode) {
             isSignupMode = (mode === 'signup');
@@ -883,7 +909,7 @@
         }
 
         function switchTab(tabId, btn) {
-            playBeep(500, 0.06);
+            playVajraSound('SCAN');
             document.querySelectorAll('.view-section').forEach(sec => sec.classList.remove('active'));
             document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
             
@@ -904,6 +930,7 @@
         }
 
         function runLogin() {
+            playVajraSound('SUCCESS');
             const box = document.getElementById('terminalBox');
             box.style.display = 'block';
             document.getElementById('termTitle').innerText = '🔐 AUTHENTICATION STATUS';
@@ -938,11 +965,17 @@
         // 🚀 VAJRA TRIPLE-CORE HUB: REAL DATA & POSTERS
         // ==========================================
         function runVajraCoreHub(actionType) {
+            if (actionType === 'COUNTER_STRIKE') {
+                playVajraSound('ALARM');
+            } else {
+                playVajraSound('SCAN');
+            }
+
             const box = document.getElementById('terminalBox');
             box.style.display = 'block';
             document.getElementById('termTitle').innerText = `⚡ VAJRA TRIPLE-CORE HUB: ${actionType}`;
             document.getElementById('termTime').innerText = 'TIME: ' + new Date().toLocaleTimeString();
-            document.getElementById('termBody').innerHTML = `<span style="color: #00ffcc;">[CONNECTING TO VAJRA CYBER CORE: ACCESSING ${actionType} ...]</span><br>⚡ Scanning network structures and compiling visual assets...`;
+            document.getElementById('termBody').innerHTML = `<span style="color: #00ffcc;">[CONNECTING TO VAJRA CYBER CORE: ACCESSING ${actionType} ...]</span><br>⚡ Scanning network structures, sanitizing inputs, and compiling visual assets...`;
             document.getElementById('imagePreviewContainer').innerHTML = '';
             document.getElementById('downloadActionBox').style.display = 'none';
             box.scrollIntoView({ behavior: 'smooth' });
@@ -952,28 +985,28 @@
                 let sampleImgUrl = "https://picsum.photos/1024/768?random=" + Math.floor(Math.random() * 1000);
 
                 if (actionType === 'QUANTUM_SCAN') {
-                    const topicInput = document.getElementById('quantum-topic-input')?.value || "Maitri Thandai Layout & Packaging";
-                    const detailsInput = document.getElementById('quantum-details-input')?.value || "";
+                    const topicInput = sanitizeInput(document.getElementById('quantum-topic-input')?.value || "Maitri Thandai Layout & Packaging");
+                    const detailsInput = sanitizeInput(document.getElementById('quantum-details-input')?.value || "");
 
                     terminalContent = `
                         <span style="color: #00ffcc;">[QUANTUM PREDICTIVE SCAN COMPLETE]</span><br>
-                        <b>Topic:</b> ${sanitizeInput(topicInput)}<br>
-                        <b>Details:</b> ${sanitizeInput(detailsInput)}<br>
+                        <b>Topic:</b> ${topicInput}<br>
+                        <b>Details:</b> ${detailsInput}<br>
                         <span style="color:#00ffcc;">Status: Luxury aesthetic typography, outlined vector layout, and Hindi nomenclature (श्योपुर) successfully compiled.</span>
                     `;
                 } else if (actionType === 'COUNTER_STRIKE') {
-                    const ipNode = document.getElementById('ipFreq')?.value || "192.168.4.555";
+                    const ipNode = sanitizeInput(document.getElementById('ipFreq')?.value || "192.168.4.555");
                     terminalContent = `
                         <span style="color: #ff0055; font-weight: bold;">🚨 [ANTI-MATTER COUNTER-STRIKE ENGAGED] 🚨</span><br>
-                        <b>Target Node/IP:</b> ${sanitizeInput(ipNode)}<br>
-                        <b>Threat Type:</b> Autonomous Mutant Virus / Sniffer Wave Detected.<br>
+                        <b>Target Node/IP:</b> ${ipNode}<br>
+                        <b>Threat Type:</b> Autonomous Mutant Virus / Sniffer Wave Intercepted.<br>
                         <span style="color:#ff0055; font-weight: bold;">Status: Intruder signal completely neutralized and vaporized from the ecosystem.</span>
                     `;
                 } else if (actionType === 'CYBER_POLICE') {
-                    const issueType = document.getElementById('cyberIssue')?.value || "Financial Cyber Fraud";
+                    const issueType = sanitizeInput(document.getElementById('cyberIssue')?.value || "Financial Cyber Fraud");
                     terminalContent = `
                         <span style="color: #ffcc00; font-weight: bold;">🛡️ [OFFICIAL CYBER PROTECTION PROTOCOL INITIATED]</span><br>
-                        <b>Service:</b> ${sanitizeInput(issueType)} & SAMPADA 2.0 Property Deed Verification.<br>
+                        <b>Service:</b> ${issueType} & SAMPADA 2.0 Property Deed Verification.<br>
                         <b>Action Plan:</b> Report generated securely for official helpline. Call 1930 immediately if hacked.<br>
                         <span style="color:#ffcc00;">Status: Secure legal guidelines and cyber cell documentation layout rendered below.</span>
                     `;
@@ -985,6 +1018,7 @@
                         <img src="${sampleImgUrl}" style="max-width: 100%; border-radius: 6px; box-shadow: 0 0 15px rgba(0,255,204,0.4);" alt="Core Asset">
                     </div>`;
                 document.getElementById('downloadActionBox').style.display = 'flex';
+                playVajraSound('SUCCESS');
             }, 1200);
         }
 
@@ -1005,7 +1039,7 @@
                 userGeminiApiKey = keyVal;
                 localStorage.setItem('vajra_gemini_key', keyVal);
                 document.getElementById('apiKeyStatus').innerText = 'Status: API Key Saved Successfully! Ready for Live Multi-AI Calls 🚀';
-                playBeep(950, 0.15);
+                playVajraSound('SUCCESS');
                 alert('Google AI Studio API Key saved securely!');
             } else {
                 alert('Kripya valid API key enter karein.');
@@ -1013,6 +1047,7 @@
         }
 
         async function runGeminiLiveQuery() {
+            playVajraSound('SCAN');
             const queryInput = document.getElementById('openAISearchInput');
             const query = sanitizeInput(queryInput ? queryInput.value : "Shahi Mahal candle box packaging and branding concept");
             const box = document.getElementById('terminalBox');
@@ -1061,6 +1096,7 @@
                         <p style="color: #e2e8f0; font-size: 14px; line-height: 1.7; white-space: pre-wrap;">${sanitizeInput(reply)}</p>
                     </div>`;
                 document.getElementById('downloadActionBox').style.display = 'flex';
+                playVajraSound('SUCCESS');
                 lastGeneratedReport = `VAJRA NEXUS AI X26 - LIVE GEMINI REPORT\nQuery: ${query}\nResponse:\n${reply}`;
 
             } catch (err) {
@@ -1081,7 +1117,7 @@
                 const reader = new FileReader();
                 reader.onload = function(e) { attachedReferenceFile.data = e.target.result; };
                 reader.readAsDataURL(file);
-                playBeep(900, 0.1);
+                playVajraSound('SCAN');
             }
         }
 
@@ -1115,18 +1151,19 @@
                     const pdf = new jsPDF();
                     pdf.addImage(imgData, 'JPEG', 10, 10, 190, 150);
                     pdf.save(`VAJRA-NEXUS-${converterFileData.name.split('.')[0]}.pdf`);
+                    playVajraSound('SUCCESS');
                     alert("सफलतापूर्वक इमेज से PDF जनरेट और डाउनलोड हो गई है!");
                 };
                 reader.readAsDataURL(converterFileData.file);
                 return;
             }
 
-            // Standard notification for other modes
             const box = document.getElementById('terminalBox');
             box.style.display = 'block';
             document.getElementById('termTitle').innerText = '🔄 ALL-FORMAT SECURE FILE CONVERTER';
             document.getElementById('termBody').innerHTML = `<span style="color: #00ff88;">[SUCCESS] File "${converterFileData.name}" successfully processed via sandbox mode (${mode})!</span>`;
             document.getElementById('downloadActionBox').style.display = 'flex';
+            playVajraSound('SUCCESS');
             box.scrollIntoView({ behavior: 'smooth' });
         }
 
@@ -1137,7 +1174,7 @@
         let lastGeneratedReport = "";
 
         function runGeminiStudioAction(actionType) {
-            playBeep(900, 0.1);
+            playVajraSound('SCAN');
             const adobeApp = document.getElementById('adobeAppSelect').value;
             const rawTitle = sanitizeInput(document.getElementById('predictInput1').value || 'SHAHI MAHAL CANDLE PACKAGING');
             const rawPrompt = sanitizeInput(document.getElementById('predictInput2').value || 'A luxury high-end commercial packaging design for Shahi Mahal luxury scented candles');
@@ -1218,10 +1255,12 @@
                 document.getElementById('termBody').innerHTML = `<span style="color: #00ff88;">[SUCCESS: ADOBE 2026 ASSET RENDERED]</span>`;
                 document.getElementById('imagePreviewContainer').innerHTML = visualDisplayHTML;
                 document.getElementById('downloadActionBox').style.display = 'flex';
+                playVajraSound('SUCCESS');
             }, 800);
         }
 
         function runThemeAdvisor() {
+            playVajraSound('SCAN');
             const brand = sanitizeInput(document.getElementById('themeBrandInput').value || 'Shahi Mahal Candle Box');
             const vibe = document.getElementById('themeVibe').value;
             const box = document.getElementById('terminalBox');
@@ -1231,10 +1270,12 @@
             document.getElementById('termBody').innerHTML = `<span style="color: #00ff88;">[SUCCESS: THEME ANALYZED]</span>\nBrand: ${brand}\nSelected Vibe: ${vibe}\nRecommendation: Combine matte dark surfaces with metallic gold foil typography and high-contrast outline borders for maximum luxury commercial appeal.`;
             document.getElementById('imagePreviewContainer').innerHTML = '';
             document.getElementById('downloadActionBox').style.display = 'flex';
+            playVajraSound('SUCCESS');
             box.scrollIntoView({ behavior: 'smooth' });
         }
 
         function runPortfolioStudio() {
+            playVajraSound('SCAN');
             const name = sanitizeInput(document.getElementById('portfolioCreatorName').value || 'Shriyansh Garg');
             const cat = document.getElementById('portfolioCategory').value;
             const desc = sanitizeInput(document.getElementById('portfolioDesc').value || 'Shahi Mahal Candle Box & Maitri Thandai Layout');
@@ -1245,6 +1286,7 @@
             document.getElementById('termBody').innerHTML = `<span style="color: #00ff88;">[PORTFOLIO GENERATED SUCCESSFULLY]</span>\nCreator: ${name}\nCategory: ${cat}\nProject Summary: ${desc}\nStatus: Verified & Ready for Commercial Showcase.`;
             document.getElementById('imagePreviewContainer').innerHTML = '';
             document.getElementById('downloadActionBox').style.display = 'flex';
+            playVajraSound('SUCCESS');
             box.scrollIntoView({ behavior: 'smooth' });
         }
 
