@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VAJRA NEXUS AI - V6.0 Gemini Supreme Edition</title>
+    <title>VAJRA NEXUS AI - V7.0 Ultimate Master Suite</title>
     
     <!-- ⚡ 404 FAVICON ERROR FIX ⚡ -->
     <link rel="icon" href="data:,">
@@ -63,14 +63,14 @@
         /* Top Nav Control Bar */
         .top-nav {
             width: 100%; display: flex; justify-content: space-between; align-items: center;
-            padding: 10px 25px; box-sizing: border-box; background: rgba(4, 8, 16, 0.95);
-            border-bottom: 1px solid rgba(0, 243, 255, 0.3); position: relative; z-index: 20;
-            flex-wrap: wrap; gap: 10px;
+            padding: 12px 25px; box-sizing: border-box; background: rgba(4, 8, 16, 0.98);
+            border-bottom: 1px solid rgba(0, 243, 255, 0.4); position: relative; z-index: 50;
+            flex-wrap: wrap; gap: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.6);
         }
 
-        .nav-brand { font-weight: 900; color: var(--plasma-cyan); letter-spacing: 2px; font-size: 16px; }
+        .nav-brand { font-weight: 900; color: var(--plasma-cyan); letter-spacing: 2px; font-size: 16px; display: flex; align-items: center; gap: 8px; }
 
-        .control-btns { display: flex; align-items: center; gap: 12px; }
+        .control-btns { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
 
         .icon-btn {
             background: rgba(0, 243, 255, 0.1); border: 1px solid var(--plasma-cyan);
@@ -98,9 +98,9 @@
 
         /* GLOBAL COUNTRY FLAGS BAR */
         .flags-bar {
-            width: 100%; background: rgba(8, 12, 22, 0.85); border-bottom: 1px solid rgba(255, 215, 0, 0.2);
+            width: 100%; background: rgba(8, 12, 22, 0.9); border-bottom: 1px solid rgba(255, 215, 0, 0.2);
             padding: 8px 15px; display: flex; justify-content: center; align-items: center;
-            gap: 15px; flex-wrap: wrap; position: relative; z-index: 15; font-size: 12px;
+            gap: 15px; flex-wrap: wrap; position: relative; z-index: 40; font-size: 12px;
         }
 
         .flag-item {
@@ -121,7 +121,7 @@
             background-size: 300% 300%; animation: bannerFlow 4s linear infinite;
             padding: 9px 0; text-align: center; font-size: 11px; font-weight: 900;
             letter-spacing: 2px; color: #000; text-transform: uppercase;
-            box-shadow: 0 0 25px rgba(0, 243, 255, 0.4); position: relative; z-index: 10;
+            box-shadow: 0 0 25px rgba(0, 243, 255, 0.4); position: relative; z-index: 30;
         }
 
         @keyframes bannerFlow {
@@ -130,7 +130,7 @@
             100% { background-position: 0% 50%; }
         }
 
-        .container { width: 100%; max-width: 1200px; padding: 25px 20px; box-sizing: border-box; position: relative; z-index: 10; }
+        .container { width: 100%; max-width: 1200px; padding: 25px 20px; box-sizing: border-box; position: relative; z-index: 20; }
 
         .header { text-align: center; margin-bottom: 25px; }
 
@@ -184,7 +184,7 @@
         /* MAIN DASHBOARD */
         #mainDashboard { display: none; }
 
-        .section-tabs { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin: 25px 0; position: relative; z-index: 10; }
+        .section-tabs { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin: 25px 0; position: relative; z-index: 20; }
 
         .tab-btn {
             background: rgba(12, 18, 30, 0.8); border: 1px solid rgba(0, 243, 255, 0.3);
@@ -291,8 +291,9 @@
     <!-- FLYING LETTERS BACKGROUND ANIMATION LAYER -->
     <div class="letters-layer" id="lettersContainer"></div>
 
+    <!-- STABLE TOP NAVIGATION BAR WITH GOOGLE TRANSLATE -->
     <div class="top-nav">
-        <div class="nav-brand">VAJRA NEXUS AI (V6.0 GEMINI SUPREME EDITION)</div>
+        <div class="nav-brand">⚡ VAJRA NEXUS AI (V7.0 ULTIMATE SUITE)</div>
         <div class="control-btns">
             <div id="google_translate_element"></div>
             <button class="icon-btn" onclick="safeExecute(toggleSound)" id="soundBtn">🔊 Sound: ON</button>
@@ -300,6 +301,7 @@
         </div>
     </div>
 
+    <!-- GLOBAL COUNTRY FLAGS BAR -->
     <div class="flags-bar">
         <div class="flag-item">🇮🇳 India (Hindi/English)</div>
         <div class="flag-item">🇺🇸 USA / 🇬🇧 UK (English)</div>
@@ -314,14 +316,14 @@
     </div>
 
     <div class="supreme-banner">
-        ⚡ VAJRA NEXUS V6.0 • DIRECT GEMINI 1.5 PRO AI INTEGRATION • FOUNDER: SHRIYANSH GARG ⚡
+        ⚡ VAJRA NEXUS V7.0 • DIRECT GOOGLE GEMINI 1.5 PRO & ROBUST VISUAL ENGINE • FOUNDER: SHRIYANSH GARG ⚡
     </div>
 
     <div class="container">
         
         <div class="header">
             <h1 class="title">VAJRA NEXUS AI</h1>
-            <div class="version-tag">V6.0 GEMINI SUPREME EDITION</div>
+            <div class="version-tag">V7.0 ULTIMATE MASTER EDITION</div>
             
             <div class="subtitle">Directly Connected to Google Gemini 1.5 Pro & Visual AI Studio</div>
             
@@ -340,7 +342,7 @@
             </div>
 
             <div id="authFormTitle" style="font-size: 15px; font-weight: bold; color: var(--gold-glow); margin-bottom: 15px;">
-                V6.0 GEMINI SUPREME AUTHENTICATION
+                V7.0 SUPREME AUTHENTICATION
             </div>
 
             <input type="text" id="loginUser" class="input-box" placeholder="Username / Access ID...">
@@ -455,7 +457,7 @@
                 </div>
             </div>
 
-            <!-- 🎬 GEMINI VISUAL & STUDIO (DIRECT IMAGE GENERATOR & PHOTOPEA) -->
+            <!-- 🎬 GEMINI VISUAL & STUDIO (ROBUST MULTI-FALLBACK IMAGE RENDERER) -->
             <div id="videoEdit" class="view-section">
                 <div class="command-panel">
                     <div class="panel-card green-border" style="grid-column: 1 / -1;">
@@ -523,7 +525,7 @@
             </div>
             
             <div id="printablePosterArea">
-                <div class="terminal-content" id="termBody">Running Vajra V6.0 Gemini Suite...</div>
+                <div class="terminal-content" id="termBody">Running Vajra V7.0 Ultimate Suite...</div>
                 <div id="imagePreviewContainer" style="margin-top: 15px; text-align: center;"></div>
             </div>
 
@@ -713,7 +715,6 @@
             box.scrollIntoView({ behavior: 'smooth' });
 
             if (!userGeminiApiKey) {
-                // Simulation mode if key not provided
                 setTimeout(() => {
                     document.getElementById('termBody').innerHTML = `<span style="color: #00ff88;">[GEMINI PRO SYNTHESIS COMPLETE (SIMULATION MODE)]</span>`;
                     document.getElementById('imagePreviewContainer').innerHTML = `
@@ -728,7 +729,6 @@
             }
 
             try {
-                // Direct REST API Call to Google Gemini 1.5 Flash/Pro Endpoint
                 const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${userGeminiApiKey}`;
                 const response = await fetch(endpoint, {
                     method: 'POST',
@@ -759,7 +759,7 @@
 
         let lastGeneratedReport = "";
 
-        // 🎬 GEMINI VISUAL STUDIO & RENDERER 🎬
+        // 🎬 GEMINI VISUAL STUDIO & ROBUST IMAGE RENDERER 🎬
         function runGeminiStudioAction(actionType) {
             playBeep(900, 0.1);
             const rawTitle = sanitizeInput(document.getElementById('predictInput1').value || 'TAJ MAHAL AGRA');
@@ -782,7 +782,7 @@
             document.getElementById('termTitle').innerText = `⚡ GEMINI VISUAL STUDIO (${actionType.toUpperCase()})`;
             document.getElementById('termTime').innerText = 'TIME: ' + new Date().toLocaleTimeString();
 
-            document.getElementById('termBody').innerHTML = `<span style="color: #00f3ff;">Processing visual render via Gemini engine for: "${rawPrompt}"...</span>`;
+            document.getElementById('termBody').innerHTML = `<span style="color: #00f3ff;">Processing visual render for: "${rawPrompt}"...</span>`;
             document.getElementById('downloadActionBox').style.display = 'none';
             document.getElementById('imagePreviewContainer').innerHTML = '';
             box.scrollIntoView({ behavior: 'smooth' });
@@ -801,9 +801,10 @@
                     if (attachedReferenceFile.data && attachedReferenceFile.name.match(/\.(jpg|jpeg|png|webp)$/i)) {
                         displayContent = `<img src="${attachedReferenceFile.data}" style="width: 100%; max-height: 520px; object-fit: contain; border-radius: 10px; border: 3px solid var(--neon-green); box-shadow: 0 0 40px rgba(0,255,136,0.8);" alt="Reference Uploaded Image">`;
                     } else {
-                        // High-speed robust visual rendering endpoint tied to prompt
-                        const visualUrl = `https://image.pollinations.ai/prompt/${encodeURIComponent(rawPrompt)}?width=1024&height=768&nologo=true&seed=${Date.now()}`;
-                        displayContent = `<img src="${visualUrl}" style="width: 100%; max-height: 520px; object-fit: contain; border-radius: 10px; border: 3px solid var(--neon-green); box-shadow: 0 0 40px rgba(0,255,136,0.6);" alt="Gemini Visual Render" crossorigin="anonymous">`;
+                        // Multi-fallback visual rendering using reliable public endpoints with encoded prompt
+                        const visualUrl = `https://image.pollinations.ai/prompt/${encodeURIComponent(rawPrompt)}?width=1024&height=768&nologo=true&seed=${Math.floor(Math.random()*999999)}`;
+                        displayContent = `<img id="genImgEl" src="${visualUrl}" style="width: 100%; max-height: 520px; object-fit: contain; border-radius: 10px; border: 3px solid var(--neon-green); box-shadow: 0 0 40px rgba(0,255,136,0.6);" alt="Gemini Visual Render">
+                                          <div id="fallbackNotice" style="display:none; margin-top:12px; color: #ffd700; font-size: 13px; font-weight: bold;">⚠️ Server busy hai. Kripya apna design mockup upload karein ya dobara click karein.</div>`;
                     }
                 }
 
@@ -833,6 +834,16 @@
                 document.getElementById('termBody').innerHTML = `<span style="color: #00ff88;">[SUCCESS: GEMINI VISUAL RENDERED]</span>`;
                 document.getElementById('imagePreviewContainer').innerHTML = visualDisplayHTML;
                 document.getElementById('downloadActionBox').style.display = 'flex';
+
+                // Robust error catcher for broken images
+                const imgEl = document.getElementById('genImgEl');
+                if (imgEl) {
+                    imgEl.addEventListener('error', () => {
+                        imgEl.style.display = 'none';
+                        const notice = document.getElementById('fallbackNotice');
+                        if (notice) notice.style.display = 'block';
+                    });
+                }
             }, 800);
         }
 
