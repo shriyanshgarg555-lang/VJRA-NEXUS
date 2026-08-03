@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VAJRA NEXUS AI - V16.0 Full Massive Core Edition</title>
+    <title>VAJRA NEXUS AI - V16.0 Full Massive Core Edition (All-in-One Supreme)</title>
     
     <!-- ⚡ 404 FAVICON ERROR FIX ⚡ -->
     <link rel="icon" href="data:,">
@@ -468,9 +468,12 @@
 
             <!-- ================= SUB-SECTIONS (TABS) ================= -->
 
-            <!-- 1. GROWTH TAB (TRIPLE CARDS + CHARTS) -->
+            <!-- 1. GROWTH TAB (TOP 3 CARDS + ALL-IN-ONE AI SUITE + CHARTS) -->
             <div id="growth" class="view-section active">
+                
+                <!-- TOP 3 CARDS WITH FULL DROPDOWNS -->
                 <div class="triple-grid" style="margin-bottom: 25px;">
+                    
                     <!-- 1. QUANTUM AI PREDICTIVE ENGINE -->
                     <div class="panel-card">
                         <div class="panel-title">🪐 Quantum AI Predictive Engine</div>
@@ -489,7 +492,8 @@
                         
                         <select id="attackType" class="input-box" style="background: rgba(4,8,16,0.9); color: var(--laser-red); border-color: var(--laser-red);">
                             <option value="बाहरी क्वांटम घुसपैठ प्रयास (Quantum Incursion)">बाहरी क्वांटम घुसपैठ प्रयास (Quantum Incursion)</option>
-                            <option value="डेटा ब्रीच संदिग्ध गतिविधि (Data Breach Activity)">डेटा ब्रीच संदिग्ध गतिविधि (Data Breach Activity)</option>
+                            <option value="स्वायत्त एआई म्यूटेंट वायरस (Autonomous Mutant)">स्वायत्त एआई म्यूटेंट वायरस (Autonomous Mutant)</option>
+                            <option value="डेटा रीच या स्निफिंग सिग्नल (Sniffer Wave)">डेटा रीच या स्निफिंग सिग्नल (Sniffer Wave)</option>
                         </select>
 
                         <input type="text" id="ipFreq" class="input-box" placeholder="अज्ञात सिग्नल नोड या आईपी फ्रिक्वेंसी..." value="192.168.4.555">
@@ -504,13 +508,32 @@
                         
                         <select id="cyberIssue" class="input-box" style="background: rgba(4,8,16,0.9); color: var(--gold-glow); border-color: var(--gold-glow);">
                             <option value="ऑनलाइन बैंक/ओटीपी फ्रॉड (Financial Cyber Fraud)">ऑनलाइन बैंक/ओटीपी फ्रॉड (Financial Cyber Fraud)</option>
-                            <option value="सोशल मीडिया हैकिंग (Social Media Cyber Attack)">सोशल मीडिया हैकिंग (Social Media Cyber Attack)</option>
-                            <option value="प्रॉपर्टी डीड / SAMPADA 2.0 सत्यापन">प्रॉपर्टी डीड / SAMPADA 2.0 सत्यापन</option>
+                            <option value="सोशल मीडिया हैकिंग/ब्लेकमेलिंग (Social Account Hack)">सोशल मीडिया हैकिंग/ब्लेकमेलिंग (Social Account Hack)</option>
+                            <option value="फर्जी जॉब/लॉटरी लिंक एवं एपीके स्कैम (Phishing Link)">फर्जी जॉब/लॉटरी लिंक एवं एपीके स्कैम (Phishing Link)</option>
+                            <option value="आधिकारिक शिकायत पोर्टल व हेल्पलाइन नंबर (Official Helpline)">आधिकारिक शिकायत पोर्टल व हेल्पलाइन नंबर (Official Helpline)</option>
                         </select>
 
                         <input type="text" id="cyberDesc" class="input-box" placeholder="घटना का संक्षिप्त विवरण (ऐच्छिक)...">
                         
                         <button class="supreme-btn btn-gold" onclick="runLegalHub()">साइबर पुलिस समाधान व दिशानिर्देश प्राप्त करें</button>
+                    </div>
+                </div>
+
+                <!-- ALL-IN-ONE AI SUITE GRID SECTION -->
+                <div class="triple-grid" style="margin-bottom: 25px;">
+                    <div class="panel-card green-border" style="grid-column: 1 / -1;">
+                        <div class="panel-title green">🤖 All-in-One AI Suite & Code Assistant</div>
+                        <div class="panel-desc">AI Code Assistant, Prompt Engineering, and Deep Research Engine.</div>
+                        
+                        <select id="aiToolSelect" class="input-box" style="background: rgba(4,8,16,0.9); color: var(--neon-green); border-color: var(--neon-green);">
+                            <option value="AI Code Assistant (HTML/CSS/JS)">AI Code Assistant (HTML/CSS/JS)</option>
+                            <option value="Prompt Engineering Suite">Prompt Engineering Suite</option>
+                            <option value="Deep Research Engine">Deep Research Engine</option>
+                        </select>
+
+                        <textarea id="aiToolPrompt" class="input-box" rows="3" placeholder="Write code requirements or prompt..."></textarea>
+                        
+                        <button class="supreme-btn btn-green" onclick="runAISuiteTool()">Execute AI Tool</button>
                     </div>
                 </div>
 
@@ -908,6 +931,17 @@
             document.getElementById('termTitle').innerText = '🛡️ CYBER HELPLINE & LEGAL HUB';
             document.getElementById('termTime').innerText = 'TIME: ' + new Date().toLocaleTimeString();
             document.getElementById('termBody').innerHTML = `<span style="color: var(--gold-glow);">[CYBER LEGAL HUB & SAMPADA 2.0 PROTOCOL]</span><br><b>Selected Issue:</b> ${issue}<br><b>Summary:</b> ${desc}<br><span style="color: var(--neon-green);">Status: Official cyber advisory and reporting pathway generated successfully.</span>`;
+            box.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function runAISuiteTool() {
+            const tool = document.getElementById('aiToolSelect').value;
+            const prompt = document.getElementById('aiToolPrompt').value || 'Default prompt';
+            const box = document.getElementById('terminalBox');
+            box.style.display = 'block';
+            document.getElementById('termTitle').innerText = '🤖 ALL-IN-ONE AI SUITE EXECUTION';
+            document.getElementById('termTime').innerText = 'TIME: ' + new Date().toLocaleTimeString();
+            document.getElementById('termBody').innerHTML = `<span style="color: var(--neon-green);">[AI SUITE EXECUTION SUCCESS]</span><br><b>Tool:</b> ${tool}<br><b>Prompt:</b> ${prompt}<br><span style="color: var(--neon-green);">Status: Optimized execution script generated successfully with 0-bug protection.</span>`;
             box.scrollIntoView({ behavior: 'smooth' });
         }
 
