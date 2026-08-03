@@ -545,8 +545,9 @@
                 <div class="command-panel">
                     <div class="panel-card green-border">
                         <div class="panel-title green">🎬 Adobe 2026 Suite & Visual Studio Hub</div>
-                        <div class="panel-desc">Select your Adobe 2026 Application and render AI or attach files for Image-to-Generation:</div>
+                        <div class="panel-desc">Select your Adobe 2026 Application (Illustrator 2026, Photoshop 2026, Premiere Pro 2026, After Effects 2026) and render AI or attach files for Image-to-Generation:</div>
                         
+                        <!-- 🎨 ADOBE 2026 DEDICATED SELECTION -->
                         <div style="margin-bottom: 15px;">
                             <label style="font-size: 12px; font-weight: bold; color: var(--neon-green); display: block; margin-bottom: 6px;">SELECT ADOBE 2026 WORKFLOW APP:</label>
                             <select id="adobeAppSelect" class="input-box" style="background: rgba(4,8,16,0.9); color: var(--neon-green); border-color: var(--neon-green);">
@@ -1001,7 +1002,7 @@
             const file = event.target.files[0];
             if (file) {
                 attachedReferenceFile.name = sanitizeInput(file.name);
-                document.getElementById('uploadLabel').innerText = `✅ Asset Attached & Synced: ${attachedReferenceFile.name} (${(file.size/1024).toFixed(1)} KB)`;
+                document.getElementById('uploadLabel').innerText = `✅ Reference File Attached: ${attachedReferenceFile.name} (${(file.size/1024).toFixed(1)} KB)`;
                 const reader = new FileReader();
                 reader.onload = function(e) { attachedReferenceFile.data = e.target.result; };
                 reader.readAsDataURL(file);
