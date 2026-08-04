@@ -973,6 +973,31 @@
             playVajraSound('SCAN');
         }
 
+        // 🎯 TAB SWITCHING ENGINE RESTORED & FIXED
+        function switchTab(sectionId, btnElement) {
+            playVajraSound('SCAN');
+            const sections = document.querySelectorAll('.view-section');
+            sections.forEach(sec => sec.classList.remove('active'));
+
+            const targetSection = document.getElementById(sectionId);
+            if(targetSection) {
+                targetSection.classList.add('active');
+            }
+
+            const buttons = document.querySelectorAll('.section-tabs .tab-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+
+            if(btnElement) {
+                btnElement.classList.add('active');
+            } else {
+                buttons.forEach(btn => {
+                    if(btn.getAttribute('onclick') && btn.getAttribute('onclick').includes(sectionId)) {
+                        btn.classList.add('active');
+                    }
+                });
+            }
+        }
+
         function toggleCommandPalette() {
             const modal = document.getElementById('commandPaletteModal');
             if(modal.style.display === 'flex') {
