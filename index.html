@@ -28,7 +28,7 @@
             --neon-green: #00ff88;
             --gold-glow: #ffd700;
             --bg-dark: #030712;
-            --card-bg: rgba(10, 15, 26, 0.92);
+            --card-bg: rgba(10, 15, 26, 0.94);
             --border-glow: rgba(0, 243, 255, 0.4);
             --text-main: #ffffff;
             --text-muted: #cbd5e1;
@@ -42,7 +42,7 @@
             --neon-green: #059669;
             --gold-glow: #d97706;
             --bg-dark: #f1f5f9;
-            --card-bg: rgba(255, 255, 255, 0.92);
+            --card-bg: rgba(255, 255, 255, 0.94);
             --text-main: #0f172a;
             --text-muted: #475569;
             --border-glow: rgba(2, 132, 199, 0.4);
@@ -201,7 +201,7 @@
 
         .container { width: 100%; max-width: 1200px; padding: 30px 20px; box-sizing: border-box; position: relative; z-index: 20; }
         
-        /* 🚀 HERO SECTION (ADDED PER CHATGPT SUGGESTIONS) */
+        /* 🚀 HERO SECTION WITH CLEAR TAGLINE & CTAs */
         .hero-section {
             background: var(--card-bg); border: 2px solid var(--plasma-cyan);
             border-radius: 24px; padding: 40px 30px; text-align: center; margin-bottom: 30px;
@@ -362,7 +362,7 @@
         .hub-card p { margin: 0 0 12px 0; font-size: 12px; color: var(--text-muted); line-height: 1.5; }
         .social-link { color: var(--plasma-cyan); text-decoration: none; font-weight: bold; font-size: 11px; letter-spacing: 1px; display: inline-block; margin-top: 5px; }
 
-        /* 📜 PROFESSIONAL FOOTER (ADDED PER CHATGPT SUGGESTIONS) */
+        /* 📜 PROFESSIONAL FOOTER WITH VERSION & GITHUB */
         .footer {
             margin-top: 60px; padding: 40px 20px; width: 100%; background: var(--card-bg);
             border-top: 1px solid var(--border-glow); text-align: center; backdrop-filter: blur(16px);
@@ -486,28 +486,26 @@
             </div>
         </div>
 
-        <!-- AUTHENTICATION GATE -->
+        <!-- AUTHENTICATION GATE (MASTER ADMIN LOCK) -->
         <div id="authGate" class="auth-gate-box">
             <div class="auth-tabs">
-                <button class="auth-tab-btn active" id="btnLoginTab" onclick="safeExecute(() => switchAuthMode('login'))">🔐 Login Portal</button>
-                <button class="auth-tab-btn" id="btnSignupTab" onclick="safeExecute(() => switchAuthMode('signup'))">📝 Register / Sign Up</button>
+                <button class="auth-tab-btn active" id="btnLoginTab">🔐 Master Admin Login (Shriyansh Garg)</button>
             </div>
 
             <div id="authFormTitle" style="font-size: 15px; font-weight: bold; color: var(--gold-glow); margin-bottom: 15px;">
-                VAJRA NEXUS AI X26 SUPREME AUTHENTICATION
+                VAJRA NEXUS SUPREME ACCESS CONTROL
             </div>
 
-            <input type="text" id="loginUser" class="input-box" placeholder="Username / Access ID...">
-            <input type="email" id="signupEmail" class="input-box" placeholder="Email Address..." style="display: none;">
-            <input type="password" id="loginPass" class="input-box" placeholder="Security Password...">
+            <input type="text" id="loginUser" class="input-box" placeholder="Master Admin ID...">
+            <input type="password" id="loginPass" class="input-box" placeholder="Secure Admin Password...">
             
             <div class="captcha-box">
-                <div>🔒 CAPTCHA: <span class="captcha-text" id="captchaCode">V9X2A</span></div>
+                <div>🔒 MASTER CAPTCHA: <span class="captcha-text" id="captchaCode">V9X2A</span></div>
                 <button class="icon-btn" onclick="safeExecute(refreshCaptcha)" style="padding: 4px 8px;">🔄 Refresh</button>
             </div>
             <input type="text" id="captchaInput" class="input-box" placeholder="Enter CAPTCHA Code...">
 
-            <button class="supreme-btn btn-gold" id="authSubmitBtn" onclick="safeExecute(runLogin)">Authenticate & Unlock Operating System</button>
+            <button class="supreme-btn btn-gold" id="authSubmitBtn" onclick="safeExecute(runMasterLogin)">Authenticate & Unlock Operating System</button>
         </div>
 
         <!-- MAIN DASHBOARD (VISIBLE AFTER LOGIN) -->
@@ -906,6 +904,20 @@
     </div>
 
     <script>
+        // ==========================================
+        // 🛡️ ADVANCED MASTER ADMIN LOCK & SECURITY SHIELD
+        // ==========================================
+        document.addEventListener('contextmenu', e => e.preventDefault()); // Disable Right Click
+        document.addEventListener('keydown', e => {
+            if (e.key === 'F12' || 
+                (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J' || e.key === 'C')) || 
+                (e.ctrlKey && e.key === 'u')) {
+                e.preventDefault();
+                alert('⚠️ VAJRA SECURITY PROTOCOL: Unauthorized Inspection Blocked.');
+                return false;
+            }
+        });
+
         // REMOVE LOADER AFTER PAGE LOAD
         window.addEventListener('load', () => {
             const loader = document.getElementById('loaderOverlay');
@@ -1092,28 +1104,6 @@
             box.scrollIntoView({ behavior: 'smooth' });
         }
 
-        let isSignupMode = false;
-        function switchAuthMode(mode) {
-            isSignupMode = (mode === 'signup');
-            document.getElementById('btnLoginTab').classList.toggle('active', !isSignupMode);
-            document.getElementById('btnSignupTab').classList.toggle('active', isSignupMode);
-            document.getElementById('signupEmail').style.display = isSignupMode ? 'block' : 'none';
-        }
-
-        function switchTab(tabId, btn) {
-            playVajraSound('SCAN');
-            document.querySelectorAll('.view-section').forEach(sec => sec.classList.remove('active'));
-            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-            
-            const targetSec = document.getElementById(tabId);
-            if(targetSec) targetSec.classList.add('active');
-            if(btn) btn.classList.add('active');
-
-            if (tabId === 'growth') {
-                setTimeout(drawCharts, 50);
-            }
-        }
-
         function refreshCaptcha() {
             const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
             let captcha = '';
@@ -1121,27 +1111,47 @@
             document.getElementById('captchaCode').innerText = captcha;
         }
 
-        async function runLogin() {
+        // ==========================================
+        // 🔐 MASTER ADMIN LOGIN & SECURITY LOCK
+        // ==========================================
+        async function runMasterLogin() {
             playVajraSound('SUCCESS');
-            const username = sanitizeInput(document.getElementById('loginUser').value || 'Shriyansh Garg');
-            const box = document.getElementById('terminalBox');
-            box.style.display = 'block';
-            document.getElementById('termTitle').innerText = '🔐 CLOUD AUTHENTICATION STATUS';
-            document.getElementById('termBody').innerHTML = `<span style="color: #00ff88;">[ACCESS GRANTED] ${username} Authenticated via Supabase Cloud Gateway! VAJRA NEXUS AI X26 Unlocked.</span>`;
-            
-            // ☁️ CLOUD SYNC: Log user session to Supabase
-            if (supabaseClient) {
-                await supabaseClient.from('vajra_sessions').insert([{ username: username, login_time: new Date() }]);
+            const uInput = sanitizeInput(document.getElementById('loginUser').value.trim());
+            const pInput = sanitizeInput(document.getElementById('loginPass').value.trim());
+            const captchaInput = sanitizeInput(document.getElementById('captchaInput').value.trim());
+            const realCaptcha = document.getElementById('captchaCode').innerText;
+
+            if (captchaInput !== realCaptcha) {
+                playVajraSound('ALARM');
+                alert('⚠️ Invalid CAPTCHA Code! Access Denied.');
+                refreshCaptcha();
+                return;
             }
 
-            setTimeout(() => {
-                document.getElementById('authGate').style.display = 'none';
-                document.querySelector('.hero-section').style.display = 'none';
-                document.getElementById('mainDashboard').style.display = 'block';
-                document.getElementById('logoutBtn').style.display = 'inline-block';
-                drawCharts();
-            }, 500);
-            box.scrollIntoView({ behavior: 'smooth' });
+            // Master Admin Credentials Lock (Configured exclusively for Shriyansh Garg)
+            if (uInput.toLowerCase() === 'shriyansh' && pInput === 'vajra2026') {
+                const box = document.getElementById('terminalBox');
+                box.style.display = 'block';
+                document.getElementById('termTitle').innerText = '🔐 MASTER ADMIN GATEWAY STATUS';
+                document.getElementById('termBody').innerHTML = `<span style="color: #00ff88;">[MASTER ACCESS GRANTED] Welcome back, Shriyansh Garg (Sheopur, M.P.). Operating System Fully Unlocked.</span>`;
+                
+                if (supabaseClient) {
+                    await supabaseClient.from('vajra_sessions').insert([{ username: 'Shriyansh Garg', login_time: new Date() }]);
+                }
+
+                setTimeout(() => {
+                    document.getElementById('authGate').style.display = 'none';
+                    document.querySelector('.hero-section').style.display = 'none';
+                    document.getElementById('mainDashboard').style.display = 'block';
+                    document.getElementById('logoutBtn').style.display = 'inline-block';
+                    drawCharts();
+                }, 500);
+                box.scrollIntoView({ behavior: 'smooth' });
+            } else {
+                playVajraSound('ALARM');
+                alert('🚨 UNAUTHORIZED INTRUSION ATTEMPT: Incorrect Master Admin ID or Password!');
+                refreshCaptcha();
+            }
         }
 
         function runLogout() {
@@ -1150,6 +1160,7 @@
             document.getElementById('logoutBtn').style.display = 'none';
             document.getElementById('authGate').style.display = 'block';
             document.getElementById('terminalBox').style.display = 'none';
+            refreshCaptcha();
         }
 
         function runGoogleWebSearchLogin() {
@@ -1319,6 +1330,12 @@
         function handleAllFormatUpload(event) {
             const file = event.target.files[0];
             if (file) {
+                // Strict File Extension Validation for Security
+                const validExtensions = /\.(jpg|jpeg|png|webp|pdf|ai|psd|mp3|mp4|zip)$/i;
+                if (!validExtensions.test(file.name)) {
+                    alert("⚠️ Security Protocol: Unsupported or unauthorized file format!");
+                    return;
+                }
                 attachedReferenceFile.name = sanitizeInput(file.name);
                 document.getElementById('uploadLabel').innerText = `✅ Reference File Attached: ${attachedReferenceFile.name} (${(file.size/1024).toFixed(1)} KB)`;
                 const reader = new FileReader();
@@ -1332,6 +1349,11 @@
         function handleAllFormatConverterUpload(event) {
             const file = event.target.files[0];
             if(file) {
+                const validExtensions = /\.(jpg|jpeg|png|webp|pdf|docx|txt|zip)$/i;
+                if (!validExtensions.test(file.name)) {
+                    alert("⚠️ Security Protocol: File extension not permitted in sandbox!");
+                    return;
+                }
                 converterFileData.file = file;
                 converterFileData.name = sanitizeInput(file.name);
                 document.getElementById('converterFileLabel').innerText = `✅ File Ready: ${converterFileData.name} (${(file.size / 1024).toFixed(1)} KB)`;
@@ -1347,7 +1369,7 @@
                     return;
                 }
                 if (!converterFileData.file) {
-                    alert("कृपया पहले कनवर्ट करने के लिए कोई इमेज (JPG/PNG) अपलोड करें!");
+                    alert("कृपया पहले कनवर्ट करने के लिए कोई वैध इमेज (JPG/PNG) अपलोड करें!");
                     return;
                 }
 
