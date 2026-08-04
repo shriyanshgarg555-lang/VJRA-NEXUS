@@ -909,7 +909,7 @@
 
     <script>
         // ==========================================
-        // 🛡️ ADVANCED MASTER ADMIN LOCK & SECURITY SHIELD
+        // 🛡️ ADVANCED DUAL-LAYER AUTHENTICATION & SECURITY SHIELD
         // ==========================================
         document.addEventListener('contextmenu', e => e.preventDefault()); // Disable Right Click
         document.addEventListener('keydown', e => {
@@ -926,6 +926,7 @@
         window.addEventListener('load', () => {
             const loader = document.getElementById('loaderOverlay');
             if(loader) { loader.style.opacity = '0'; setTimeout(() => loader.style.display = 'none', 600); }
+            refreshCaptcha();
         });
 
         // CUSTOM NEON CURSOR TRACKING
@@ -944,7 +945,7 @@
         }
 
         // ==========================================
-        // ☁️ PHASE 2: SUPABASE CLOUD DATABASE SYNC ENGINE (100% REALTIME REALITY)
+        // ☁️ SUPABASE CLOUD DATABASE SYNC ENGINE
         // ==========================================
         const SUPABASE_URL = "https://axsuwgpzytnmzwlekrjb.supabase.co"; 
         const SUPABASE_ANON_KEY = "sb_publishable_4T7AgwJXCzSMnwTvF8vFYQ_W2_PDTRC"; 
@@ -955,15 +956,12 @@
                 supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
                 console.log("🚀 VAJRA NEXUS • Supabase Global Cloud Connected Successfully!");
             } else {
-                console.warn("⚠️ Supabase running in Local Fallback Vault mode. Configure URL & Key to activate full cloud sync.");
+                console.warn("⚠️ Supabase running in Local Fallback Vault mode.");
             }
         } catch (err) {
             console.warn("Cloud initialization warning:", err);
         }
 
-        // ==========================================
-        // V2.0 ENTERPRISE OS ARCHITECTURE & CONTROLS
-        // ==========================================
         function safeExecute(fn, ...args) {
             try {
                 return fn(...args);
@@ -972,9 +970,6 @@
             }
         }
 
-        // ==========================================
-        // 🛡️ STRICT XSS SECURITY & SANITIZATION CORE
-        // ==========================================
         function sanitizeInput(str) {
             if(!str) return '';
             let cleanText = String(str);
@@ -1031,7 +1026,6 @@
             if(title && desc) {
                 document.getElementById('labIdeaStatus').innerText = `✅ Thank you! Your idea "${title}" has been sent to VAJRA Labs. Status: Queued for V3 Evaluation.`;
                 
-                // ☁️ CLOUD SYNC: Save Idea directly to Supabase if connected
                 if (supabaseClient) {
                     await supabaseClient.from('vajra_labs_ideas').insert([{ title, description: desc, creator: 'Shriyansh Garg' }]);
                 }
@@ -1051,7 +1045,7 @@
         }
 
         // ==========================================
-        // 🔊 ADVANCED CYBER SOUND EFFECTS ENGINE
+        // 🔊 AUDIO ENGINE
         // ==========================================
         let soundEnabled = true;
         const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
@@ -1068,26 +1062,21 @@
                     osc.type = 'sine';
                     osc.frequency.setValueAtTime(880, audioCtx.currentTime);
                     gain.gain.setValueAtTime(0.05, audioCtx.currentTime);
-                    osc.start();
-                    osc.stop(audioCtx.currentTime + 0.1);
+                    osc.start(); osc.stop(audioCtx.currentTime + 0.1);
                 } else if (type === 'ALARM') {
                     osc.type = 'sawtooth';
                     osc.frequency.setValueAtTime(180, audioCtx.currentTime);
                     osc.frequency.linearRampToValueAtTime(360, audioCtx.currentTime + 0.3);
                     gain.gain.setValueAtTime(0.1, audioCtx.currentTime);
-                    osc.start();
-                    osc.stop(audioCtx.currentTime + 0.3);
+                    osc.start(); osc.stop(audioCtx.currentTime + 0.3);
                 } else if (type === 'SUCCESS') {
                     osc.type = 'triangle';
                     osc.frequency.setValueAtTime(523.25, audioCtx.currentTime);
                     osc.frequency.setValueAtTime(659.25, audioCtx.currentTime + 0.1);
                     gain.gain.setValueAtTime(0.08, audioCtx.currentTime);
-                    osc.start();
-                    osc.stop(audioCtx.currentTime + 0.4);
+                    osc.start(); osc.stop(audioCtx.currentTime + 0.4);
                 }
-            } catch (e) {
-                console.warn("AudioContext constraint:", e);
-            }
+            } catch (e) {}
         }
 
         function toggleSound() {
@@ -1101,33 +1090,10 @@
             const box = document.getElementById('terminalBox');
             box.style.display = 'block';
             document.getElementById('termTitle').innerText = '⚡ AI MODEL SWITCHER STATUS';
-            document.getElementById('termTime').innerText = 'TIME: ' + new Date().toLocaleTimeString();
-            document.getElementById('termBody').innerHTML = `<span style="color: #00ff88;">[MODEL SWITCHED] Successfully activated <b>${modelName}</b> engine with 0-bug protocol.</span>`;
+            document.getElementById('termBody').innerHTML = `<span style="color: #00ff88;">[MODEL SWITCHED] Successfully activated <b>${modelName}</b> engine.</span>`;
             document.getElementById('downloadActionBox').style.display = 'none';
             document.getElementById('imagePreviewContainer').innerHTML = '';
             box.scrollIntoView({ behavior: 'smooth' });
-        }
-
-        let isSignupMode = false;
-        function switchAuthMode(mode) {
-            isSignupMode = (mode === 'signup');
-            document.getElementById('btnLoginTab').classList.toggle('active', !isSignupMode);
-            document.getElementById('btnSignupTab').classList.toggle('active', isSignupMode);
-            document.getElementById('signupEmail').style.display = isSignupMode ? 'block' : 'none';
-        }
-
-        function switchTab(tabId, btn) {
-            playVajraSound('SCAN');
-            document.querySelectorAll('.view-section').forEach(sec => sec.classList.remove('active'));
-            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-            
-            const targetSec = document.getElementById(tabId);
-            if(targetSec) targetSec.classList.add('active');
-            if(btn) btn.classList.add('active');
-
-            if (tabId === 'growth') {
-                setTimeout(drawCharts, 50);
-            }
         }
 
         function refreshCaptcha() {
@@ -1137,19 +1103,100 @@
             document.getElementById('captchaCode').innerText = captcha;
         }
 
-        async function runMasterLogin() {
+        // ==========================================
+        // 🔐 DUAL-LAYER ACCESS CONTROL & AUTHENTICATION
+        // ==========================================
+        let currentAuthMode = 'signin'; // 'signin', 'signup', 'admin'
+
+        function switchAuthTab(mode) {
+            currentAuthMode = mode;
+            document.getElementById('tabUserSignin').classList.toggle('active', mode === 'signin');
+            document.getElementById('tabUserSignup').classList.toggle('active', mode === 'signup');
+            document.getElementById('tabAdminLogin').classList.toggle('active', mode === 'admin');
+
+            const nameInput = document.getElementById('authName');
+            const mobileInput = document.getElementById('authMobile');
+            const title = document.getElementById('authFormTitle');
+            const btn = document.getElementById('authSubmitBtn');
+
+            if (mode === 'signup') {
+                nameInput.style.display = 'block';
+                mobileInput.style.display = 'block';
+                title.innerText = "VAJRA NEXUS FREE USER SIGN UP";
+                btn.innerText = "Create Free Account & Unlock OS";
+            } else if (mode === 'signin') {
+                nameInput.style.display = 'none';
+                mobileInput.style.display = 'none';
+                title.innerText = "VAJRA NEXUS USER SIGN IN";
+                btn.innerText = "Sign In to Operating System";
+            } else if (mode === 'admin') {
+                nameInput.style.display = 'none';
+                mobileInput.style.display = 'none';
+                title.innerText = "MASTER ADMIN ACCESS LOCK (SHRIYANSH GARG)";
+                btn.innerText = "Authenticate Master Admin";
+            }
+            refreshCaptcha();
+        }
+
+        async function handleAuthAction() {
             playVajraSound('SUCCESS');
-            const username = sanitizeInput(document.getElementById('loginUser').value || 'Shriyansh Garg');
-            const box = document.getElementById('terminalBox');
-            box.style.display = 'block';
-            document.getElementById('termTitle').innerText = '🔐 CLOUD AUTHENTICATION STATUS';
-            document.getElementById('termBody').innerHTML = `<span style="color: #00ff88;">[ACCESS GRANTED] ${username} Authenticated via Supabase Cloud Gateway! VAJRA NEXUS AI X26 Unlocked.</span>`;
-            
-            // ☁️ CLOUD SYNC: Log user session to Supabase
-            if (supabaseClient) {
-                await supabaseClient.from('vajra_sessions').insert([{ username: username, login_time: new Date() }]);
+            const emailInput = sanitizeInput(document.getElementById('authEmail').value.trim());
+            const passInput = sanitizeInput(document.getElementById('authPass').value.trim());
+            const captchaInput = sanitizeInput(document.getElementById('captchaInput').value.trim());
+            const realCaptcha = document.getElementById('captchaCode').innerText;
+
+            if (captchaInput !== realCaptcha) {
+                playVajraSound('ALARM');
+                alert('⚠️ Invalid CAPTCHA Code! Access Denied.');
+                refreshCaptcha();
+                return;
             }
 
+            if (!emailInput || !passInput) {
+                alert('⚠️ Please fill in all required credentials.');
+                return;
+            }
+
+            // 1. MASTER ADMIN LOGIN CHECK
+            if (currentAuthMode === 'admin') {
+                if (emailInput.toLowerCase() === 'shriyansh' && passInput === 'vajra2026') {
+                    unlockDashboard("Master Admin (Shriyansh Garg)");
+                } else {
+                    playVajraSound('ALARM');
+                    alert('🚨 UNAUTHORIZED INTRUSION: Incorrect Master Admin Credentials!');
+                    refreshCaptcha();
+                }
+                return;
+            }
+
+            // 2. USER SIGN UP / SIGN IN
+            if (currentAuthMode === 'signup') {
+                const fullName = sanitizeInput(document.getElementById('authName').value.trim());
+                const mobileNum = sanitizeInput(document.getElementById('authMobile').value.trim());
+                
+                if (!fullName || !mobileNum) {
+                    alert('⚠️ Please provide Full Name and Mobile Number for Registration.');
+                    return;
+                }
+
+                if (supabaseClient) {
+                    await supabaseClient.from('vajra_users').insert([{ full_name: fullName, email: emailInput, mobile: mobileNum }]);
+                }
+                localStorage.setItem('vajra_user', emailInput);
+                alert('🎉 Free User Account Registered Successfully!');
+                unlockDashboard("Registered User (" + fullName + ")");
+            } else {
+                localStorage.setItem('vajra_user', emailInput);
+                unlockDashboard("User (" + emailInput + ")");
+            }
+        }
+
+        function unlockDashboard(roleName) {
+            const box = document.getElementById('terminalBox');
+            box.style.display = 'block';
+            document.getElementById('termTitle').innerText = '🔐 ACCESS GATEWAY STATUS';
+            document.getElementById('termBody').innerHTML = `<span style="color: #00ff88;">[ACCESS GRANTED] Role: <b>${roleName}</b>. Operating System Fully Unlocked.</span>`;
+            
             setTimeout(() => {
                 document.getElementById('authGate').style.display = 'none';
                 document.querySelector('.hero-section').style.display = 'none';
@@ -1166,6 +1213,7 @@
             document.getElementById('logoutBtn').style.display = 'none';
             document.getElementById('authGate').style.display = 'block';
             document.getElementById('terminalBox').style.display = 'none';
+            refreshCaptcha();
         }
 
         function runGoogleWebSearchLogin() {
@@ -1257,7 +1305,6 @@
                 localStorage.setItem('vajra_gemini_key', keyVal);
                 document.getElementById('apiKeyStatus').innerText = 'Status: API Key Saved & Cloud Synced Successfully! 🚀';
                 
-                // ☁️ CLOUD SYNC: Log active secure bridge to Supabase
                 if (supabaseClient) {
                     await supabaseClient.from('vajra_api_logs').insert([{ status: 'Key configured securely', timestamp: new Date() }]);
                 }
@@ -1335,7 +1382,6 @@
         function handleAllFormatUpload(event) {
             const file = event.target.files[0];
             if (file) {
-                // Strict File Extension Validation for Security
                 const validExtensions = /\.(jpg|jpeg|png|webp|pdf|ai|psd|mp3|mp4|zip)$/i;
                 if (!validExtensions.test(file.name)) {
                     alert("⚠️ Security Protocol: Unsupported or unauthorized file format!");
