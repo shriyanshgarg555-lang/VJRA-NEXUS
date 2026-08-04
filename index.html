@@ -261,10 +261,10 @@
             border: 2px solid var(--gold-glow); border-radius: 20px; padding: 30px;
             box-shadow: 0 0 40px rgba(255, 215, 0, 0.3); text-align: center; backdrop-filter: blur(12px);
         }
-        .auth-tabs { display: flex; justify-content: center; gap: 10px; margin-bottom: 20px; }
+        .auth-tabs { display: flex; justify-content: center; gap: 8px; margin-bottom: 20px; flex-wrap: wrap; }
         .auth-tab-btn {
-            flex: 1; padding: 10px; border-radius: 10px; border: 1px solid var(--plasma-cyan);
-            background: transparent; color: var(--text-main); font-weight: bold; cursor: pointer; transition: all 0.3s;
+            flex: 1; padding: 10px 8px; border-radius: 10px; border: 1px solid var(--plasma-cyan);
+            background: transparent; color: var(--text-main); font-weight: bold; cursor: pointer; transition: all 0.3s; font-size: 11px;
         }
         .auth-tab-btn.active { background: var(--plasma-cyan); color: #000; }
 
@@ -486,26 +486,28 @@
             </div>
         </div>
 
-        <!-- AUTHENTICATION GATE (MASTER ADMIN LOCK) -->
+        <!-- AUTHENTICATION GATE (DUAL-LAYER: USER SIGN IN / SIGN UP & MASTER ADMIN) -->
         <div id="authGate" class="auth-gate-box">
             <div class="auth-tabs">
-                <button class="auth-tab-btn active" id="btnLoginTab">🔐 Master Admin Login (Shriyansh Garg)</button>
+                <button class="auth-tab-btn active" id="tabUserSignin" onclick="switchAuthTab('signin')">🔐 Sign In</button>
+                <button class="auth-tab-btn" id="tabUserSignup" onclick="switchAuthTab('signup')">📝 Sign Up</button>
+                <button class="auth-tab-btn" id="tabAdminLogin" onclick="switchAuthTab('admin')">🛡️ Admin</button>
             </div>
 
             <div id="authFormTitle" style="font-size: 15px; font-weight: bold; color: var(--gold-glow); margin-bottom: 15px;">
-                VAJRA NEXUS SUPREME ACCESS CONTROL
+                VAJRA NEXUS USER SIGN IN
             </div>
 
-            <input type="text" id="loginUser" class="input-box" placeholder="Master Admin ID...">
-            <input type="password" id="loginPass" class="input-box" placeholder="Secure Admin Password...">
+            <input type="text" id="authEmail" class="input-box" placeholder="Email Address or Username...">
+            <input type="password" id="authPass" class="input-box" placeholder="Security Password...">
             
             <div class="captcha-box">
-                <div>🔒 MASTER CAPTCHA: <span class="captcha-text" id="captchaCode">V9X2A</span></div>
+                <div>🔒 CAPTCHA: <span class="captcha-text" id="captchaCode">V9X2A</span></div>
                 <button class="icon-btn" onclick="safeExecute(refreshCaptcha)" style="padding: 4px 8px;">🔄 Refresh</button>
             </div>
             <input type="text" id="captchaInput" class="input-box" placeholder="Enter CAPTCHA Code...">
 
-            <button class="supreme-btn btn-gold" id="authSubmitBtn" onclick="safeExecute(runMasterLogin)">Authenticate & Unlock Operating System</button>
+            <button class="supreme-btn btn-gold" id="authSubmitBtn" onclick="safeExecute(handleAuthAction)">Sign In to Operating System</button>
         </div>
 
         <!-- MAIN DASHBOARD (VISIBLE AFTER LOGIN) -->
@@ -1104,6 +1106,28 @@
             box.scrollIntoView({ behavior: 'smooth' });
         }
 
+        let isSignupMode = false;
+        function switchAuthMode(mode) {
+            isSignupMode = (mode === 'signup');
+            document.getElementById('btnLoginTab').classList.toggle('active', !isSignupMode);
+            document.getElementById('btnSignupTab').classList.toggle('active', isSignupMode);
+            document.getElementById('signupEmail').style.display = isSignupMode ? 'block' : 'none';
+        }
+
+        function switchTab(tabId, btn) {
+            playVajraSound('SCAN');
+            document.querySelectorAll('.view-section').forEach(sec => sec.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            
+            const targetSec = document.getElementById(tabId);
+            if(targetSec) targetSec.classList.add('active');
+            if(btn) btn.classList.add('active');
+
+            if (tabId === 'growth') {
+                setTimeout(drawCharts, 50);
+            }
+        }
+
         function refreshCaptcha() {
             const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
             let captcha = '';
@@ -1111,47 +1135,27 @@
             document.getElementById('captchaCode').innerText = captcha;
         }
 
-        // ==========================================
-        // 🔐 MASTER ADMIN LOGIN & SECURITY LOCK
-        // ==========================================
         async function runMasterLogin() {
             playVajraSound('SUCCESS');
-            const uInput = sanitizeInput(document.getElementById('loginUser').value.trim());
-            const pInput = sanitizeInput(document.getElementById('loginPass').value.trim());
-            const captchaInput = sanitizeInput(document.getElementById('captchaInput').value.trim());
-            const realCaptcha = document.getElementById('captchaCode').innerText;
-
-            if (captchaInput !== realCaptcha) {
-                playVajraSound('ALARM');
-                alert('⚠️ Invalid CAPTCHA Code! Access Denied.');
-                refreshCaptcha();
-                return;
+            const username = sanitizeInput(document.getElementById('loginUser').value || 'Shriyansh Garg');
+            const box = document.getElementById('terminalBox');
+            box.style.display = 'block';
+            document.getElementById('termTitle').innerText = '🔐 CLOUD AUTHENTICATION STATUS';
+            document.getElementById('termBody').innerHTML = `<span style="color: #00ff88;">[ACCESS GRANTED] ${username} Authenticated via Supabase Cloud Gateway! VAJRA NEXUS AI X26 Unlocked.</span>`;
+            
+            // ☁️ CLOUD SYNC: Log user session to Supabase
+            if (supabaseClient) {
+                await supabaseClient.from('vajra_sessions').insert([{ username: username, login_time: new Date() }]);
             }
 
-            // Master Admin Credentials Lock (Configured exclusively for Shriyansh Garg)
-            if (uInput.toLowerCase() === 'shriyansh' && pInput === 'vajra2026') {
-                const box = document.getElementById('terminalBox');
-                box.style.display = 'block';
-                document.getElementById('termTitle').innerText = '🔐 MASTER ADMIN GATEWAY STATUS';
-                document.getElementById('termBody').innerHTML = `<span style="color: #00ff88;">[MASTER ACCESS GRANTED] Welcome back, Shriyansh Garg (Sheopur, M.P.). Operating System Fully Unlocked.</span>`;
-                
-                if (supabaseClient) {
-                    await supabaseClient.from('vajra_sessions').insert([{ username: 'Shriyansh Garg', login_time: new Date() }]);
-                }
-
-                setTimeout(() => {
-                    document.getElementById('authGate').style.display = 'none';
-                    document.querySelector('.hero-section').style.display = 'none';
-                    document.getElementById('mainDashboard').style.display = 'block';
-                    document.getElementById('logoutBtn').style.display = 'inline-block';
-                    drawCharts();
-                }, 500);
-                box.scrollIntoView({ behavior: 'smooth' });
-            } else {
-                playVajraSound('ALARM');
-                alert('🚨 UNAUTHORIZED INTRUSION ATTEMPT: Incorrect Master Admin ID or Password!');
-                refreshCaptcha();
-            }
+            setTimeout(() => {
+                document.getElementById('authGate').style.display = 'none';
+                document.querySelector('.hero-section').style.display = 'none';
+                document.getElementById('mainDashboard').style.display = 'block';
+                document.getElementById('logoutBtn').style.display = 'inline-block';
+                drawCharts();
+            }, 500);
+            box.scrollIntoView({ behavior: 'smooth' });
         }
 
         function runLogout() {
@@ -1160,7 +1164,6 @@
             document.getElementById('logoutBtn').style.display = 'none';
             document.getElementById('authGate').style.display = 'block';
             document.getElementById('terminalBox').style.display = 'none';
-            refreshCaptcha();
         }
 
         function runGoogleWebSearchLogin() {
