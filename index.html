@@ -1084,10 +1084,10 @@
         }
 
         // ==========================================
-        // 🔒 GOOGLE UPGRADE 1: DYNAMIC CAPTCHA GENERATOR
+        // 🔒 UPGRADE 1: DYNAMIC CAPTCHA GENERATOR
         // ==========================================
         function refreshCaptcha() {
-            const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789'; // O aur 0 jaise bhramak akshar hatae gye
+            const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
             let captcha = '';
             for(let i=0; i<6; i++) {
                 captcha += chars.charAt(Math.floor(Math.random() * chars.length));
@@ -1124,7 +1124,7 @@
             } else if (mode === 'admin') {
                 nameInput.style.display = 'none';
                 mobileInput.style.display = 'none';
-                title.innerText = "MASTER ADMIN ACCESS LOCK (SHRIYANSH GARG)";
+                title.innerText = "MASTER ADMIN ACCESS LOCK";
                 btn.innerText = "Authenticate Master Admin";
             }
             refreshCaptcha();
@@ -1153,7 +1153,7 @@
             // 1. MASTER ADMIN LOGIN CHECK
             if (currentAuthMode === 'admin') {
                 if (emailInput.toLowerCase() === 'shriyansh' && passInput === 'vajra2026') {
-                    unlockDashboard("Master Admin (Shriyansh Garg)");
+                    unlockDashboard("Master Admin");
                 } else {
                     playVajraSound('ALARM');
                     alert('🚨 UNAUTHORIZED INTRUSION: Incorrect Master Admin Credentials!');
@@ -1281,14 +1281,13 @@
         }
 
         // ==========================================
-        // 🔑 GOOGLE UPGRADE 2: API KEY ENCRYPTION (Base64)
+        // 🔒 UPGRADE 2: API KEY ENCRYPTION (Base64)
         // ==========================================
         let userGeminiApiKey = "";
         const storedEncodedKey = localStorage.getItem('v_nexus_secure_api_key');
         if (storedEncodedKey) {
             try {
-                userGeminiApiKey = atob(storedEncodedKey); // Base64 decode
-                const keyInputEl = document.getElementById('geminiApiKeyInput');
+                userGeminiApiKey = atob(storedEncodedKey);
                 const statusEl = document.getElementById('apiKeyStatus');
                 if(statusEl) {
                     statusEl.innerText = 'Status: API Key Loaded Securely & Encrypted ✅';
@@ -1577,12 +1576,11 @@
         }
 
         // ==========================================
-        // 🔒 GOOGLE UPGRADE 3: FORMSPREE HONEYPOT SHIELD
+        // 🔒 UPGRADE 3: FORMSPREE HONEYPOT SHIELD
         // ==========================================
         function handleFormspreeSubmission(event) {
             const gotchaValue = document.getElementById('gotchaField').value;
             if (gotchaValue) {
-                // Agar bot ne hidden field me kuch bhara hai, toh submission turant rok do
                 event.preventDefault();
                 alert('⚠️ Spam Bot Activity Detected & Blocked by VAJRA Honeypot Shield.');
                 return false;
