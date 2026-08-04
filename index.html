@@ -648,8 +648,9 @@
                     <div class="panel-card gold-border">
                         <div class="panel-title gold">🤖 Google Gemini Pro & ChatGPT Plus Live Hub</div>
                         <div class="panel-desc">Query Gemini Pro and ChatGPT simultaneously for multi-model branding and design intelligence.</div>
-                        <input type="text" id="openAISearchInput" class="input-box" placeholder="Ask AI Suite (e.g. Adobe Illustrator 2026 integration)..." onkeypress="if(event.key === 'Enter') runGeminiLiveQuery();">
-                        <button class="supreme-btn btn-gold" onclick="safeExecute(runGeminiLiveQuery)">🚀 Query Multi-AI Core</button>
+                        <!-- ⚡ UPDATED: Connected to Render Backend Server -->
+                        <input type="text" id="openAISearchInput" class="input-box" placeholder="Ask AI Suite (e.g. Adobe Illustrator 2026 integration)..." onkeypress="if(event.key === 'Enter') runRealBackendAIQuery();">
+                        <button class="supreme-btn btn-gold" onclick="safeExecute(runRealBackendAIQuery)">🚀 Query Live Render AI Server</button>
                     </div>
                 </div>
             </div>
@@ -1084,7 +1085,7 @@
         }
 
         // ==========================================
-        // 🔒 UPGRADE 1: DYNAMIC CAPTCHA GENERATOR
+        // 🔒 GOOGLE UPGRADE 1: DYNAMIC CAPTCHA GENERATOR
         // ==========================================
         function refreshCaptcha() {
             const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
@@ -1153,7 +1154,7 @@
             // 1. MASTER ADMIN LOGIN CHECK
             if (currentAuthMode === 'admin') {
                 if (emailInput.toLowerCase() === 'shriyansh' && passInput === 'vajra2026') {
-                    unlockDashboard("Master Admin");
+                    unlockDashboard("Master Admin (Shriyansh Garg)");
                 } else {
                     playVajraSound('ALARM');
                     alert('🚨 UNAUTHORIZED INTRUSION: Incorrect Master Admin Credentials!');
@@ -1220,8 +1221,56 @@
         }
 
         // ==========================================
-        // 🚀 VAJRA TRIPLE-CORE HUB: REAL DATA & POSTERS
+        // 🚀 VAJRA TRIPLE-CORE HUB & LIVE RENDER AI SERVER BRIDGE
         // ==========================================
+        async function runRealBackendAIQuery() {
+            playVajraSound('SCAN');
+            const queryInput = document.getElementById('openAISearchInput');
+            const userQuery = sanitizeInput(queryInput ? queryInput.value : "");
+            
+            if(!userQuery) {
+                alert("कृपया कुछ प्रॉम्ट टाइप करें!");
+                return;
+            }
+
+            const box = document.getElementById('terminalBox');
+            box.style.display = 'block';
+            document.getElementById('termTitle').innerText = '🤖 VAJRA NEXUS AI X26 - LIVE RENDER SERVER BRIDGE';
+            document.getElementById('termTime').innerText = 'TIME: ' + new Date().toLocaleTimeString();
+            document.getElementById('termBody').innerHTML = `<span style="color: #00f3ff;">Connecting to Render Backend Server for query: "${userQuery}"... (If server is sleeping, please wait 30 seconds)</span>`;
+            document.getElementById('imagePreviewContainer').innerHTML = '';
+            document.getElementById('downloadActionBox').style.display = 'none';
+            box.scrollIntoView({ behavior: 'smooth' });
+
+            try {
+                // ⚡ CONNECTED LIVE RENDER SERVER URL
+                const backendUrl = "https://vajra-core-server.onrender.com/api/query-gemini"; 
+
+                const response = await fetch(backendUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ prompt: userQuery })
+                });
+
+                const data = await response.json();
+                if(data.success) {
+                    document.getElementById('termBody').innerHTML = `<span style="color: #00ff88;">[SUCCESS: LIVE GEMINI AI SERVER RESPONSE]</span>`;
+                    document.getElementById('imagePreviewContainer').innerHTML = `
+                        <div style="background: rgba(10,15,26,0.95); padding: 25px; border-radius: 12px; border: 2px solid var(--gold-glow); text-align: left;">
+                            <h3 style="color: var(--gold-glow); margin-top:0;">💡 Gemini AI Live Output</h3>
+                            <p style="color: #e2e8f0; font-size: 14px; line-height: 1.7; white-space: pre-wrap;">${sanitizeInput(data.response)}</p>
+                        </div>`;
+                    document.getElementById('downloadActionBox').style.display = 'flex';
+                    playVajraSound('SUCCESS');
+                    lastGeneratedReport = `VAJRA NEXUS AI X26 - LIVE BACKEND REPORT\nQuery: ${userQuery}\nResponse:\n${data.response}`;
+                } else {
+                    document.getElementById('termBody').innerHTML = `<span style="color: var(--laser-red);">[SERVER ERROR] ${data.error}</span>`;
+                }
+            } catch (err) {
+                document.getElementById('termBody').innerHTML = `<span style="color: var(--laser-red);">[NETWORK EXCEPTION] Could not connect to Render backend server. Please check your URL.<br>Error: ${err.message}</span>`;
+            }
+        }
+
         function runVajraCoreHub(actionType) {
             if (actionType === 'COUNTER_STRIKE') {
                 playVajraSound('ALARM');
@@ -1322,63 +1371,8 @@
         }
 
         async function runGeminiLiveQuery() {
-            playVajraSound('SCAN');
-            const queryInput = document.getElementById('openAISearchInput');
-            const query = sanitizeInput(queryInput ? queryInput.value : "Shahi Mahal candle box packaging and branding concept");
-            const box = document.getElementById('terminalBox');
-            box.style.display = 'block';
-            document.getElementById('termTitle').innerText = '🤖 VAJRA NEXUS AI X26 - REAL GEMINI BRIDGE';
-            document.getElementById('termTime').innerText = 'TIME: ' + new Date().toLocaleTimeString();
-
-            const lowerQuery = query.toLowerCase();
-            if (lowerQuery.includes('adobe') || lowerQuery.includes('illustrator') || lowerQuery.includes('photoshop') || lowerQuery.includes('premier') || lowerQuery.includes('after effect')) {
-                document.getElementById('termBody').innerHTML = `<span style="color: var(--neon-green);">[SMART INTENT ROUTED SUCCESSFULLY]</span><br><br><b>Adobe 2026 Suite</b> के ये सारे प्रो-टूल्स इस वेबसाइट के <b>'🎬 Adobe 2026 Suite & Studio'</b> टैब के अंदर पूरी तरह लाइव हैं।`;
-                document.getElementById('imagePreviewContainer').innerHTML = '';
-                document.getElementById('downloadActionBox').style.display = 'flex';
-                box.scrollIntoView({ behavior: 'smooth' });
-                return;
-            }
-
-            if (!userGeminiApiKey) {
-                document.getElementById('termBody').innerHTML = `<span style="color: var(--laser-red);">[ERROR] API Key Not Found! कृपया ऊपर 'Multi-AI API Bridge' सेक्शन में अपनी Google AI Studio API Key दर्ज करें और Save करें।</span>`;
-                document.getElementById('downloadActionBox').style.display = 'none';
-                box.scrollIntoView({ behavior: 'smooth' });
-                return;
-            }
-
-            document.getElementById('termBody').innerHTML = `<span style="color: #00f3ff;">Connecting to Google Gemini 1.5 Pro Server for query: "${query}"...</span>`;
-            document.getElementById('imagePreviewContainer').innerHTML = '';
-            document.getElementById('downloadActionBox').style.display = 'none';
-            box.scrollIntoView({ behavior: 'smooth' });
-
-            try {
-                const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-pro:generateContent?key=${userGeminiApiKey}`;
-                const response = await fetch(endpoint, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ contents: [{ parts: [{ text: query }] }] })
-                });
-
-                const data = await response.json();
-                if (!response.ok) throw new Error(data.error?.message || 'API connection failed');
-
-                const reply = data.candidates?.[0]?.content?.parts?.[0]?.text || "No response generated.";
-
-                document.getElementById('termBody').innerHTML = `<span style="color: #00ff88;">[SUCCESS: REAL GEMINI 1.5 PRO LIVE RESPONSE]</span>`;
-                document.getElementById('imagePreviewContainer').innerHTML = `
-                    <div style="background: rgba(10,15,26,0.95); padding: 25px; border-radius: 12px; border: 2px solid var(--gold-glow); text-align: left;">
-                        <h3 style="color: var(--gold-glow); margin-top:0;">💡 Gemini 1.5 Pro Live Output</h3>
-                        <p style="color: #e2e8f0; font-size: 14px; line-height: 1.7; white-space: pre-wrap;">${sanitizeInput(reply)}</p>
-                    </div>`;
-                document.getElementById('downloadActionBox').style.display = 'flex';
-                playVajraSound('SUCCESS');
-                lastGeneratedReport = `VAJRA NEXUS AI X26 - LIVE GEMINI REPORT\nQuery: ${query}\nResponse:\n${reply}`;
-
-            } catch (err) {
-                document.getElementById('termBody').innerHTML = `<span style="color: var(--laser-red);">[API EXCEPTION] ${err.message}</span>`;
-            }
+            runRealBackendAIQuery();
         }
-
 
         // ==========================================
         // 📄 WORKING REAL IMAGE TO PDF CONVERTER
