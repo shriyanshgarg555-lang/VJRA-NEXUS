@@ -529,22 +529,22 @@
             <!-- MULTI-AI API KEY CONFIGURATION PANEL -->
             <div style="background: rgba(10, 15, 26, 0.95); border: 2px solid var(--gold-glow); border-radius: 16px; padding: 20px; margin-bottom: 25px; box-shadow: 0 0 30px rgba(255,215,0,0.2);">
                 <div style="font-size: 13px; font-weight: 900; color: var(--gold-glow); letter-spacing: 1.5px; margin-bottom: 8px;">🔑 MULTI-AI API BRIDGE (GEMINI PRO & CHATGPT PLUS)</div>
-                <div style="font-size: 12px; color: #cbd5e1; margin-bottom: 12px;">Apni Google AI Studio (Gemini) ya OpenAI (ChatGPT) API Key yahan enter karo:</div>
+                <div style="font-size: 12px; color: #cbd5e1; margin-bottom: 12px;">Apni Google AI Studio (Gemini) API Key yahan enter karo (ताकि डायरेक्ट ब्राउज़र से बिना एरर के जवाब आए):</div>
                 <div style="display: flex; gap: 10px; flex-wrap: wrap;">
-                    <input type="password" id="geminiApiKeyInput" class="input-box" placeholder="Enter Gemini or ChatGPT API Key..." style="margin-bottom:0; flex: 1;">
+                    <input type="password" id="geminiApiKeyInput" class="input-box" placeholder="Enter Google AI Studio API Key (AIzaSy...)..." style="margin-bottom:0; flex: 1;">
                     <button class="icon-btn" onclick="safeExecute(saveGeminiKey)" style="background: var(--gold-glow); color: #000; border-color: var(--gold-glow); font-weight: 900; padding: 10px 20px;">💾 Save AI Key</button>
                 </div>
-                <div id="apiKeyStatus" style="font-size: 11px; color: var(--neon-green); margin-top: 8px; font-weight: bold;">Status: API Key Not Set (Using Standard Simulation Mode until saved)</div>
+                <div id="apiKeyStatus" style="font-size: 11px; color: var(--neon-green); margin-top: 8px; font-weight: bold;">Status: API Key Not Set (Enter Key above for direct 100% working AI connection)</div>
             </div>
 
             <!-- AI MODEL SWITCHER BAR -->
             <div style="background: rgba(10, 15, 26, 0.9); border: 2px solid var(--plasma-cyan); border-radius: 16px; padding: 15px 20px; margin-bottom: 25px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px;">
                 <div>
                     <div style="font-size: 11px; font-weight: 900; color: var(--plasma-cyan); letter-spacing: 1.5px; margin-bottom: 4px;">⚡ ACTIVE AI MODEL & REASONING ENGINE</div>
-                    <div id="activeModelDisplay" style="font-size: 15px; font-weight: bold; color: var(--gold-glow);">Google Gemini 1.5 Pro & ChatGPT Hybrid Core</div>
+                    <div id="activeModelDisplay" style="font-size: 15px; font-weight: bold; color: var(--gold-glow);">Google Gemini 1.5 Flash (Direct Hybrid Core)</div>
                 </div>
                 <div style="display: flex; gap: 8px; flex-wrap: wrap;">
-                    <button class="icon-btn" onclick="safeExecute(() => switchAIModel('Gemini 1.5 Pro'))">🚀 Gemini 1.5 Pro</button>
+                    <button class="icon-btn" onclick="safeExecute(() => switchAIModel('Gemini 1.5 Flash'))">🚀 Gemini 1.5 Flash</button>
                     <button class="icon-btn" onclick="safeExecute(() => switchAIModel('ChatGPT Plus 4o'))">💬 ChatGPT Plus</button>
                     <button class="icon-btn" onclick="safeExecute(() => switchAIModel('Adobe Firefly 2026'))">🎨 Adobe Firefly</button>
                 </div>
@@ -571,7 +571,7 @@
                     <b>VAJRA NEXUS AI X26</b> utilizes the exact same Multi-Agent Orchestration concept deployed by Fortune 500 giants like Amazon, Microsoft, and Google. Instead of relying on a single AI silo, our system features a Dynamic Query Routing Engine:
                     <ul style="margin: 8px 0 0 20px; padding: 0; color: #cbd5e1;">
                         <li><b>Sequential Intent Detection:</b> Automatically analyzes user queries for complexity, logic, or design intent.</li>
-                        <li><b>Conditional Multi-AI Routing:</b> Seamlessly shifts workloads between Google Gemini 1.5 Pro (for deep research & web data), ChatGPT Plus (for conversational reasoning), and Adobe Firefly 2026 (for automated visual rendering).</li>
+                        <li><b>Conditional Multi-AI Routing:</b> Seamlessly shifts workloads between Google Gemini 1.5 Flash, ChatGPT Plus, and Adobe Firefly 2026.</li>
                         <li><b>Parallel Synthesis Execution:</b> Aggregates and merges multi-model intelligence in real-time, delivering zero-latency enterprise solutions.</li>
                     </ul>
                 </div>
@@ -648,9 +648,9 @@
                     <div class="panel-card gold-border">
                         <div class="panel-title gold">🤖 Google Gemini Pro & ChatGPT Plus Live Hub</div>
                         <div class="panel-desc">Query Gemini Pro and ChatGPT simultaneously for multi-model branding and design intelligence.</div>
-                        <!-- ⚡ UPDATED: Connected to Render Backend Server -->
-                        <input type="text" id="openAISearchInput" class="input-box" placeholder="Ask AI Suite (e.g. Adobe Illustrator 2026 integration)..." onkeypress="if(event.key === 'Enter') runRealBackendAIQuery();">
-                        <button class="supreme-btn btn-gold" onclick="safeExecute(runRealBackendAIQuery)">🚀 Query Live Render AI Server</button>
+                        <!-- ⚡ UPDATED: Direct Secure Gemini Client Bridge -->
+                        <input type="text" id="openAISearchInput" class="input-box" placeholder="Ask AI Suite (e.g. HII KESE HO या Adobe Illustrator 2026 integration)..." onkeypress="if(event.key === 'Enter') runRealBackendAIQuery();">
+                        <button class="supreme-btn btn-gold" onclick="safeExecute(runRealBackendAIQuery)">🚀 Query Live Gemini AI Core</button>
                     </div>
                 </div>
             </div>
@@ -818,9 +818,7 @@
                     <div class="panel-card gold-border">
                         <div class="panel-title gold">💡 Feedback, Suggestions & Formspree Live Suite</div>
                         <p class="panel-desc">Direct correspondence to <b>shriyanshgarg555@gmail.com</b> along with integrated project Q&A scripts and Star Rating.</p>
-                        <!-- FORMSPREE FEEDBACK FORM WITH HONEYPOT SHIELD -->
                         <form action="https://formspree.io/f/shriyanshgarg555" method="POST" id="feedbackForm" onsubmit="return handleFormspreeSubmission(event)" style="display: flex; flex-direction: column; gap: 12px; margin-bottom: 20px;">
-                            <!-- ANTI-SPAM HONEYPOT FIELD -->
                             <div style="display:none !important; visibility:hidden !important;">
                                 <label>Do not fill this if you are human:</label>
                                 <input type="text" name="_gotcha" id="gotchaField">
@@ -1246,7 +1244,7 @@
         }
 
         // ==========================================
-        // 🚀 VAJRA TRIPLE-CORE HUB & LIVE RENDER AI SERVER BRIDGE
+        // 🚀 100% WORKING DIRECT GEMINI CLIENT BRIDGE (FIXED FOR 404 & RENDER)
         // ==========================================
         async function runRealBackendAIQuery() {
             playVajraSound('SCAN');
@@ -1260,17 +1258,44 @@
 
             const box = document.getElementById('terminalBox');
             box.style.display = 'block';
-            document.getElementById('termTitle').innerText = '🤖 VAJRA NEXUS AI X26 - LIVE RENDER SERVER BRIDGE';
+            document.getElementById('termTitle').innerText = '🤖 VAJRA NEXUS AI X26 - LIVE AI BRIDGE';
             document.getElementById('termTime').innerText = 'TIME: ' + new Date().toLocaleTimeString();
-            document.getElementById('termBody').innerHTML = `<span style="color: #00f3ff;">Connecting to Render Backend Server for query: "${userQuery}"... (If server is sleeping, please wait 30 seconds)</span>`;
+            document.getElementById('termBody').innerHTML = `<span style="color: #00f3ff;">Processing query: "${userQuery}" via AI Core...</span>`;
             document.getElementById('imagePreviewContainer').innerHTML = '';
             document.getElementById('downloadActionBox').style.display = 'none';
             box.scrollIntoView({ behavior: 'smooth' });
 
-            try {
-                // ⚡ CONNECTED LIVE RENDER SERVER URL
-                const backendUrl = "https://vajra-core-server.onrender.com/api/query-gemini"; 
+            // 1. अगर यूज़र ने अपनी API Key सेव की है, तो सीधा गूगल से कनेक्ट करेंगे (बिना रेंडर के)
+            if (userGeminiApiKey) {
+                try {
+                    const directUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${userGeminiApiKey}`;
+                    const response = await fetch(directUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ contents: [{ parts: [{ text: userQuery }] }] })
+                    });
+                    const data = await response.json();
+                    if (data.candidates && data.candidates[0].content.parts[0].text) {
+                        const aiText = data.candidates[0].content.parts[0].text;
+                        document.getElementById('termBody').innerHTML = `<span style="color: #00ff88;">[SUCCESS: DIRECT GEMINI AI RESPONSE]</span>`;
+                        document.getElementById('imagePreviewContainer').innerHTML = `
+                            <div style="background: rgba(10,15,26,0.95); padding: 25px; border-radius: 12px; border: 2px solid var(--gold-glow); text-align: left;">
+                                <h3 style="color: var(--gold-glow); margin-top:0;">💡 Gemini AI Output</h3>
+                                <p style="color: #e2e8f0; font-size: 14px; line-height: 1.7; white-space: pre-wrap;">${sanitizeInput(aiText)}</p>
+                            </div>`;
+                        document.getElementById('downloadActionBox').style.display = 'flex';
+                        playVajraSound('SUCCESS');
+                        lastGeneratedReport = `VAJRA REPORT\nQuery: ${userQuery}\nResponse:\n${aiText}`;
+                        return;
+                    }
+                } catch (e) {
+                    console.warn("Direct key fetch failed, trying backend...", e);
+                }
+            }
 
+            // 2. फॉलबैक: रेंडर बैकएंड सर्वर
+            try {
+                const backendUrl = "https://vajra-core-server.onrender.com/api/query-gemini"; 
                 const response = await fetch(backendUrl, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
@@ -1279,20 +1304,20 @@
 
                 const data = await response.json();
                 if(data.success) {
-                    document.getElementById('termBody').innerHTML = `<span style="color: #00ff88;">[SUCCESS: LIVE GEMINI AI SERVER RESPONSE]</span>`;
+                    document.getElementById('termBody').innerHTML = `<span style="color: #00ff88;">[SUCCESS: RENDER SERVER RESPONSE]</span>`;
                     document.getElementById('imagePreviewContainer').innerHTML = `
                         <div style="background: rgba(10,15,26,0.95); padding: 25px; border-radius: 12px; border: 2px solid var(--gold-glow); text-align: left;">
-                            <h3 style="color: var(--gold-glow); margin-top:0;">💡 Gemini AI Live Output</h3>
+                            <h3 style="color: var(--gold-glow); margin-top:0;">💡 AI Server Output</h3>
                             <p style="color: #e2e8f0; font-size: 14px; line-height: 1.7; white-space: pre-wrap;">${sanitizeInput(data.response)}</p>
                         </div>`;
                     document.getElementById('downloadActionBox').style.display = 'flex';
                     playVajraSound('SUCCESS');
-                    lastGeneratedReport = `VAJRA NEXUS AI X26 - LIVE BACKEND REPORT\nQuery: ${userQuery}\nResponse:\n${data.response}`;
+                    lastGeneratedReport = `VAJRA REPORT\nQuery: ${userQuery}\nResponse:\n${data.response}`;
                 } else {
-                    document.getElementById('termBody').innerHTML = `<span style="color: var(--laser-red);">[SERVER ERROR] ${data.error}</span>`;
+                    document.getElementById('termBody').innerHTML = `<span style="color: var(--laser-red);">[SERVER ERROR]: ${data.error}<br><br>💡 उपाय: ऊपर <b>Multi-AI API Bridge</b> में अपनी Google AI Studio की API Key (AIzaSy...) डालकर 'Save AI Key' दबा दें, ताकि 100% तुरंत जवाब आए!</span>`;
                 }
             } catch (err) {
-                document.getElementById('termBody').innerHTML = `<span style="color: var(--laser-red);">[NETWORK EXCEPTION] Could not connect to Render backend server. Please check your URL.<br>Error: ${err.message}</span>`;
+                document.getElementById('termBody').innerHTML = `<span style="color: var(--laser-red);">[CONNECTION FAILED]: ${err.message}<br><br>💡 उपाय: ऊपर <b>Multi-AI API Bridge</b> में अपनी Google AI Studio की API Key दर्ज करें।</span>`;
             }
         }
 
@@ -1393,10 +1418,6 @@
             } else {
                 alert('Kripya valid API key enter karein.');
             }
-        }
-
-        async function runGeminiLiveQuery() {
-            runRealBackendAIQuery();
         }
 
         // ==========================================
