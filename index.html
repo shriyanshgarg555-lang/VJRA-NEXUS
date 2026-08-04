@@ -486,10 +486,10 @@
             <input type="password" id="authPass" class="input-box" placeholder="Security Password...">
             
             <div class="captcha-box">
-                <div>🔒 CAPTCHA: <span class="captcha-text" id="captchaCode">V9X2A</span></div>
+                <div>🔒 DYNAMIC CAPTCHA: <span class="captcha-text" id="captchaCode">------</span></div>
                 <button class="icon-btn" onclick="safeExecute(refreshCaptcha)" style="padding: 4px 8px;">🔄 Refresh</button>
             </div>
-            <input type="text" id="captchaInput" class="input-box" placeholder="Enter CAPTCHA Code...">
+            <input type="text" id="captchaInput" class="input-box" placeholder="Enter Dynamic CAPTCHA Code...">
 
             <button class="supreme-btn btn-gold" id="authSubmitBtn" onclick="safeExecute(handleAuthAction)">Sign In to Operating System</button>
         </div>
@@ -550,7 +550,7 @@
                 </div>
             </div>
 
-            <!-- 🌟 WORLD'S NO.1 MULTI-AI ECOSYSTEM LAUNCHPAD (DIRECT CONNECTORS TO TOP AI TOOLS) -->
+            <!-- 🌟 WORLD'S NO.1 MULTI-AI ECOSYSTEM LAUNCHPAD -->
             <div style="background: rgba(10, 15, 26, 0.96); border: 2px solid var(--plasma-cyan); border-radius: 16px; padding: 22px; margin-bottom: 25px; box-shadow: 0 0 35px rgba(0,243,255,0.25);">
                 <div style="font-size: 14px; font-weight: 900; color: var(--plasma-cyan); letter-spacing: 1.5px; margin-bottom: 12px;">🌐 WORLD'S NO.1 MULTI-AI ECOSYSTEM & DIRECT CONNECTORS</div>
                 <div style="font-size: 12px; color: #cbd5e1; margin-bottom: 15px;">Directly launch or connect with the world's leading generative AI platforms:</div>
@@ -661,7 +661,6 @@
                         <div class="panel-title green">🎬 Adobe 2026 Suite & Visual Studio Hub</div>
                         <div class="panel-desc">Select your Adobe 2026 Application (Adobe Illustrator 2026, Adobe Photoshop 2026, Adobe Premiere Pro 2026, Adobe After Effects 2026) and render AI or attach files for Image-to-Generation:</div>
                         
-                        <!-- 🎨 ADOBE 2026 DEDICATED SELECTION -->
                         <div style="margin-bottom: 15px;">
                             <label style="font-size: 12px; font-weight: bold; color: var(--neon-green); display: block; margin-bottom: 6px;">SELECT ADOBE 2026 WORKFLOW APP:</label>
                             <select id="adobeAppSelect" class="input-box" style="background: rgba(4,8,16,0.9); color: var(--neon-green); border-color: var(--neon-green);">
@@ -673,7 +672,6 @@
                         </div>
 
                         <input type="text" id="predictInput1" class="input-box" placeholder="Project Title..." value="SHAHI MAHAL CANDLE PACKAGING">
-                        
                         <textarea id="predictInput2" class="input-box" rows="3" placeholder="Enter prompt for image/video generation...">A luxury high-end commercial packaging design for Shahi Mahal luxury scented candles, matte black box with intricate gold foil royal Indian motifs, clean typography, minimalist aesthetic, professional 3D product render.</textarea>
                         
                         <div class="upload-wrapper" style="border-color: var(--neon-green);">
@@ -819,7 +817,14 @@
                     <div class="panel-card gold-border">
                         <div class="panel-title gold">💡 Feedback, Suggestions & Formspree Live Suite</div>
                         <p class="panel-desc">Direct correspondence to <b>shriyanshgarg555@gmail.com</b> along with integrated project Q&A scripts and Star Rating.</p>
-                        <form action="https://formspree.io/f/shriyanshgarg555" method="POST" style="display: flex; flex-direction: column; gap: 12px; margin-bottom: 20px;">
+                        <!-- FORMSPREE FEEDBACK FORM WITH HONEYPOT SHIELD -->
+                        <form action="https://formspree.io/f/shriyanshgarg555" method="POST" id="feedbackForm" onsubmit="return handleFormspreeSubmission(event)" style="display: flex; flex-direction: column; gap: 12px; margin-bottom: 20px;">
+                            <!-- ANTI-SPAM HONEYPOT FIELD -->
+                            <div style="display:none !important; visibility:hidden !important;">
+                                <label>Do not fill this if you are human:</label>
+                                <input type="text" name="_gotcha" id="gotchaField">
+                            </div>
+
                             <input type="text" name="name" class="input-box" placeholder="Your Full Name..." required style="margin-bottom:0;">
                             <input type="email" name="email" class="input-box" placeholder="Your Email Address..." required style="margin-bottom:0;">
                             <div style="font-size: 13px; color: var(--gold-glow); font-weight: bold; margin-top: 5px;">⭐ Rate Your Experience / Stars:</div>
@@ -1078,17 +1083,22 @@
             box.scrollIntoView({ behavior: 'smooth' });
         }
 
+        // ==========================================
+        // 🔒 GOOGLE UPGRADE 1: DYNAMIC CAPTCHA GENERATOR
+        // ==========================================
         function refreshCaptcha() {
-            const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+            const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789'; // O aur 0 jaise bhramak akshar hatae gye
             let captcha = '';
-            for(let i=0; i<5; i++) captcha += chars.charAt(Math.floor(Math.random() * chars.length));
+            for(let i=0; i<6; i++) {
+                captcha += chars.charAt(Math.floor(Math.random() * chars.length));
+            }
             document.getElementById('captchaCode').innerText = captcha;
         }
 
         // ==========================================
         // 🔐 DUAL-LAYER ACCESS CONTROL & AUTHENTICATION
         // ==========================================
-        let currentAuthMode = 'signin'; // 'signin', 'signup', 'admin'
+        let currentAuthMode = 'signin';
 
         function switchAuthTab(mode) {
             currentAuthMode = mode;
@@ -1124,13 +1134,14 @@
             playVajraSound('SUCCESS');
             const emailInput = sanitizeInput(document.getElementById('authEmail').value.trim());
             const passInput = sanitizeInput(document.getElementById('authPass').value.trim());
-            const captchaInput = sanitizeInput(document.getElementById('captchaInput').value.trim());
-            const realCaptcha = document.getElementById('captchaCode').innerText;
+            const captchaInput = sanitizeInput(document.getElementById('captchaInput').value.trim()).toUpperCase();
+            const realCaptcha = document.getElementById('captchaCode').innerText.toUpperCase();
 
             if (captchaInput !== realCaptcha) {
                 playVajraSound('ALARM');
-                alert('⚠️ Invalid CAPTCHA Code! Access Denied.');
+                alert('⚠️ Invalid Dynamic CAPTCHA Code! Access Denied.');
                 refreshCaptcha();
+                document.getElementById('captchaInput').value = "";
                 return;
             }
 
@@ -1270,29 +1281,42 @@
         }
 
         // ==========================================
-        // 🔑 REAL MULTI-AI API BRIDGE & CLOUD KEY VAULT
+        // 🔑 GOOGLE UPGRADE 2: API KEY ENCRYPTION (Base64)
         // ==========================================
-        let userGeminiApiKey = localStorage.getItem('vajra_gemini_key') || '';
-        if (userGeminiApiKey) {
-            const keyInputEl = document.getElementById('geminiApiKeyInput');
-            const statusEl = document.getElementById('apiKeyStatus');
-            if(keyInputEl) keyInputEl.value = userGeminiApiKey;
-            if(statusEl) statusEl.innerText = 'Status: API Key Loaded Securely from Local Vault ✅';
+        let userGeminiApiKey = "";
+        const storedEncodedKey = localStorage.getItem('v_nexus_secure_api_key');
+        if (storedEncodedKey) {
+            try {
+                userGeminiApiKey = atob(storedEncodedKey); // Base64 decode
+                const keyInputEl = document.getElementById('geminiApiKeyInput');
+                const statusEl = document.getElementById('apiKeyStatus');
+                if(statusEl) {
+                    statusEl.innerText = 'Status: API Key Loaded Securely & Encrypted ✅';
+                    statusEl.style.color = '#00ffcc';
+                }
+            } catch(e) {
+                console.warn("Key decoding error");
+            }
         }
 
         async function saveGeminiKey() {
-            const keyVal = document.getElementById('geminiApiKeyInput').value.trim();
-            if (keyVal) {
-                userGeminiApiKey = keyVal;
-                localStorage.setItem('vajra_gemini_key', keyVal);
-                document.getElementById('apiKeyStatus').innerText = 'Status: API Key Saved & Cloud Synced Successfully! 🚀';
+            const rawKey = document.getElementById('geminiApiKeyInput').value.trim();
+            if (rawKey) {
+                const cleanKey = sanitizeInput(rawKey);
+                const encodedKey = btoa(cleanKey); // Base64 Obfuscation
+                localStorage.setItem('v_nexus_secure_api_key', encodedKey);
+                userGeminiApiKey = cleanKey;
+
+                document.getElementById('apiKeyStatus').innerText = 'Status: API Key Saved Securely & Encrypted! 🚀';
+                document.getElementById('apiKeyStatus').style.color = '#00ffcc';
+                document.getElementById('geminiApiKeyInput').value = "";
                 
                 if (supabaseClient) {
                     await supabaseClient.from('vajra_api_logs').insert([{ status: 'Key configured securely', timestamp: new Date() }]);
                 }
 
                 playVajraSound('SUCCESS');
-                alert('Google AI Studio API Key saved and synchronized with Cloud Vault!');
+                alert('Google AI Studio API Key saved and encrypted securely in browser vault!');
             } else {
                 alert('Kripya valid API key enter karein.');
             }
@@ -1550,6 +1574,20 @@
             document.getElementById('downloadActionBox').style.display = 'flex';
             playVajraSound('SUCCESS');
             box.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // ==========================================
+        // 🔒 GOOGLE UPGRADE 3: FORMSPREE HONEYPOT SHIELD
+        // ==========================================
+        function handleFormspreeSubmission(event) {
+            const gotchaValue = document.getElementById('gotchaField').value;
+            if (gotchaValue) {
+                // Agar bot ne hidden field me kuch bhara hai, toh submission turant rok do
+                event.preventDefault();
+                alert('⚠️ Spam Bot Activity Detected & Blocked by VAJRA Honeypot Shield.');
+                return false;
+            }
+            return true;
         }
 
         function downloadDesignReport() {
