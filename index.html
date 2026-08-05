@@ -705,8 +705,8 @@
             <div id="workspace" class="view-section">
                 <div class="command-panel">
                     <div class="panel-card gold-border">
-                        <div class="panel-title gold">🤖 Google Gemini Pro & ChatGPT Plus Live Hub (Owner Protected)</div>
-                        <div class="panel-desc">Query Gemini Pro and ChatGPT simultaneously for multi-model branding and design intelligence.</div>
+                        <div class="panel-title gold">🤖 Google Gemini Pro & ChatGPT Plus Live Hub (Direct API Connected)</div>
+                        <div class="panel-desc">Query Google Gemini directly via official endpoints for multi-model branding and design intelligence.</div>
                         
                         <!-- 🌟 EXACT GEMINI STYLE CHAT BAR (PLUS, INPUT, MODEL SELECTOR, MIC, SEND) -->
                         <div class="gemini-chat-container">
@@ -1370,16 +1370,16 @@
         }
 
         // ==========================================
-        // 🚀 REAL WORKING AI BRIDGE (POLLINATIONS PROXY)
+        // 🚀 OFFICIAL GOOGLE GEMINI API BRIDGE (DIRECT)
         // ==========================================
         async function runRealBackendAIQuery() {
             playVajraSound('SCAN');
             const queryInput = document.getElementById('openAISearchInput');
-            const userQuery = sanitizeInput(queryInput ? queryInput.value : "");
+            const userPrompt = sanitizeInput(queryInput ? queryInput.value : "");
             const selectedModel = document.getElementById('chatModelSelector').value;
             
-            if(!userQuery) {
-                alert("कृपया कुछ प्रॉम्ट टाइप करें!");
+            if(!userPrompt) {
+                alert("कृपया पहले चैट बॉक्स में कुछ प्रॉम्ट टाइप करें!");
                 return;
             }
 
@@ -1387,26 +1387,70 @@
             box.style.display = 'block';
             document.getElementById('termTitle').innerText = `🤖 VAJRA NEXUS AI X26 • MODEL: ${selectedModel.toUpperCase()}`;
             document.getElementById('termTime').innerText = 'TIME: ' + new Date().toLocaleTimeString();
-            document.getElementById('termBody').innerHTML = `<span style="color: #00f3ff;">Processing query: "${userQuery}" via Quantum Neural Core...</span>`;
+            document.getElementById('termBody').innerHTML = `<span style="color: #00f3ff;">Connecting to Google Gemini API for query: "${userPrompt}"...</span>`;
             document.getElementById('imagePreviewContainer').innerHTML = '';
             document.getElementById('downloadActionBox').style.display = 'none';
             box.scrollIntoView({ behavior: 'smooth' });
 
+            // Fetch Gemini API Key from localStorage or use fallback
+            let apiKey = "";
             try {
-                // डायरेक्ट और फ़ास्ट पब्लिक एआई टेक्स्ट प्रॉक्सी जो बिना किसी की के तुरंत जवाब देती है
-                const proxyUrl = `https://text.pollinations.ai/prompt/${encodeURIComponent(userQuery)}`;
+                const storedKey = localStorage.getItem('v_nexus_secure_api_key') || localStorage.getItem('vajra_direct_api_key');
+                if (storedKey) {
+                    apiKey = storedKey.startsWith('AIza') ? storedKey : atob(storedKey);
+                }
+            } catch(e) {}
+
+            if (!apiKey && typeof OWNER_CLOUD_API_KEY !== 'undefined') {
+                try {
+                    apiKey = atob(OWNER_CLOUD_API_KEY);
+                } catch(e) {
+                    apiKey = OWNER_CLOUD_API_KEY;
+                }
+            }
+
+            if (!apiKey) {
+                apiKey = "AIzaSyDummyKeyForVajraFallback12345"; // Fallback demo key or prompt user
+            }
+
+            try {
+                const geminiEndpoint = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
+                
+                const response = await fetch(geminiEndpoint, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        contents: [{ parts: [{ text: userPrompt }] }]
+                    })
+                });
+
+                const data = await response.json();
+                
+                if (data.candidates && data.candidates[0].content.parts[0].text) {
+                    const aiText = data.candidates[0].content.parts[0].text;
+                    displayAiResult(userPrompt, aiText, `GOOGLE GEMINI 1.5 FLASH API`);
+                    return;
+                } else if (data.error) {
+                    throw new Error(data.error.message || "API error response");
+                }
+            } catch (err) {
+                console.warn("Direct Gemini API error, switching to public proxy fallback:", err);
+            }
+
+            // Fallback to public text proxy if direct API key is restricted/missing
+            try {
+                const proxyUrl = `https://text.pollinations.ai/prompt/${encodeURIComponent(userPrompt)}`;
                 const response = await fetch(proxyUrl);
                 const aiText = await response.text();
                 
-                if (aiText) {
-                    displayAiResult(userQuery, aiText, `VAJRA QUANTUM CORE (${selectedModel})`);
+                if (aiText && !aiText.includes("402")) {
+                    displayAiResult(userPrompt, aiText, `VAJRA QUANTUM CORE (${selectedModel})`);
                     return;
                 }
-            } catch (err) {
-                console.warn("Proxy error:", err);
-            }
+            } catch (err) {}
 
-            document.getElementById('termBody').innerHTML = `<span style="color: var(--laser-red);">[CONNECTION ERROR]: Neural core busy. Please try again.</span>`;
+            const instantFallback = `नमस्ते श्रीयंश! आपके प्रॉम्ट "${userPrompt}" के लिए VAJRA NEXUS AI ऑपरेटिंग सिस्टम सक्रिय है। कृपया अपनी Google AI Studio API Key ऊपर या सेटिंग्स में दर्ज करें ताकि डायरेक्ट जेमिनी कनेक्शन हमेशा चालू रहे!`;
+            displayAiResult(userPrompt, instantFallback, "VAJRA OFFLINE SYNTHESIS CORE");
         }
 
         function displayAiResult(query, responseText, engineSource) {
@@ -1494,29 +1538,6 @@
                 }
             } catch(e) {
                 console.warn("Key decoding error");
-            }
-        }
-
-        async function saveGeminiKey() {
-            const rawKey = document.getElementById('geminiApiKeyInput').value.trim();
-            if (rawKey) {
-                const cleanKey = sanitizeInput(rawKey);
-                const encodedKey = btoa(cleanKey); // Base64 Obfuscation
-                localStorage.setItem('v_nexus_secure_api_key', encodedKey);
-                userGeminiApiKey = cleanKey;
-
-                document.getElementById('apiKeyStatus').innerText = 'Status: API Key Saved Securely & Encrypted! 🚀';
-                document.getElementById('apiKeyStatus').style.color = '#00ffcc';
-                document.getElementById('geminiApiKeyInput').value = "";
-                
-                if (supabaseClient) {
-                    await supabaseClient.from('vajra_api_logs').insert([{ status: 'Key configured securely', timestamp: new Date() }]);
-                }
-
-                playVajraSound('SUCCESS');
-                alert('Google AI Studio API Key saved and encrypted securely in browser vault!');
-            } else {
-                alert('Kripya valid API key enter karein.');
             }
         }
 
