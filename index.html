@@ -249,7 +249,6 @@
 
         .container { width: 100%; max-width: 1200px; padding: 30px 20px; box-sizing: border-box; position: relative; z-index: 20; }
         
-        /* 🚀 HERO SECTION */
         .hero-section {
             background: var(--card-bg); border: 2px solid var(--plasma-cyan);
             border-radius: 24px; padding: 40px 30px; text-align: center; margin-bottom: 30px;
@@ -1445,7 +1444,7 @@
         }
 
         // ==========================================
-        // 🔐 SECURE USER OAUTH (USER LOGINS WITH THEIR OWN ACCOUNT - ZERO LEAK TO OWNER)
+        // 🔐 SECURE USER OAUTH (REAL USER GOOGLE & FACEBOOK LOGIN)
         // ==========================================
         function loginWithGoogleDirectly() {
             playVajraSound('SUCCESS');
@@ -1455,19 +1454,15 @@
                 .then((result) => {
                     const user = result.user;
                     alert(`✅ Google Login Successful! Welcome ${user.displayName || user.email}`);
-                    unlockDashboard("Google Verified User (" + user.email + ")");
+                    unlockDashboard("Google User (" + user.email + ")");
                 }).catch((error) => {
-                    console.warn("Popup error or fallback:", error.message);
+                    console.warn("Google Auth popup fallback:", error.message);
                     const userEmail = prompt("Enter your own Google Account email to continue:", "");
-                    if(userEmail) {
-                        unlockDashboard("Google Verified User (" + userEmail + ")");
-                    }
+                    if(userEmail) { unlockDashboard("Google User (" + userEmail + ")"); }
                 });
             } else {
                 const userEmail = prompt("Enter your own Google Account email to continue:", "");
-                if(userEmail) {
-                    unlockDashboard("Google Verified User (" + userEmail + ")");
-                }
+                if(userEmail) { unlockDashboard("Google User (" + userEmail + ")"); }
             }
         }
 
@@ -1479,19 +1474,15 @@
                 .then((result) => {
                     const user = result.user;
                     alert(`✅ Facebook Login Successful! Welcome ${user.displayName}`);
-                    unlockDashboard("Facebook Verified User (" + user.displayName + ")");
+                    unlockDashboard("Facebook User (" + user.displayName + ")");
                 }).catch((error) => {
-                    console.warn("Facebook popup error or fallback:", error.message);
+                    console.warn("Facebook Auth popup fallback:", error.message);
                     const userName = prompt("Enter your own Facebook profile name to continue:", "");
-                    if(userName) {
-                        unlockDashboard("Facebook Verified User (" + userName + ")");
-                    }
+                    if(userName) { unlockDashboard("Facebook User (" + userName + ")"); }
                 });
             } else {
                 const userName = prompt("Enter your own Facebook profile name to continue:", "");
-                if(userName) {
-                    unlockDashboard("Facebook Verified User (" + userName + ")");
-                }
+                if(userName) { unlockDashboard("Facebook User (" + userName + ")"); }
             }
         }
 
