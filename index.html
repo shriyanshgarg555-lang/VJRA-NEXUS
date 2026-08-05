@@ -677,7 +677,7 @@
             <div style="background: rgba(10, 15, 26, 0.9); border: 2px solid var(--plasma-cyan); border-radius: 16px; padding: 15px 20px; margin-bottom: 25px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px;">
                 <div>
                     <div style="font-size: 11px; font-weight: 900; color: var(--plasma-cyan); letter-spacing: 1.5px; margin-bottom: 4px;">⚡ ACTIVE AI MODEL & REASONING ENGINE</div>
-                    <div id="activeModelDisplay" style="font-size: 15px; font-weight: bold; color: var(--gold-glow);">Google Gemini 1.5 Flash (Hybrid Core)</div>
+                    <div id="activeModelDisplay" style="font-size: 15px; font-weight: bold; color: var(--gold-glow);">Google Gemini 1.5 Flash (Owner Protected Core)</div>
                 </div>
                 <div style="display: flex; gap: 8px; flex-wrap: wrap;">
                     <button class="icon-btn" onclick="safeExecute(() => switchAIModel('Gemini 1.5 Flash'))">🚀 Gemini 1.5 Flash</button>
@@ -778,24 +778,23 @@
                 </div>
             </div>
 
-            <!-- GEMINI & CHATGPT LIVE AI HUB (🌟 100% MODERN GEMINI INPUT BAR) -->
+            <!-- GEMINI & CHATGPT LIVE AI HUB -->
             <div id="workspace" class="view-section">
                 <div class="command-panel">
                     <div class="panel-card gold-border">
                         <div class="panel-title gold">🤖 Google Gemini Pro & ChatGPT Plus Live Hub (Direct API Connected)</div>
                         <div class="panel-desc">Query Google Gemini directly via official endpoints for multi-model branding and design intelligence.</div>
                         
-                        <!-- 🌟 EXACT GEMINI STYLE CHAT BAR (PLUS, INPUT, MODEL SELECTOR, MIC, SEND) -->
                         <div class="gemini-chat-container">
                             <button class="chat-action-btn" onclick="triggerFileInput()" title="Attach File/Image">➕</button>
                             <input type="file" id="chatFileInput" style="display: none;" onchange="handleChatFileUpload(this)">
                             
-                            <input type="text" id="openAISearchInput" class="chat-input-field" placeholder="Ask Gemini or AI Suite (Text, Image generation, Code)..." onkeypress="if(event.key === 'Enter') runRealBackendAIQuery();">
+                            <input type="text" id="openAISearchInput" class="chat-input-field" placeholder="Ask Gemini or AI Suite..." onkeypress="if(event.key === 'Enter') runRealBackendAIQuery();">
                             
                             <select id="chatModelSelector" class="chat-model-select">
+                                <option value="Flash-Lite">Flash-Lite</option>
                                 <option value="Gemini 1.5 Pro">Gemini 1.5 Pro</option>
                                 <option value="ChatGPT 4o">ChatGPT 4o</option>
-                                <option value="Claude 3.5">Claude 3.5</option>
                             </select>
 
                             <button class="chat-action-btn" onclick="startVoiceInput()" title="Voice Input (Mic)">🎙️</button>
@@ -1520,7 +1519,7 @@
         }
 
         // ==========================================
-        // 🚀 BULLETPROOF MULTI-AI & AUTO-FALLBACK ENGINE
+        // 🚀 OFFICIAL MULTI-AI BACKEND ENGINE
         // ==========================================
         async function runRealBackendAIQuery() {
             playVajraSound('SCAN');
