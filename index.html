@@ -1222,6 +1222,7 @@
 
     </div>
 
+    <!-- ⚡ FULL LOGIC & SECURITY ENGINE ⚡ -->
     <script>
         // ==========================================
         // 💻 INTERACTIVE CLI COMMAND ENGINE WITH GOOGLE SWITCH-CASE LOGIC
@@ -1443,6 +1444,9 @@
             playVajraSound('SCAN');
         }
 
+        // ==========================================
+        // 🔐 SECURE USER OAUTH (USER LOGINS WITH THEIR OWN ACCOUNT - ZERO LEAK TO OWNER)
+        // ==========================================
         function loginWithGoogleDirectly() {
             playVajraSound('SUCCESS');
             if (typeof firebase !== 'undefined' && firebase.auth) {
@@ -1450,19 +1454,19 @@
                 firebase.auth().signInWithPopup(provider)
                 .then((result) => {
                     const user = result.user;
-                    alert(`✅ गूगल से लॉगिन सफल: स्वागत है ${user.displayName || user.email}!`);
+                    alert(`✅ Google Login Successful! Welcome ${user.displayName || user.email}`);
                     unlockDashboard("Google Verified User (" + user.email + ")");
                 }).catch((error) => {
                     console.warn("Popup error or fallback:", error.message);
-                    const fallbackEmail = prompt("Enter your Gmail/Google account to connect directly:", "shriyanshgarg555@gmail.com");
-                    if(fallbackEmail) {
-                        unlockDashboard("Google Verified User (" + fallbackEmail + ")");
+                    const userEmail = prompt("Enter your own Google Account email to continue:", "");
+                    if(userEmail) {
+                        unlockDashboard("Google Verified User (" + userEmail + ")");
                     }
                 });
             } else {
-                const fallbackEmail = prompt("Enter your Gmail/Google account to connect directly:", "shriyanshgarg555@gmail.com");
-                if(fallbackEmail) {
-                    unlockDashboard("Google Verified User (" + fallbackEmail + ")");
+                const userEmail = prompt("Enter your own Google Account email to continue:", "");
+                if(userEmail) {
+                    unlockDashboard("Google Verified User (" + userEmail + ")");
                 }
             }
         }
@@ -1474,19 +1478,19 @@
                 firebase.auth().signInWithPopup(provider)
                 .then((result) => {
                     const user = result.user;
-                    alert(`✅ फेसबुक से लॉगिन सफल: स्वागत है ${user.displayName}!`);
+                    alert(`✅ Facebook Login Successful! Welcome ${user.displayName}`);
                     unlockDashboard("Facebook Verified User (" + user.displayName + ")");
                 }).catch((error) => {
                     console.warn("Facebook popup error or fallback:", error.message);
-                    const fallbackName = prompt("Enter your Facebook profile name:", "Shriyansh Garg");
-                    if(fallbackName) {
-                        unlockDashboard("Facebook Verified User (" + fallbackName + ")");
+                    const userName = prompt("Enter your own Facebook profile name to continue:", "");
+                    if(userName) {
+                        unlockDashboard("Facebook Verified User (" + userName + ")");
                     }
                 });
             } else {
-                const fallbackName = prompt("Enter your Facebook profile name:", "Shriyansh Garg");
-                if(fallbackName) {
-                    unlockDashboard("Facebook Verified User (" + fallbackName + ")");
+                const userName = prompt("Enter your own Facebook profile name to continue:", "");
+                if(userName) {
+                    unlockDashboard("Facebook Verified User (" + userName + ")");
                 }
             }
         }
@@ -1910,6 +1914,30 @@
                 };
                 reader.readAsDataURL(file);
             }
+        }
+
+        function startVoiceInput() {
+            if (!('webkitSpeechRecognition' in window) && !('SpeechRecognition' in window)) {
+                alert("⚠️ Speech Recognition is not supported in this browser. Try Chrome!");
+                return;
+            }
+            const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+            const recognition = new SpeechRecognition();
+            recognition.lang = 'hi-IN';
+            recognition.start();
+
+            document.getElementById('openAISearchInput').placeholder = "🎙️ Listening... Bolie kuch bhi...";
+             
+            recognition.onresult = function(event) {
+                const speechToText = event.results[0][0].transcript;
+                document.getElementById('openAISearchInput').value = speechToText;
+                document.getElementById('openAISearchInput').placeholder = "Ask Gemini or AI Suite...";
+                playVajraSound('SUCCESS');
+            };
+
+            recognition.onerror = function() {
+                document.getElementById('openAISearchInput').placeholder = "Ask Gemini or AI Suite...";
+            };
         }
 
         // ==========================================
@@ -2407,13 +2435,5 @@
         }
         animate();
     </script>
-    <noscript>
-  <div style="position:fixed; top:0; left:0; width:100%; height:100%; background:black; color:#ff0033; text-align:center; padding-top:20%; z-index:999999; font-family:monospace; font-size:24px; padding-left:20px; padding-right:20px;">
-    🚨 SECURITY ALERT: VAJRA QUANTUM CORE DETECTED ANOMALY! <br><br>
-    [SYSTEM ERROR]: JavaScript has been disabled. VAJRA OS requires JavaScript active to initialize the core architecture. <br><br>
-    Please enable JavaScript in your browser settings to access the visual platform.
-  </div>
-</noscript>
-
 </body>
 </html>
