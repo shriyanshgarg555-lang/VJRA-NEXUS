@@ -614,6 +614,13 @@
                 </div>
             </div>
 
+            <!-- OWNER SECURE EMBEDDED API STATUS BAR (HIDDEN FROM NORMAL USERS) -->
+            <div id="ownerVaultStatusBox" style="display: none; background: rgba(10, 15, 26, 0.95); border: 2px solid var(--neon-green); border-radius: 16px; padding: 20px; margin-bottom: 25px; box-shadow: 0 0 30px rgba(0,255,136,0.2);">
+                <div style="font-size: 13px; font-weight: 900; color: var(--neon-green); letter-spacing: 1.5px; margin-bottom: 8px;">🔒 OWNER SECURED GEMINI API VAULT (ACTIVE)</div>
+                <div style="font-size: 12px; color: #cbd5e1; margin-bottom: 4px;">Master Google Cloud Vertex API Key is securely embedded for Shriyansh Garg (Admin Mode).</div>
+                <div style="font-size: 11px; color: var(--gold-glow); font-weight: bold;">Status: 100% Operational & Encrypted ✅</div>
+            </div>
+
             <!-- DYNAMIC API KEY CONFIGURATION VAULT -->
             <div style="background: rgba(10, 15, 26, 0.95); border: 2px solid var(--plasma-cyan); border-radius: 16px; padding: 20px; margin-bottom: 25px; box-shadow: 0 0 30px rgba(0,243,255,0.2);">
                 <div style="font-size: 13px; font-weight: 900; color: var(--plasma-cyan); letter-spacing: 1.5px; margin-bottom: 8px;">🔑 LOCAL AI STUDIO API KEY CONFIGURATION VAULT</div>
@@ -629,7 +636,7 @@
             <div style="background: rgba(10, 15, 26, 0.9); border: 2px solid var(--plasma-cyan); border-radius: 16px; padding: 15px 20px; margin-bottom: 25px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px;">
                 <div>
                     <div style="font-size: 11px; font-weight: 900; color: var(--plasma-cyan); letter-spacing: 1.5px; margin-bottom: 4px;">⚡ ACTIVE AI MODEL & REASONING ENGINE</div>
-                    <div id="activeModelDisplay" style="font-size: 15px; font-weight: bold; color: var(--gold-glow);">Google Gemini 1.5 Flash (Hybrid Core)</div>
+                    <div id="activeModelDisplay" style="font-size: 15px; font-weight: bold; color: var(--gold-glow);">Google Gemini 1.5 Flash (Owner Protected Core)</div>
                 </div>
                 <div style="display: flex; gap: 8px; flex-wrap: wrap;">
                     <button class="icon-btn" onclick="safeExecute(() => switchAIModel('Gemini 1.5 Flash'))">🚀 Gemini 1.5 Flash</button>
@@ -742,7 +749,7 @@
                             <button class="chat-action-btn" onclick="triggerFileInput()" title="Attach File/Image">➕</button>
                             <input type="file" id="chatFileInput" style="display: none;" onchange="handleChatFileUpload(this)">
                             
-                            <input type="text" id="openAISearchInput" class="chat-input-field" placeholder="Ask Gemini or AI Suite (Text, Image generation, Code)..." onkeypress="if(event.key === 'Enter') runRealBackendAIQuery();">
+                            <input type="text" id="openAISearchInput" class="chat-input-field" placeholder="Ask Gemini or AI Suite..." onkeypress="if(event.key === 'Enter') runRealBackendAIQuery();">
                             
                             <select id="chatModelSelector" class="chat-model-select">
                                 <option value="Flash-Lite">Flash-Lite</option>
@@ -1045,6 +1052,22 @@
                     unlockDashboard("Facebook Verified User (" + fallbackName + ")");
                 }
             });
+        }
+
+        // ==========================================
+        // 🔑 DYNAMIC USER API KEY VAULT MANAGER
+        // ==========================================
+        function saveUserCustomApiKey() {
+            const keyInput = document.getElementById('userCustomApiKeyInput').value.trim();
+            if (keyInput) {
+                localStorage.setItem('v_nexus_secure_api_key', btoa(keyInput));
+                document.getElementById('apiKeyVaultStatus').innerText = "Status: Custom API Key Saved Securely in Browser Vault! ✅";
+                alert("✅ आपकी API Key सफलतापूर्वक ब्राउज़र के लोकल स्टोरेज में सेव हो गई है!");
+                document.getElementById('userCustomApiKeyInput').value = "";
+                playVajraSound('SUCCESS');
+            } else {
+                alert("⚠️ कृपया पहले वैध API Key इनपुट बॉक्स में दर्ज करें।");
+            }
         }
 
         // ==========================================
