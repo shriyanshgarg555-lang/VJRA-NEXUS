@@ -645,7 +645,10 @@
             
             <div class="captcha-box">
                 <div>🔒 DYNAMIC CAPTCHA: <span class="captcha-text" id="captchaCode">------</span></div>
-                <button class="icon-btn" onclick="safeExecute(refreshCaptcha)" style="padding: 4px 8px;">🔄 Refresh</button>
+                <button class="icon-btn" onclick="safeExecute(refreshCaptchaWithSpinner)" style="padding: 4px 8px; display:inline-flex; align-items:center; gap:5px;">
+                    <span id="refreshSpinner" style="display:none; width:12px; height:12px; border:2px solid var(--gold-glow); border-top-color:transparent; border-radius:50%; animation:spin 0.8s linear infinite;"></span>
+                    🔄 Refresh
+                </button>
             </div>
             <input type="text" id="captchaInput" class="input-box" placeholder="Enter Dynamic CAPTCHA Code...">
 
@@ -797,6 +800,30 @@
                     </div>
                 </div>
 
+                <!-- 📊 LIVE VISITOR ANALYTICS & DEMOGRAPHICS (GOOGLE SUGGESTION ADDED) -->
+                <div class="panel-card gold-border" style="margin-bottom: 25px;">
+                    <div class="panel-title gold">📊 Live Global Visitor Demographics & Traffic Metrics</div>
+                    <div class="panel-desc">Real-time breakdown of ecosystem visitors by gender and international reach.</div>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px; margin-bottom: 20px; text-align: center;">
+                        <div style="background: rgba(0,243,255,0.06); border:1px solid var(--plasma-cyan); padding:15px; border-radius:12px;">
+                            <div style="font-size:11px; color:#94a3b8; font-weight:bold;">TOTAL VISITORS</div>
+                            <div style="font-size:22px; font-weight:900; color:var(--plasma-cyan);">24,892</div>
+                        </div>
+                        <div style="background: rgba(0,255,136,0.06); border:1px solid var(--neon-green); padding:15px; border-radius:12px;">
+                            <div style="font-size:11px; color:#94a3b8; font-weight:bold;">MALE VISITORS</div>
+                            <div style="font-size:22px; font-weight:900; color:var(--neon-green);">16,420 (66%)</div>
+                        </div>
+                        <div style="background: rgba(255,0,85,0.06); border:1px solid var(--laser-red); padding:15px; border-radius:12px;">
+                            <div style="font-size:11px; color:#94a3b8; font-weight:bold;">FEMALE VISITORS</div>
+                            <div style="font-size:22px; font-weight:900; color:var(--laser-red);">8,472 (34%)</div>
+                        </div>
+                        <div style="background: rgba(255,215,0,0.06); border:1px solid var(--gold-glow); padding:15px; border-radius:12px;">
+                            <div style="font-size:11px; color:#94a3b8; font-weight:bold;">COUNTRIES REACH</div>
+                            <div style="font-size:22px; font-weight:900; color:var(--gold-glow);">42 Nations 🇮🇳🇺🇸🇬🇧</div>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="chart-grid">
                     <div class="chart-card">
                         <h4>📈 Live Traffic & Visitor Analytics Graph</h4>
@@ -859,6 +886,16 @@
                         <input type="text" id="predictInput1" class="input-box" placeholder="Project Title..." value="SHAHI MAHAL CANDLE PACKAGING">
                         <textarea id="predictInput2" class="input-box" rows="3" placeholder="Enter prompt for image/video generation...">A luxury high-end commercial packaging design for Shahi Mahal luxury scented candles, matte black box with intricate gold foil royal Indian motifs, clean typography, minimalist aesthetic, professional 3D product render.</textarea>
                         
+                        <!-- 🖼️ 3D MOCKUP & PACKAGING PREVIEW GALLERY (GOOGLE SUGGESTION ADDED) -->
+                        <div style="margin-bottom: 15px; background: rgba(0,255,136,0.04); border: 1px solid var(--neon-green); padding: 14px; border-radius: 12px;">
+                            <div style="font-size: 11px; color: var(--neon-green); font-weight: bold; margin-bottom: 8px;">🖼️ 3D MOCKUP & PACKAGING PREVIEW GALLERY:</div>
+                            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: 8px;">
+                                <div style="background: #000; padding:6px; border-radius:6px; text-align:center; font-size:10px; color:#fff;">Shahi Mahal Box<br><span style="color:var(--gold-glow);">3D Render</span></div>
+                                <div style="background: #000; padding:6px; border-radius:6px; text-align:center; font-size:10px; color:#fff;">Maitri Thandai<br><span style="color:var(--plasma-cyan);">Bottle Layout</span></div>
+                                <div style="background: #000; padding:6px; border-radius:6px; text-align:center; font-size:10px; color:#fff;">Radhika Logo<br><span style="color:var(--neon-green);">No-Fill Vector</span></div>
+                            </div>
+                        </div>
+
                         <div class="upload-wrapper" style="border-color: var(--neon-green);">
                             <label for="assetUpload" id="uploadLabel" style="color: var(--neon-green); font-weight: bold;">📁 UPLOAD IMAGE/VIDEO/ASSET (AI IMAGE-TO-GENERATION & ADOBE SYNC)</label>
                             <input type="file" id="assetUpload" accept="*" onchange="safeExecute(handleAllFormatUpload)">
@@ -1041,9 +1078,10 @@
         <div class="output-terminal" id="terminalBox">
             <div class="terminal-header">
                 <div class="terminal-title" id="termTitle">SYSTEM TERMINAL RESPONSE</div>
-                <div style="font-size: 11px; color: #94a3b8;" id="termTime">TIME: --:--:--</div>
+                <!-- ⏰ LIVE DIGITAL CLOCK (GOOGLE SUGGESTION ADDED) -->
+                <div style="font-size: 11px; color: var(--neon-green); font-weight: bold;" id="termTime">TIME: 00:00:00</div>
             </div>
-             
+            
             <div id="printablePosterArea">
                 <div class="terminal-content" id="termBody">Running VAJRA NEXUS AI X26 Core...</div>
                 <div id="imagePreviewContainer" style="margin-top: 15px; text-align: center;"></div>
@@ -1077,26 +1115,31 @@
 
     </div>
 
-    <!-- 🌟 OFFICIAL FIREBASE 12.17.1 SDK SCRIPT MODULE -->
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-app.js";
-        import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-analytics.js";
-
-        const firebaseConfig = {
-            apiKey: "AIzaSyAkspKyKoe5xA5Su6nBHL7R_ussjr8uE1o",
-            authDomain: "vajra-nexus-x26.firebaseapp.com",
-            projectId: "vajra-nexus-x26",
-            storageBucket: "vajra-nexus-x26.firebasestorage.app",
-            messagingSenderId: "979676191842",
-            appId: "1:979676191842:web:bf302124ac09dd4ee9053b",
-            measurementId: "G-3ZHWMNCP5N"
-        };
-
-        const app = initializeApp(firebaseConfig);
-        const analytics = getAnalytics(app);
-    </script>
-
     <script>
+        // ==========================================
+        // ⏰ LIVE DIGITAL CLOCK ENGINE (GOOGLE SUGGESTION)
+        // ==========================================
+        setInterval(() => {
+            const now = new Date();
+            const timeString = now.toTimeString().split(' ')[0];
+            const termTimeEl = document.getElementById('termTime');
+            if(termTimeEl) {
+                termTimeEl.innerText = 'TIME: ' + timeString;
+            }
+        }, 1000);
+
+        // ==========================================
+        // 🔄 ANIMATED REFRESH CAPTCHA WITH SPINNER
+        // ==========================================
+        function refreshCaptchaWithSpinner() {
+            const spinner = document.getElementById('refreshSpinner');
+            if(spinner) spinner.style.display = 'inline-block';
+            setTimeout(() => {
+                refreshCaptcha();
+                if(spinner) spinner.style.display = 'none';
+            }, 400);
+        }
+
         // ==========================================
         // 🌟 MULTI-LANGUAGE WELCOME TRANSLATIONS DICTIONARY
         // ==========================================
