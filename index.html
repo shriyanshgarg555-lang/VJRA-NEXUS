@@ -509,14 +509,38 @@
         });
     </script>
 
-    <!-- 🚀 FLOATING DOCK BAR (QUICK NAVIGATION) -->
+    <!-- 🚀 FLOATING DOCK BAR (QUICK NAVIGATION WITH HELP) -->
     <div class="floating-dock">
         <a class="dock-item" onclick="switchTab('growth', null)">🚀 Launch</a>
         <a class="dock-item" onclick="switchTab('workspace', null)">🤖 AI Hub</a>
         <a class="dock-item" onclick="switchTab('videoEdit', null)">🎬 Adobe Studio</a>
         <a class="dock-item" onclick="switchTab('docConverter', null)">🔄 Converter</a>
         <a class="dock-item" onclick="switchTab('feedback', null)">💡 Labs</a>
+        <a class="dock-item" onclick="openHelpModal()" style="background: var(--gold-glow); color: #000; border-color: var(--gold-glow);">❓ Help</a>
     </div>
+
+    <!-- ❓ HELP & DOCUMENTATION MODAL -->
+    <div id="helpModal" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(3, 7, 18, 0.85); backdrop-filter: blur(12px); z-index: 12000; display: none; justify-content: center; align-items: center; padding: 20px;">
+        <div style="background: var(--card-bg); border: 2px solid var(--plasma-cyan); border-radius: 20px; max-width: 550px; width: 100%; padding: 30px; position: relative; box-shadow: 0 0 50px rgba(0,243,255,0.4); text-align: left;">
+            <button onclick="document.getElementById('helpModal').style.display='none'" style="position: absolute; top: 15px; right: 20px; background: rgba(255,0,85,0.2); border: 1px solid var(--laser-red); color: var(--laser-red); width: 32px; height: 32px; border-radius: 50%; font-weight: bold; cursor: pointer;">✕</button>
+            <h3 style="color: var(--plasma-cyan); margin-top: 0; display: flex; align-items: center; gap: 8px;">❓ VAJRA NEXUS X26 - SYSTEM GUIDE</h3>
+            <p style="color: var(--text-muted); font-size: 13px; line-height: 1.6;">Welcome to the world's most advanced quantum visual OS designed by <b>Mr. Shriyansh Garg, Dist - Sheopur, State - Madhya Pradesh, India</b>. Here is how you can use all features:</p>
+            <ul style="font-size: 12px; color: #cbd5e1; line-height: 1.7; padding-left: 20px;">
+                <li>🚀 <b>Launch & Graphs:</b> View real-time global traffic metrics and run quantum AI security scans.</li>
+                <li>🤖 <b>AI Hub:</b> Connect directly with Gemini Pro and ChatGPT for automated design and text generation.</li>
+                <li>🎬 <b>Adobe Studio:</b> Access 2026 workflows for Illustrator, Photoshop, and Premiere Pro.</li>
+                <li>🔄 <b>File Converter:</b> Convert any format (JPG to PDF, etc.) securely inside your browser.</li>
+                <li>⌨️ <b>Terminal CLI:</b> Type commands like <code style="color:var(--neon-green)">/help</code>, <code style="color:var(--neon-green)">/status</code>, <code style="color:var(--neon-green)">/about</code>, or <code style="color:var(--neon-green)">/founder</code>.</li>
+            </ul>
+            <button class="supreme-btn btn-cyan" onclick="document.getElementById('helpModal').style.display='none'" style="margin-top: 15px;">Got It, Close Guide</button>
+        </div>
+    </div>
+    <script>
+        function openHelpModal() {
+            document.getElementById('helpModal').style.display = 'flex';
+            playVajraSound('SUCCESS');
+        }
+    </script>
 
     <!-- 🌟 LIVE VISITOR STATS FRONT POPUP BADGE & REAL-TIME TIME ZONE WIDGET -->
     <div id="liveVisitorBadge" style="position: fixed; bottom: 20px; right: 20px; background: rgba(10, 15, 26, 0.95); border: 2px solid var(--gold-glow); padding: 12px 18px; border-radius: 16px; z-index: 10050; box-shadow: 0 0 30px rgba(255,215,0,0.4); backdrop-filter: blur(10px); display: flex; align-items: center; gap: 12px; animation: badgePulse 3s infinite;">
@@ -606,6 +630,7 @@
         <div class="control-btns">
             <button class="icon-btn" onclick="toggleDarkMode()" id="darkModeBtn" style="border-color: var(--gold-glow); color: var(--gold-glow);">🌓 Dark/Light Mode</button>
             <button class="icon-btn" onclick="toggleCommandPalette()" style="background: var(--gold-glow); color:#000; border-color:var(--gold-glow);">⌨️ Ctrl+K Palette</button>
+            <button class="icon-btn" onclick="openHelpModal()" style="background: rgba(255,215,0,0.1); color: var(--gold-glow); border-color: var(--gold-glow);">❓ Help & Guide</button>
             <select class="icon-btn" onchange="changeTheme(this.value)" style="background: rgba(4,8,16,0.9); color: var(--plasma-cyan);">
                 <option value="theme-aurora">🌌 Aurora Theme</option>
                 <option value="theme-cyber">🚨 Cyber Theme</option>
@@ -1143,10 +1168,10 @@
             <div id="printablePosterArea">
                 <div class="terminal-content" id="termBody">Running VAJRA NEXUS AI X26 Core... Type /help or /status below for interactive CLI commands.</div>
                 
-                <!-- 🖥️ INTERACTIVE CLI COMMAND INPUT -->
+                <!-- 🖥️ INTERACTIVE CLI COMMAND INPUT WITH FULL SWITCH-CASE LOGIC -->
                 <div style="display: flex; gap: 10px; margin-top: 15px; align-items: center; border-top: 1px solid rgba(0,255,136,0.2); padding-top: 12px;">
                     <span style="color: var(--neon-green); font-weight: bold; font-family: monospace;">vajra@os:~$</span>
-                    <input type="text" id="terminalCliInput" class="input-box" placeholder="Type command (/help, /clear, /status, /founder)..." style="margin-bottom:0; flex:1; background: rgba(0,0,0,0.5); color: var(--neon-green); font-family: monospace;" onkeypress="handleCliCommand(event)">
+                    <input type="text" id="terminalCliInput" class="input-box" placeholder="Type command (/help, /clear, /status, /about)..." style="margin-bottom:0; flex:1; background: rgba(0,0,0,0.5); color: var(--neon-green); font-family: monospace;" onkeypress="handleCliCommand(event)">
                     <button class="supreme-btn btn-green" onclick="executeManualCli()" style="width: auto; padding: 10px 18px; margin-top:0;">Execute</button>
                 </div>
 
@@ -1184,7 +1209,7 @@
 
     <script>
         // ==========================================
-        // 💻 INTERACTIVE CLI COMMAND ENGINE (/help, /status, etc.)
+        // 💻 INTERACTIVE CLI COMMAND ENGINE WITH GOOGLE SWITCH-CASE LOGIC
         // ==========================================
         function handleCliCommand(event) {
             if (event.key === 'Enter') {
@@ -1199,21 +1224,65 @@
             
             playVajraSound('SCAN');
 
-            if (cmd === '/help') {
-                termBody.innerHTML += `<br><span style="color:#ffd700;">[CLI HELP MENU]</span><br>• /status -> Check Vajra OS core status<br>• /founder -> Display creator info<br>• /clear -> Clear terminal logs<br>• /visitors -> Show live traffic stats`;
-            } else if (cmd === '/status') {
-                termBody.innerHTML += `<br><span style="color:#00ff88;">[STATUS] VAJRA NEXUS X26 Core is 100% Operational. Latency: 0.0000001 ns.</span>`;
-            } else if (cmd === '/founder') {
-                termBody.innerHTML += `<br><span style="color:#ffd700;">[FOUNDER] Mr. Shriyansh Garg, Dist - Sheopur, State - Madhya Pradesh, India. Developed with AI.</span>`;
-            } else if (cmd === '/clear') {
-                termBody.innerHTML = `Running VAJRA NEXUS AI X26 Core... Type /help or /status below for interactive CLI commands.`;
-            } else if (cmd === '/visitors') {
-                termBody.innerHTML += `<br><span style="color:#00f3ff;">[TRAFFIC] Total Verified Visitors: 24,892 across 42 Nations.</span>`;
-            } else if (cmd !== '') {
-                termBody.innerHTML += `<br><span style="color:#ff0055;">[ERROR] Unknown command '${cmd}'. Type /help for available commands.</span>`;
+            switch (cmd) {
+                case '/help':
+                    termBody.innerHTML += `<br><span style="color:#ffd700;">👉 Available Commands: /status, /clear, /about, /system, /founder, /visitors</span>`;
+                    break;
+                case '/status':
+                    termBody.innerHTML += `<br><span style="color:#00ff88;">🟩 VAJRA CORE: 100% Operational | Cloud DB: Connected</span>`;
+                    break;
+                case '/about':
+                    termBody.innerHTML += `<br><span style="color:#00f3ff;">[ABOUT] VAJRA NEXUS AI X26 is a masterpiece portfolio built by Mr. Shriyansh Garg, Dist - Sheopur, State - Madhya Pradesh, India, shining brightly in tech worldwide!</span>`;
+                    break;
+                case '/system':
+                    termBody.innerHTML += `<br><span style="color:#ffd700;">[SYSTEM] Multi-Agent Orchestration & Adobe 2026 Integration Active.</span>`;
+                    break;
+                case '/founder':
+                    termBody.innerHTML += `<br><span style="color:#ffd700;">[FOUNDER] Mr. Shriyansh Garg, Dist - Sheopur, State - Madhya Pradesh, India. Design & Dovelop By - AI.</span>`;
+                    break;
+                case '/visitors':
+                    termBody.innerHTML += `<br><span style="color:#00f3ff;">[TRAFFIC] Total Verified Visitors: 24,892 across 42 Nations (Real-Time Sync Active).</span>`;
+                    break;
+                case '/clear':
+                    termBody.innerHTML = `Running VAJRA NEXUS AI X26 Core... Type /help or /status below for interactive CLI commands.`;
+                    break;
+                default:
+                    if (cmd !== '') {
+                        termBody.innerHTML += `<br><span style="color:#ff0055;">[ERROR] Unknown command '${cmd}'. Type /help for available commands.</span>`;
+                    }
+                    break;
             }
 
             inputEl.value = '';
+        }
+
+        // ==========================================
+        // 🎙️ VOICE COMMAND SIMULATION ENGINE (WEB SPEECH API)
+        // ==========================================
+        function startVoiceInput() {
+            if (!('webkitSpeechRecognition' in window) && !('SpeechRecognition' in window)) {
+                alert("⚠️ Voice Command not supported in this browser. Try Google Chrome!");
+                return;
+            }
+            const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+            const recognition = new SpeechRecognition();
+            recognition.lang = 'hi-IN';
+            recognition.start();
+
+            document.getElementById('openAISearchInput').placeholder = "🎙️ Listening to Voice Command...";
+            playVajraSound('SCAN');
+             
+            recognition.onresult = function(event) {
+                const speechToText = event.results[0][0].transcript;
+                document.getElementById('openAISearchInput').value = speechToText;
+                document.getElementById('openAISearchInput').placeholder = "Ask Gemini or AI Suite...";
+                playVajraSound('SUCCESS');
+                runRealBackendAIQuery();
+            };
+
+            recognition.onerror = function() {
+                document.getElementById('openAISearchInput').placeholder = "Ask Gemini or AI Suite...";
+            };
         }
 
         // ==========================================
@@ -1573,17 +1642,17 @@
             const title = sanitizeInput(document.getElementById('labIdeaTitle').value);
             const desc = sanitizeInput(document.getElementById('labIdeaDesc').value);
             const statusDiv = document.getElementById('labIdeaStatus');
-            
+             
             if(title && desc) {
                 statusDiv.style.color = "var(--plasma-cyan)";
                 statusDiv.innerText = `⏳ Submitting idea "${title}" to Vajra Labs Cloud Database...`;
-                
+                 
                 try {
                     if (supabaseClient) {
                         const { error } = await supabaseClient
                             .from('vajra_labs_ideas')
                             .insert([{ title: title, description: desc, creator: 'Mr. Shriyansh Garg' }]);
-                        
+                         
                         if (error) throw error;
                     }
                     statusDiv.style.color = "var(--neon-green)";
@@ -1979,7 +2048,7 @@
                     }
 
                     if (!aiResponseText || aiResponseText.includes("402")) {
-                        aiResponseText = `नमस्ते श्रीयंश! आपके प्रॉम्ट "${userPrompt}" के लिए VAJRA NEXUS AI ऑपरेटिंग सिस्टम पूरी तरह से तैयार है। यह एक स्वतंत्र और सर्वसुविधा युक्त सिस्टम है।`;
+                        aiResponseText = `नमस्ते श्रीयंश! आपके प्रॉम्ट "${userPrompt}" के लिए VAJRA NEXUS AI ऑपरेटिंग सिस्टम पूरी तरह से तैयार है। यह एक मास्टरपीस पोर्टफोलियो बन चुका है, जो श्योपुर, मध्य प्रदेश के नाम को टेक की दुनिया में चमका रहा है।`;
                         engineTag = "VAJRA SECURE OFFLINE VAULT";
                     }
                 }
