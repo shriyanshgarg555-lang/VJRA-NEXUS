@@ -18,7 +18,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <!-- Firebase App (Core SDK) & Auth -->
+    
+    <!-- Firebase App (Core SDK) & Auth Compatibility Layer -->
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
     <script defer type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
@@ -984,7 +985,7 @@
                     <div class="panel-card gold-border">
                         <div class="panel-title gold">💡 Feedback, Suggestions & Formspree Live Suite</div>
                         <p class="panel-desc">Direct correspondence to <b>shriyanshgarg555@gmail.com</b> along with integrated project Q&A scripts and Star Rating.</p>
-                        <form action="https://formspree.io/f/shriyanshgarg555" method="POST" id="feedbackForm" onsubmit="return handleFormspreeSubmission(event)" style="display: flex; flex-direction: column; gap: 12px; margin-bottom: 20px;">
+                        <form action="https://formspree.io/f/shriyanshgarg555" method="POST" id="feedbackForm" onsubmit="return handleFormspreeSubmission(form)" style="display: flex; flex-direction: column; gap: 12px; margin-bottom: 20px;">
                             <div style="display:none !important; visibility:hidden !important;">
                                 <label>Do not fill this if you are human:</label>
                                 <input type="text" name="_gotcha" id="gotchaField">
@@ -1059,31 +1060,39 @@
 
     </div>
 
+    <!-- 🌟 OFFICIAL FIREBASE 12.17.1 SDK SCRIPT MODULE -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-analytics.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyAkspKyKoe5xA5Su6nBHL7R_ussjr8uE1o",
+            authDomain: "vajra-nexus-x26.firebaseapp.com",
+            projectId: "vajra-nexus-x26",
+            storageBucket: "vajra-nexus-x26.firebasestorage.app",
+            messagingSenderId: "979676191842",
+            appId: "1:979676191842:web:bf302124ac09dd4ee9053b",
+            measurementId: "G-3ZHWMNCP5N"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+    </script>
+
     <script>
         // ==========================================
-        // 🔥 REAL FIREBASE AUTH CONFIGURATION & OAUTH
-        // ==========================================
-        const firebaseConfig = {
-            apiKey: "AIzaSyDummyKeyForVajraFirebaseSetup123",
-            authDomain: "vajra-nexus-x26.firebaseapp.com",
-            projectId: "vajra-nexus-x26"
-        };
-        
-        if (!firebase.apps.length) {
-            firebase.initializeApp(firebaseConfig);
-        }
-
         // 🌟 MULTI-LANGUAGE WELCOME TRANSLATIONS DICTIONARY
+        // ==========================================
         const welcomeTranslations = {
             en: {
                 title: "⚡ WELCOME TO VAJRA NEXUS AI X26",
-                desc: "<b>VAJRA NEXUS AI X26</b> is the world's most advanced multi-model AI operating system designed by <b>Shriyansh Garg (Sheopur, M.P.)</b>. Here is what you can do here:",
+                desc: "<b>VAJRA NEXUS AI X26</b> is the world's most advanced multi-model AI operating system designed by <b>Shriyansh Garg (Sheopur, M.P.)</b>. Select your preferred language below:",
                 list: "<li>🤖 <b>Multi-AI Orchestration:</b> Seamlessly chat with Gemini Pro, ChatGPT Plus, and Claude.</li><li>🎨 <b>AI Image & Visual Generation:</b> Transform images with real canvas filters and AI prompts instantly.</li><li>🎬 <b>Adobe 2026 Suites:</b> Integrate with Illustrator, Photoshop, Premiere Pro, and After Effects workflows.</li><li>🔄 <b>Universal File Converter:</b> Securely convert any file format (PDF, JPG, PNG, PSD, MP3, MP4).</li>",
                 btn: "🚀 Enter Operating System"
             },
             hi: {
                 title: "⚡ वैज्रा नेक्सस एआई एक्स26 में आपका स्वागत है",
-                desc: "<b>VAJRA NEXUS AI X26</b> दुनिया का सबसे उन्नत मल्टी-मॉडल एआई ऑपरेटिंग सिस्टम है, जिसे <b>श्रीयंश गर्ग (श्योपुर, म.प्र.)</b> द्वारा डिज़ाइन किया गया है।",
+                desc: "<b>VAJRA NEXUS AI X26</b> दुनिया का सबसे उन्नत मल्टी-मॉडल एआई ऑपरेटिंग सिस्टम है, जिसे <b>श्रीयंश गर्ग (श्योपुर, म.प्र.)</b> द्वारा डिज़ाइन किया गया है।",
                 list: "<li>🤖 <b>मल्टी-एआई समन्वय:</b> जेमिनी प्रो, चैटजीपीटी प्लस और क्लाउड के साथ सहज चैट करें।</li><li>🎨 <b>एआई इमेज और विजुअल जनरेशन:</b> कैनवास फिल्टर और एआई प्रॉम्ट्स के साथ तुरंत इमेज बदलें।</li><li>🎬 <b>एडोब 2026 सूट:</b> इलस्ट्रेटर, फोटोशॉप, प्रीमियर प्रो और आफ्टर इफेक्ट्स के साथ काम करें।</li><li>🔄 <b>यूनिवर्सल फाइल कन्वर्टर:</b> किसी भी फाइल फॉर्मेट को सुरक्षित रूप से बदलें।</li>",
                 btn: "🚀 ऑपरेटिंग सिस्टम में प्रवेश करें"
             },
@@ -1124,34 +1133,50 @@
 
         function loginWithGoogleDirectly() {
             playVajraSound('SUCCESS');
-            const provider = new firebase.auth.GoogleAuthProvider();
-            firebase.auth().signInWithPopup(provider)
-            .then((result) => {
-                const user = result.user;
-                alert(`✅ गूगल से लॉगिन सफल: स्वागत है ${user.displayName || user.email}!`);
-                unlockDashboard("Google Verified User (" + user.email + ")");
-            }).catch((error) => {
+            if (typeof firebase !== 'undefined' && firebase.auth) {
+                const provider = new firebase.auth.GoogleAuthProvider();
+                firebase.auth().signInWithPopup(provider)
+                .then((result) => {
+                    const user = result.user;
+                    alert(`✅ गूगल से लॉगिन सफल: स्वागत है ${user.displayName || user.email}!`);
+                    unlockDashboard("Google Verified User (" + user.email + ")");
+                }).catch((error) => {
+                    console.warn("Popup error or fallback:", error.message);
+                    const fallbackEmail = prompt("Enter your Gmail/Google account to connect directly:", "shriyanshgarg555@gmail.com");
+                    if(fallbackEmail) {
+                        unlockDashboard("Google Verified User (" + fallbackEmail + ")");
+                    }
+                });
+            } else {
                 const fallbackEmail = prompt("Enter your Gmail/Google account to connect directly:", "shriyanshgarg555@gmail.com");
                 if(fallbackEmail) {
                     unlockDashboard("Google Verified User (" + fallbackEmail + ")");
                 }
-            });
+            }
         }
 
         function loginWithFacebookDirectly() {
             playVajraSound('SUCCESS');
-            const provider = new firebase.auth.FacebookAuthProvider();
-            firebase.auth().signInWithPopup(provider)
-            .then((result) => {
-                const user = result.user;
-                alert(`✅ फेसबुक से लॉगिन सफल: स्वागत है ${user.displayName}!`);
-                unlockDashboard("Facebook Verified User (" + user.displayName + ")");
-            }).catch((error) => {
+            if (typeof firebase !== 'undefined' && firebase.auth) {
+                const provider = new firebase.auth.FacebookAuthProvider();
+                firebase.auth().signInWithPopup(provider)
+                .then((result) => {
+                    const user = result.user;
+                    alert(`✅ फेसबुक से लॉगिन सफल: स्वागत है ${user.displayName}!`);
+                    unlockDashboard("Facebook Verified User (" + user.displayName + ")");
+                }).catch((error) => {
+                    console.warn("Facebook popup error or fallback:", error.message);
+                    const fallbackName = prompt("Enter your Facebook profile name:", "Shriyansh Garg");
+                    if(fallbackName) {
+                        unlockDashboard("Facebook Verified User (" + fallbackName + ")");
+                    }
+                });
+            } else {
                 const fallbackName = prompt("Enter your Facebook profile name:", "Shriyansh Garg");
                 if(fallbackName) {
                     unlockDashboard("Facebook Verified User (" + fallbackName + ")");
                 }
-            });
+            }
         }
 
         function closeWelcomePopup() {
@@ -1601,27 +1626,23 @@
                 const prompt = promptText.toLowerCase();
 
                 if (prompt.includes('background') || prompt.includes('blur') || prompt.includes('glow') || prompt.includes('neon') || prompt.includes('change')) {
-                    // Apply advanced styling simulation filter for background/lighting transformation
                     ctx.fillStyle = "rgba(0, 243, 255, 0.18)";
                     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-                    // Add a futuristic cybernetic border
                     ctx.strokeStyle = "#00ff88";
                     ctx.lineWidth = Math.max(10, canvas.width * 0.015);
                     ctx.strokeRect(0, 0, canvas.width, canvas.height);
 
-                    // Add stamp text
                     ctx.fillStyle = "#ffd700";
                     ctx.font = `bold ${Math.max(16, canvas.width * 0.025)}px Segoe UI, sans-serif`;
                     ctx.fillText("⚡ VAJRA NEXUS AI TRANSFORMED", 30, 50);
                 } else {
-                    // Default artistic enhancement filter
                     const imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
                     const data = imgData.data;
                     for (let i = 0; i < data.length; i += 4) {
-                        data[i] = Math.min(255, data[i] * 1.1); // Boost Red
-                        data[i+1] = Math.min(255, data[i+1] * 1.15); // Boost Green
-                        data[i+2] = Math.min(255, data[i+2] * 1.25); // Boost Blue (Cyber Cyan tone)
+                        data[i] = Math.min(255, data[i] * 1.1);
+                        data[i+1] = Math.min(255, data[i+1] * 1.15);
+                        data[i+2] = Math.min(255, data[i+2] * 1.25);
                     }
                     ctx.putImageData(imgData, 0, 0);
                 }
@@ -1658,7 +1679,6 @@
             let generatedVisualHTML = "";
             let engineTag = selectedModel.toUpperCase() + " (HYBRID NEURAL CORE)";
 
-            // 🌟 REAL IMAGE TRANSFORMATION PIPELINE
             if (uploadedChatImageData) {
                 processImageWithCanvas(uploadedChatImageData, userPrompt, function(transformedDataUrl) {
                     aiResponseText = `✨ VAJRA AI Vision Engine successfully processed and transformed your image based on prompt: "${userPrompt || 'Background & Visual Enhancement'}". Here is your newly rendered visual asset:`;
@@ -1985,10 +2005,9 @@
             box.scrollIntoView({ behavior: 'smooth' });
         }
 
-        function handleFormspreeSubmission(event) {
-            const gotchaValue = document.getElementById('gotchaField').value;
+        function handleFormspreeSubmission(form) {
+            const gotchaValue = form.querySelector('#gotchaField').value;
             if (gotchaValue) {
-                event.preventDefault();
                 alert('⚠️ Spam Bot Activity Detected & Blocked by VAJRA Honeypot Shield.');
                 return false;
             }
