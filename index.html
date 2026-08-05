@@ -478,7 +478,27 @@
         }
     </style>
 </head>
-<body class="theme-aurora">
+<body class="theme-aurora" oncopy="navigator.clipboard.writeText('⚠️ VAJRA SECURITY SHIELD: Copying source code is strictly prohibited and shredded.'); return false;" oncut="return false;" ondragstart="return false;">
+
+    <!-- ⚡ ADVANCED ANTI-THEFT & CODE SHREDDER SCRIPT ⚡ -->
+    <script>
+        // Block Ctrl+U, F12, Ctrl+Shift+I, Ctrl+Shift+C, Ctrl+S
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'F12' || 
+                (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J' || e.key === 'C')) || 
+                (e.ctrlKey && (e.key === 'u' || e.key === 'U' || e.key === 's' || e.key === 'S'))) {
+                e.preventDefault();
+                document.body.innerHTML = '<div style="background:#030712; color:#ff0055; height:100vh; display:flex; flex-direction:column; justify-content:center; align-items:center; font-family:monospace; font-size:20px; text-align:center; padding:20px;">🛡️ VAJRA ANTI-MATTER SHIELD 🛡️<br><br>Unauthorized Source Inspection / Copying Blocked!<br>Source code has been shredded into encrypted fragments.</div>';
+                return false;
+            }
+        });
+
+        // Detect Copy and Shred Content
+        document.addEventListener('copy', function(e) {
+            e.clipboardData.setData('text/plain', 'VAJRA_SHREDDED_FRAGMENT_' + Math.random().toString(36).substring(2));
+            e.preventDefault();
+        });
+    </script>
 
     <!-- 🌟 MULTI-LANGUAGE WELCOME SYSTEM INFO MODAL (WITH FIXED CURSOR) -->
     <div id="welcomePopupModal">
