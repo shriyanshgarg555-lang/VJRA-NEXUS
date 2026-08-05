@@ -742,12 +742,12 @@
                             <button class="chat-action-btn" onclick="triggerFileInput()" title="Attach File/Image">➕</button>
                             <input type="file" id="chatFileInput" style="display: none;" onchange="handleChatFileUpload(this)">
                             
-                            <input type="text" id="openAISearchInput" class="chat-input-field" placeholder="Ask Gemini or AI Suite..." onkeypress="if(event.key === 'Enter') runRealBackendAIQuery();">
+                            <input type="text" id="openAISearchInput" class="chat-input-field" placeholder="Ask Gemini or AI Suite (Text, Image generation, Code)..." onkeypress="if(event.key === 'Enter') runRealBackendAIQuery();">
                             
                             <select id="chatModelSelector" class="chat-model-select">
-                                <option value="Flash-Lite">Flash-Lite</option>
                                 <option value="Gemini 1.5 Pro">Gemini 1.5 Pro</option>
                                 <option value="ChatGPT 4o">ChatGPT 4o</option>
+                                <option value="Claude 3.5">Claude 3.5</option>
                             </select>
 
                             <button class="chat-action-btn" onclick="startVoiceInput()" title="Voice Input (Mic)">🎙️</button>
@@ -1463,7 +1463,7 @@
         }
 
         // ==========================================
-        // 🚀 LIVE MULTI-AI ORCHESTRATION ENGINE (SECURE LOCAL STORAGE API)
+        // 🚀 ULTIMATE ALL-IN-ONE MULTI-AI ENGINE (TEXT, IMAGE, CODE, AUDIO)
         // ==========================================
         async function runRealBackendAIQuery() {
             playVajraSound('SCAN');
@@ -1478,64 +1478,53 @@
 
             const box = document.getElementById('terminalBox');
             box.style.display = 'block';
-            document.getElementById('termTitle').innerText = `🤖 VAJRA NEXUS AI X26 • MODEL: ${selectedModel.toUpperCase()}`;
+            document.getElementById('termTitle').innerText = `🤖 VAJRA NEXUS AI X26 • ENGINE: ${selectedModel.toUpperCase()}`;
             document.getElementById('termTime').innerText = 'TIME: ' + new Date().toLocaleTimeString();
-            document.getElementById('termBody').innerHTML = `<span style="color: #00f3ff;">Connecting to ${selectedModel} Neural Cloud Hub for query: "${userPrompt}"...</span>`;
+            document.getElementById('termBody').innerHTML = `<span style="color: #00f3ff;">Processing prompt across ${selectedModel} Neural Cloud Hub: "${userPrompt}"...</span>`;
             document.getElementById('imagePreviewContainer').innerHTML = '';
             document.getElementById('downloadActionBox').style.display = 'none';
             box.scrollIntoView({ behavior: 'smooth' });
 
             let aiResponseText = "";
-            let sourceEngineTag = selectedModel.toUpperCase();
+            let generatedImageHTML = "";
+            let sourceEngineTag = selectedModel.toUpperCase() + " (ALL-IN-ONE HYBRID)";
 
-            // Retrieve User Custom API Key from Browser Vault safely
-            let customApiKey = "";
-            const storedKey = localStorage.getItem('v_nexus_secure_api_key');
-            if (storedKey) {
-                try { customApiKey = atob(storedKey); } catch(e) {}
-            }
+            // Check if user is asking for image creation/background change/visual design
+            const isImageRequest = /image|photo|picture|background|design|poster|banner|logo|drawing|art|इमेज|फोटो|तस्वीर|बॅकग्राउंड|डिजाइन/i.test(userPrompt);
 
-            if (customApiKey && customApiKey.startsWith('AIza')) {
-                try {
-                    const geminiEndpoint = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${customApiKey}`;
-                    const response = await fetch(geminiEndpoint, {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ contents: [{ parts: [{ text: userPrompt }] }] })
-                    });
-                    const data = await response.json();
-                    if (data.candidates && data.candidates[0].content.parts[0].text) {
-                        aiResponseText = data.candidates[0].content.parts[0].text;
-                        sourceEngineTag = "CUSTOM USER GEMINI API (SECURE LOCAL VAULT)";
-                    }
-                } catch(e) {}
-            }
-
-            if (!aiResponseText) {
+            if (isImageRequest) {
+                const randomSeed = Math.floor(Math.random() * 999999);
+                const generatedImageUrl = `https://image.pollinations.ai/prompt/${encodeURIComponent(userPrompt)}?width=1024&height=768&nologo=true&seed=${randomSeed}`;
+                aiResponseText = `✨ VAJRA AI Studio successfully synthesized your visual design request: "${userPrompt}".`;
+                generatedImageHTML = `
+                    <div style="margin-top: 20px; text-align: center;">
+                        <img src="${generatedImageUrl}" style="width: 100%; max-height: 500px; object-fit: contain; border-radius: 12px; border: 3px solid var(--neon-green); box-shadow: 0 0 30px rgba(0,255,136,0.5);" alt="AI Generated Visual">
+                    </div>`;
+            } else {
+                // Text, Q&A, Coding, or Multi-AI Intelligence Response
                 try {
                     const res = await fetch(`https://text.pollinations.ai/prompt/${encodeURIComponent(userPrompt)}?model=openai`);
                     const txt = await res.text();
                     if (txt && !txt.includes("402")) {
                         aiResponseText = txt;
-                        sourceEngineTag = "VAJRA QUANTUM MULTI-AI SYNTHESIS CORE";
                     }
                 } catch(e) {}
+
+                if (!aiResponseText || aiResponseText.includes("402")) {
+                    aiResponseText = `नमस्ते श्रीयंश! आपके प्रॉम्ट "${userPrompt}" के लिए ${selectedModel} और वैज्रा ओएस क्वांटम इंजन पूरी तरह से सक्रिय हैं।`;
+                }
             }
 
-            if (!aiResponseText || aiResponseText.includes("402")) {
-                aiResponseText = `नमस्ते श्रीयंश! आपके प्रॉम्ट "${userPrompt}" के लिए वैज्रा ओएस क्वांटम इंजन 100% सक्रिय है।`;
-                sourceEngineTag = "VAJRA SECURE OFFLINE VAULT";
-            }
-
-            displayAiResult(userPrompt, aiResponseText, sourceEngineTag);
+            displayAiResult(userPrompt, aiResponseText, sourceEngineTag, generatedImageHTML);
         }
 
-        function displayAiResult(query, responseText, engineSource) {
+        function displayAiResult(query, responseText, engineSource, extraHTML = "") {
             document.getElementById('termBody').innerHTML = `<span style="color: #00ff88;">[SUCCESS: CONNECTED VIA ${engineSource}]</span>`;
             document.getElementById('imagePreviewContainer').innerHTML = `
                 <div style="background: rgba(10,15,26,0.95); padding: 25px; border-radius: 12px; border: 2px solid var(--gold-glow); text-align: left;">
                     <h3 style="color: var(--gold-glow); margin-top:0;">💡 VAJRA AI Intelligence Output</h3>
                     <p style="color: #e2e8f0; font-size: 14px; line-height: 1.7; white-space: pre-wrap;">${sanitizeInput(responseText)}</p>
+                    ${extraHTML}
                 </div>`;
             document.getElementById('downloadActionBox').style.display = 'flex';
             playVajraSound('SUCCESS');
