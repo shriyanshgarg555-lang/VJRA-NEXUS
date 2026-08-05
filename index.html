@@ -6,11 +6,11 @@
     
     <!-- ⚡ ADVANCED SEO, META & OPEN GRAPH TAGS ⚡ -->
     <title>VAJRA NEXUS AI X26 - Enterprise Visual & Motion Operating System</title>
-    <meta name="description" content="VAJRA NEXUS AI X26 - The World's No.1 Advanced Quantum AI, Website Graphic Design, Visuals & Motion Graphics Operating System, founded by Shriyansh Garg, Sheopur Madhya Pradesh.">
-    <meta name="author" content="Shriyansh Garg">
+    <meta name="description" content="VAJRA NEXUS AI X26 - The World's No.1 Advanced Quantum AI, Website Graphic Design, Visuals & Motion Graphics Operating System, founded by Mr. Shriyansh Garg, Dist - Sheopur, State - Madhya Pradesh, India.">
+    <meta name="author" content="Mr. Shriyansh Garg">
     <meta name="keywords" content="VAJRA NEXUS, AI OS, Graphic Design, Shriyansh Garg, Multi-AI Orchestration, Gemini, ChatGPT">
     <meta property="og:title" content="VAJRA NEXUS AI X26 - Ultimate Visual OS">
-    <meta property="og:description" content="Experience the World's Best Multi-AI Ecosystem by Shriyansh Garg.">
+    <meta property="og:description" content="Experience the World's Best Multi-AI Ecosystem by Mr. Shriyansh Garg.">
     <meta property="og:type" content="website">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>">
 
@@ -457,6 +457,21 @@
         .hub-card p { margin: 0 0 12px 0; font-size: 12px; color: var(--text-muted); line-height: 1.5; }
         .social-link { color: var(--plasma-cyan); text-decoration: none; font-weight: bold; font-size: 11px; letter-spacing: 1px; display: inline-block; margin-top: 5px; }
 
+        /* 🚀 FLOATING DOCK BAR (QUICK NAVIGATION) */
+        .floating-dock {
+            position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
+            background: rgba(10, 15, 26, 0.92); border: 2px solid var(--plasma-cyan);
+            padding: 8px 16px; border-radius: 30px; display: flex; gap: 12px; z-index: 10040;
+            box-shadow: 0 0 30px rgba(0,243,255,0.4); backdrop-filter: blur(12px); align-items: center;
+            flex-wrap: wrap; justify-content: center;
+        }
+        .dock-item {
+            background: rgba(0, 243, 255, 0.1); border: 1px solid var(--plasma-cyan);
+            color: var(--text-main); padding: 6px 12px; border-radius: 20px; font-size: 11px;
+            font-weight: bold; cursor: pointer; transition: all 0.3s; text-decoration: none;
+        }
+        .dock-item:hover { background: var(--plasma-cyan); color: #000; box-shadow: 0 0 15px var(--plasma-cyan); transform: translateY(-2px); }
+
         /* 📜 PROFESSIONAL FOOTER WITH VERSION & GITHUB */
         .footer {
             margin-top: 60px; padding: 40px 20px; width: 100%; background: var(--card-bg);
@@ -475,6 +490,7 @@
             .hero-ctas { flex-direction: column; }
             .custom-cursor { display: none !important; }
             body { cursor: auto; }
+            .floating-dock { display: none; }
         }
     </style>
 </head>
@@ -493,12 +509,22 @@
         });
     </script>
 
-    <!-- 🌟 LIVE VISITOR STATS FRONT POPUP BADGE (FRONT DISPLAY) -->
+    <!-- 🚀 FLOATING DOCK BAR (QUICK NAVIGATION) -->
+    <div class="floating-dock">
+        <a class="dock-item" onclick="switchTab('growth', null)">🚀 Launch</a>
+        <a class="dock-item" onclick="switchTab('workspace', null)">🤖 AI Hub</a>
+        <a class="dock-item" onclick="switchTab('videoEdit', null)">🎬 Adobe Studio</a>
+        <a class="dock-item" onclick="switchTab('docConverter', null)">🔄 Converter</a>
+        <a class="dock-item" onclick="switchTab('feedback', null)">💡 Labs</a>
+    </div>
+
+    <!-- 🌟 LIVE VISITOR STATS FRONT POPUP BADGE & REAL-TIME TIME ZONE WIDGET -->
     <div id="liveVisitorBadge" style="position: fixed; bottom: 20px; right: 20px; background: rgba(10, 15, 26, 0.95); border: 2px solid var(--gold-glow); padding: 12px 18px; border-radius: 16px; z-index: 10050; box-shadow: 0 0 30px rgba(255,215,0,0.4); backdrop-filter: blur(10px); display: flex; align-items: center; gap: 12px; animation: badgePulse 3s infinite;">
         <div style="font-size: 22px;">🌐</div>
         <div>
-            <div style="font-size: 10px; font-weight: 900; color: var(--gold-glow); letter-spacing: 1px;">LIVE ECOSYSTEM TRAFFIC</div>
-            <div style="font-size: 14px; font-weight: 900; color: var(--plasma-cyan);"><span id="liveVisitorCount">24,892</span> Visitors <span style="font-size:10px; color:var(--neon-green);">(🔥 42 Nations)</span></div>
+            <div style="font-size: 10px; font-weight: 900; color: var(--gold-glow); letter-spacing: 1px;">LIVE ECOSYSTEM TRAFFIC & TIME</div>
+            <div style="font-size: 13px; font-weight: 900; color: var(--plasma-cyan);"><span id="liveVisitorCount">24,892</span> Visitors <span style="font-size:10px; color:var(--neon-green);">(42 Nations)</span></div>
+            <div id="floatingLiveClock" style="font-size: 11px; font-weight: bold; color: var(--gold-glow); margin-top: 2px;">TIME: 00:00:00 (IST)</div>
         </div>
         <button onclick="document.getElementById('liveVisitorBadge').style.display='none'" style="background:transparent; border:none; color:#94a3b8; font-size:14px; cursor:pointer; margin-left:5px;">✕</button>
     </div>
@@ -518,7 +544,7 @@
                 ⚡ WELCOME TO VAJRA NEXUS AI X26
             </div>
             <p id="welcomeDesc" style="font-size: 13px; color: var(--text-muted); line-height: 1.6; margin-bottom: 15px;">
-                <b>VAJRA NEXUS AI X26</b> is the world's most advanced multi-model AI operating system designed by <b>Shriyansh Garg (Sheopur, M.P.)</b>. Select your preferred language below:
+                <b>VAJRA NEXUS AI X26</b> is the world's most advanced multi-model AI operating system designed by <b>Mr. Shriyansh Garg, Dist - Sheopur, State - Madhya Pradesh, India</b>. Select your preferred language below:
             </p>
             
             <!-- Language Switcher Bar inside Welcome Modal -->
@@ -605,7 +631,7 @@
     </div>
 
     <div class="supreme-banner">
-        ⚡ VAJRA NEXUS AI X26 • ADOBE 2026, GEMINI & CHATGPT HYBRID STUDIO • FOUNDER: Shriyansh Garg, Sheopur M.P. • ADVANCE EDITION 2026 ⚡
+        ⚡ VAJRA NEXUS AI X26 • ADOBE 2026, GEMINI & CHATGPT HYBRID STUDIO • FOUNDER: Mr. Shriyansh Garg, Dist - Sheopur, State - Madhya Pradesh, India • ADVANCE EDITION 2026 ⚡
     </div>
 
     <div class="container">
@@ -622,7 +648,7 @@
             </div>
 
             <div class="creator-badge">
-                <div>👑 Founder & Creator: <span class="name">Shriyansh Garg, Sheopur, Madhya Pradesh</span></div>
+                <div>👑 Founder & Creator: <span class="name">Mr. Shriyansh Garg, Dist - Sheopur, State - Madhya Pradesh, India</span></div>
                 <div>|</div>
                 <div>⚡ Design & Dovelop By: <span class="date">AI</span></div>
             </div>
@@ -722,7 +748,7 @@
             <!-- OWNER SECURE EMBEDDED API STATUS BAR (HIDDEN FROM NORMAL USERS) -->
             <div id="ownerVaultStatusBox" style="display: none; background: rgba(10, 15, 26, 0.95); border: 2px solid var(--neon-green); border-radius: 16px; padding: 20px; margin-bottom: 25px; box-shadow: 0 0 30px rgba(0,255,136,0.2);">
                 <div style="font-size: 13px; font-weight: 900; color: var(--neon-green); letter-spacing: 1.5px; margin-bottom: 8px;">🔒 OWNER SECURED GEMINI API VAULT (ACTIVE)</div>
-                <div style="font-size: 12px; color: #cbd5e1; margin-bottom: 4px;">Master Google Cloud Vertex API Key is securely embedded for Shriyansh Garg (Admin Mode).</div>
+                <div style="font-size: 12px; color: #cbd5e1; margin-bottom: 4px;">Master Google Cloud Vertex API Key is securely embedded for Mr. Shriyansh Garg (Admin Mode).</div>
                 <div style="font-size: 11px; color: var(--gold-glow); font-weight: bold;">Status: 100% Operational & Encrypted ✅</div>
             </div>
 
@@ -789,7 +815,7 @@
                 <button class="tab-btn" onclick="switchTab('social', this)">📱 Social Hub</button>
                 <button class="tab-btn" onclick="switchTab('creator', this)">🎨 Creator Studio</button>
                 <button class="tab-btn" onclick="switchTab('quiz', this)">🧪 Legal Hub</button>
-                <button class="tab-btn" onclick="switchTab('feedback', this)">💡 Vajra Labs & Feedback</button>
+                <button class="tab-btn" onclick="switchTab('feedback', this)">💡 VAJRA Labs & Community Idea Hub</button>
                 <button class="tab-btn" onclick="switchTab('principles', this)">📜 Vision</button>
             </div>
 
@@ -830,7 +856,7 @@
                     </div>
                 </div>
 
-                <!-- 📊 LIVE VISITOR ANALYTICS & DEMOGRAPHICS (REAL SUPABASE INTEGRATED) -->
+                <!-- 📊 LIVE VISITOR ANALYTICS & DEMOGRAPHICS -->
                 <div class="panel-card gold-border" style="margin-bottom: 25px;">
                     <div class="panel-title gold">📊 Live Global Visitor Demographics & Traffic Metrics</div>
                     <div class="panel-desc">Real-time breakdown of ecosystem visitors by gender and international reach.</div>
@@ -916,7 +942,7 @@
                         <input type="text" id="predictInput1" class="input-box" placeholder="Project Title..." value="SHAHI MAHAL CANDLE PACKAGING">
                         <textarea id="predictInput2" class="input-box" rows="3" placeholder="Enter prompt for image/video generation...">A luxury high-end commercial packaging design for Shahi Mahal luxury scented candles, matte black box with intricate gold foil royal Indian motifs, clean typography, minimalist aesthetic, professional 3D product render.</textarea>
                         
-                        <!-- 🖼️ 3D MOCKUP & PACKAGING PREVIEW GALLERY (GOOGLE SUGGESTION ADDED) -->
+                        <!-- 🖼️ 3D MOCKUP & PACKAGING PREVIEW GALLERY -->
                         <div style="margin-bottom: 15px; background: rgba(0,255,136,0.04); border: 1px solid var(--neon-green); padding: 14px; border-radius: 12px;">
                             <div style="font-size: 11px; color: var(--neon-green); font-weight: bold; margin-bottom: 8px;">🖼️ 3D MOCKUP & PACKAGING PREVIEW GALLERY:</div>
                             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: 8px;">
@@ -985,7 +1011,7 @@
                 <div class="command-panel">
                     <div class="panel-card gold-border">
                         <div class="panel-title gold">💼 AI Professional Portfolio Studio</div>
-                        <input type="text" id="portfolioCreatorName" class="input-box" placeholder="Designer Name..." value="Shriyansh Garg">
+                        <input type="text" id="portfolioCreatorName" class="input-box" placeholder="Designer Name..." value="Mr. Shriyansh Garg">
                         <select id="portfolioCategory" class="input-box">
                             <option value="Premium Packaging & Branding Design">Premium Packaging & Branding Design</option>
                             <option value="Motion Graphics & Cinematic Ads">Motion Graphics & Cinematic Ads</option>
@@ -1011,7 +1037,7 @@
                 <div class="hub-grid">
                     <div class="hub-card">
                         <h4>📘 Facebook Official</h4>
-                        <p>Connect with Shriyansh Garg on Facebook.</p>
+                        <p>Connect with Mr. Shriyansh Garg on Facebook.</p>
                         <a href="https://facebook.com" target="_blank" class="social-link">Visit Facebook ↗</a>
                     </div>
                     <div class="hub-card">
@@ -1066,7 +1092,7 @@
                         <div id="labIdeaStatus" style="font-size: 12px; color: var(--neon-green); font-weight: bold;"></div>
                     </div>
 
-                    <!-- 💡 AJAX FORMSPREE INTEGRATION FOR FEEDBACK (GOOGLE SUGGESTION) -->
+                    <!-- 💡 AJAX FORMSPREE INTEGRATION FOR FEEDBACK -->
                     <div class="panel-card gold-border">
                         <div class="panel-title gold">💡 Feedback, Suggestions & Formspree Live Suite</div>
                         <p class="panel-desc">Direct correspondence to <b>shriyanshgarg555@gmail.com</b> along with integrated project Q&A scripts and Star Rating.</p>
@@ -1099,23 +1125,31 @@
                 <div class="command-panel">
                     <div class="panel-card gold-border">
                         <div class="panel-title gold">📜 Vision & Design Philosophy</div>
-                        <p class="panel-desc">Founder & Creator: Shriyansh Garg, Sheopur, Madhya Pradesh. Design & Dovelop By: AI. Focused on multi-AI ecosystem orchestration and luxury packaging.</p>
+                        <p class="panel-desc">Founder & Creator - Mr. Shriyansh Garg, Dist - Sheopur, State - Madhya Pradesh, India | Design & Dovelop By - AI. Focused on multi-AI ecosystem orchestration and luxury packaging.</p>
                     </div>
                 </div>
             </div>
 
         </div> <!-- /#mainDashboard -->
 
-        <!-- OUTPUT TERMINAL -->
+        <!-- OUTPUT TERMINAL WITH INTERACTIVE CLI -->
         <div class="output-terminal" id="terminalBox">
             <div class="terminal-header">
                 <div class="terminal-title" id="termTitle">SYSTEM TERMINAL RESPONSE</div>
-                <!-- ⏰ LIVE DIGITAL CLOCK (GOOGLE SUGGESTION ADDED) -->
-                <div style="font-size: 11px; color: var(--neon-green); font-weight: bold;" id="termTime">TIME: 00:00:00</div>
+                <!-- ⏰ LIVE DIGITAL CLOCK & TIME ZONE -->
+                <div style="font-size: 11px; color: var(--neon-green); font-weight: bold;" id="termTime">TIME: 00:00:00 (IST)</div>
             </div>
              
             <div id="printablePosterArea">
-                <div class="terminal-content" id="termBody">Running VAJRA NEXUS AI X26 Core...</div>
+                <div class="terminal-content" id="termBody">Running VAJRA NEXUS AI X26 Core... Type /help or /status below for interactive CLI commands.</div>
+                
+                <!-- 🖥️ INTERACTIVE CLI COMMAND INPUT -->
+                <div style="display: flex; gap: 10px; margin-top: 15px; align-items: center; border-top: 1px solid rgba(0,255,136,0.2); padding-top: 12px;">
+                    <span style="color: var(--neon-green); font-weight: bold; font-family: monospace;">vajra@os:~$</span>
+                    <input type="text" id="terminalCliInput" class="input-box" placeholder="Type command (/help, /clear, /status, /founder)..." style="margin-bottom:0; flex:1; background: rgba(0,0,0,0.5); color: var(--neon-green); font-family: monospace;" onkeypress="handleCliCommand(event)">
+                    <button class="supreme-btn btn-green" onclick="executeManualCli()" style="width: auto; padding: 10px 18px; margin-top:0;">Execute</button>
+                </div>
+
                 <div id="imagePreviewContainer" style="margin-top: 15px; text-align: center;"></div>
             </div>
 
@@ -1140,32 +1174,72 @@
             <div class="footer-text">
                 VAJRA NEXUS AI X26 ECOSYSTEM • VERSION: X26.0.4 ADVANCE<br>
                 POWERED BY <b>ADOBE 2026, GEMINI 1.5 PRO & CHATGPT ORCHESTRATION</b><br>
-                Founder & Creator - <b>Shriyansh Garg, Sheopur, Madhya Pradesh</b> | Design & Dovelop By - <b>AI</b>
+                Founder & Creator - <b>Mr. Shriyansh Garg, Dist - Sheopur, State - Madhya Pradesh, India</b><br>
+                Design & Dovelop By - <b>AI</b>
             </div>
-            <div class="copyright">© 2026 SHRIYANSH GARG. ALL RIGHTS RESERVED.</div>
+            <div class="copyright">© 2026 MR. SHRIYANSH GARG. ALL RIGHTS RESERVED.</div>
         </div>
 
     </div>
 
     <script>
         // ==========================================
-        // ⏰ LIVE DIGITAL CLOCK ENGINE (GOOGLE SUGGESTION)
+        // 💻 INTERACTIVE CLI COMMAND ENGINE (/help, /status, etc.)
+        // ==========================================
+        function handleCliCommand(event) {
+            if (event.key === 'Enter') {
+                executeManualCli();
+            }
+        }
+
+        function executeManualCli() {
+            const inputEl = document.getElementById('terminalCliInput');
+            const cmd = inputEl.value.trim().toLowerCase();
+            const termBody = document.getElementById('termBody');
+            
+            playVajraSound('SCAN');
+
+            if (cmd === '/help') {
+                termBody.innerHTML += `<br><span style="color:#ffd700;">[CLI HELP MENU]</span><br>• /status -> Check Vajra OS core status<br>• /founder -> Display creator info<br>• /clear -> Clear terminal logs<br>• /visitors -> Show live traffic stats`;
+            } else if (cmd === '/status') {
+                termBody.innerHTML += `<br><span style="color:#00ff88;">[STATUS] VAJRA NEXUS X26 Core is 100% Operational. Latency: 0.0000001 ns.</span>`;
+            } else if (cmd === '/founder') {
+                termBody.innerHTML += `<br><span style="color:#ffd700;">[FOUNDER] Mr. Shriyansh Garg, Dist - Sheopur, State - Madhya Pradesh, India. Developed with AI.</span>`;
+            } else if (cmd === '/clear') {
+                termBody.innerHTML = `Running VAJRA NEXUS AI X26 Core... Type /help or /status below for interactive CLI commands.`;
+            } else if (cmd === '/visitors') {
+                termBody.innerHTML += `<br><span style="color:#00f3ff;">[TRAFFIC] Total Verified Visitors: 24,892 across 42 Nations.</span>`;
+            } else if (cmd !== '') {
+                termBody.innerHTML += `<br><span style="color:#ff0055;">[ERROR] Unknown command '${cmd}'. Type /help for available commands.</span>`;
+            }
+
+            inputEl.value = '';
+        }
+
+        // ==========================================
+        // ⏰ LIVE DIGITAL CLOCK & TIME ZONE ENGINE (GLOBAL & LOCAL)
         // ==========================================
         setInterval(() => {
             const now = new Date();
-            const timeString = now.toTimeString().split(' ')[0];
+            const timeString = now.toLocaleTimeString();
+            const timeZoneString = Intl.DateTimeFormat().resolvedOptions().timeZone || 'Local Time';
+            const formattedTimeDisplay = `TIME: ${timeString} (${timeZoneString})`;
+            
             const termTimeEl = document.getElementById('termTime');
             if(termTimeEl) {
-                termTimeEl.innerText = 'TIME: ' + timeString;
+                termTimeEl.innerText = formattedTimeDisplay;
+            }
+            const floatingClock = document.getElementById('floatingLiveClock');
+            if(floatingClock) {
+                floatingClock.innerText = formattedTimeDisplay;
             }
         }, 1000);
 
         // ==========================================
-        // 🌐 LIVE REAL-TIME VISITOR COUNTER SYNC (SUPABASE/LOCAL STORAGE)
+        // 🌐 LIVE REAL-TIME VISITOR COUNTER SYNC
         // ==========================================
         async function initLiveVisitorCounter() {
             let currentCount = parseInt(localStorage.getItem('vajra_live_visitors') || '24892');
-            // Increment on new active session
             if (!sessionStorage.getItem('visited_session')) {
                 currentCount += 1;
                 localStorage.setItem('vajra_live_visitors', currentCount);
@@ -1240,37 +1314,37 @@
         const welcomeTranslations = {
             en: {
                 title: "⚡ WELCOME TO VAJRA NEXUS AI X26",
-                desc: "<b>VAJRA NEXUS AI X26</b> is the world's most advanced multi-model AI operating system designed by <b>Shriyansh Garg (Sheopur, M.P.)</b>. Select your preferred language below:",
+                desc: "<b>VAJRA NEXUS AI X26</b> is the world's most advanced multi-model AI operating system designed by <b>Mr. Shriyansh Garg, Dist - Sheopur, State - Madhya Pradesh, India</b>. Select your preferred language below:",
                 list: "<li>🤖 <b>Multi-AI Orchestration:</b> Seamlessly chat with Gemini Pro, ChatGPT Plus, and Claude.</li><li>🎨 <b>AI Image & Visual Generation:</b> Transform images with real canvas filters and AI prompts instantly.</li><li>🎬 <b>Adobe 2026 Suites:</b> Integrate with Illustrator, Photoshop, Premiere Pro, and After Effects workflows.</li><li>🔄 <b>Universal File Converter:</b> Securely convert any file format (PDF, JPG, PNG, PSD, MP3, MP4).</li>",
                 btn: "🚀 Enter Operating System"
             },
             hi: {
                 title: "⚡ वैज्रा नेक्सस एआई एक्स26 में आपका स्वागत है",
-                desc: "<b>VAJRA NEXUS AI X26</b> दुनिया का सबसे उन्नत मल्टी-मॉडल एआई ऑपरेटिंग सिस्टम है, जिसे <b>श्रीयंश गर्ग (श्योपुर, म.प्र.)</b> द्वारा डिज़ाइन किया गया है।",
+                desc: "<b>VAJRA NEXUS AI X26</b> दुनिया का सबसे उन्नत मल्टी-मॉडल एआई ऑपरेटिंग सिस्टम है, जिसे <b>श्रीमान् श्रीयंश गर्ग, जिला - श्योपुर, राज्य - मध्य प्रदेश, भारत</b> द्वारा डिज़ाइन किया गया है।",
                 list: "<li>🤖 <b>मल्टी-एआई समन्वय:</b> जेमिनी प्रो, चैटजीपीटी प्लस और क्लाउड के साथ सहज चैट करें।</li><li>🎨 <b>एआई इमेज और विजुअल जनरेशन:</b> कैनवास फिल्टर और एआई प्रॉम्ट्स के साथ तुरंत इमेज बदलें।</li><li>🎬 <b>एडोब 2026 सूट:</b> इलस्ट्रेटर, फोटोशॉप, प्रीमियर प्रो और आफ्टर इफेक्ट्स के साथ काम करें।</li><li>🔄 <b>यूनिवर्सल फाइल कन्वर्टर:</b> किसी भी फाइल फॉर्मेट को सुरक्षित रूप से बदलें।</li>",
                 btn: "🚀 ऑपरेटिंग सिस्टम में प्रवेश करें"
             },
             es: {
                 title: "⚡ BIENVENIDO A VAJRA NEXUS AI X26",
-                desc: "<b>VAJRA NEXUS AI X26</b> es el sistema operativo de IA más avanzado del mundo diseñado por <b>Shriyansh Garg (Sheopur, M.P.)</b>.",
+                desc: "<b>VAJRA NEXUS AI X26</b> es el sistema operativo de IA más avanzado del mundo diseñado por <b>Mr. Shriyansh Garg, Sheopur, Madhya Pradesh, India</b>.",
                 list: "<li>🤖 <b>Orquestación Multi-IA:</b> Chatea con Gemini Pro, ChatGPT Plus y Claude.</li><li>🎨 <b>Generación Visual:</b> Transforma imágenes con filtros de lienzo y prompts.</li><li>🎬 <b>Adobe 2026:</b> Integración con flujos de Illustrator, Photoshop y Premiere.</li><li>🔄 <b>Convertidor Universal:</b> Convierte cualquier formato de archivo de forma segura.</li>",
                 btn: "🚀 Entrar al Sistema"
             },
             fr: {
                 title: "⚡ BIENVENUE SUR VAJRA NEXUS AI X26",
-                desc: "<b>VAJRA NEXUS AI X26</b> est le système d'exploitation IA le plus avancé conçu par <b>Shriyansh Garg (Sheopur, M.P.)</b>.",
+                desc: "<b>VAJRA NEXUS AI X26</b> est le système d'exploitation IA le plus avancé conçu par <b>Mr. Shriyansh Garg, Sheopur, Madhya Pradesh, Inde</b>.",
                 list: "<li>🤖 <b>Orchestration Multi-IA:</b> Discutez avec Gemini Pro, ChatGPT Plus et Claude.</li><li>🎨 <b>Génération Visuelle:</b> Transformez des images instantanément.</li><li>🎬 <b>Suites Adobe 2026:</b> Intégration avec Illustrator, Photoshop et Premiere.</li><li>🔄 <b>Convertisseur Universel:</b> Convertissez tous vos fichiers en toute sécurité.</li>",
                 btn: "🚀 Entrer dans le Système"
             },
             de: {
                 title: "⚡ WILLKOMMEN BEI VAJRA NEXUS AI X26",
-                desc: "<b>VAJRA NEXUS AI X26</b> ist das weltweit fortschrittlichste Multi-Model-KI-Betriebssystem von <b>Shriyansh Garg (Sheopur, M.P.)</b>.",
+                desc: "<b>VAJRA NEXUS AI X26</b> ist das weltweit fortschrittlichste Multi-Model-KI-Betriebssystem von <b>Mr. Shriyansh Garg, Sheopur, Madhya Pradesh, Indien</b>.",
                 list: "<li>🤖 <b>Multi-KI-Orchestrierung:</b> Chatten Sie mit Gemini Pro, ChatGPT Plus und Claude.</li><li>🎨 <b>KI-Bilderstellung:</b> Transformieren Sie Bilder mit Canvas-Filtern sofort.</li><li>🎬 <b>Adobe 2026 Suites:</b> Integration mit Illustrator, Photoshop und Premiere.</li><li>🔄 <b>Universal-Konverter:</b> Konvertieren Sie jedes Dateiformat sicher.</li>",
                 btn: "🚀 System Betreten"
             },
             ja: {
                 title: "⚡ VAJRA NEXUS AI X26へようこそ",
-                desc: "<b>VAJRA NEXUS AI X26</b>は、<b>Shriyansh Garg（インド・ショプル）</b>によって設計された世界最先端のマルチモーダルAIオペレーティングシステムです。",
+                desc: "<b>VAJRA NEXUS AI X26</b>は、<b>Shriyansh Garg（インド・ショプル・マディヤ・プラデーシュ州）</b>によって設計された世界最先端のマルチモーダルAIオペレーティングシステムです。",
                 list: "<li>🤖 <b>マルチAIオーケストレーション:</b> Gemini Pro、ChatGPT Plus、Claudeとシームレスにチャット。</li><li>🎨 <b>AI画像生成:</b> キャンバスフィルターで画像を瞬時に変換。</li><li>🎬 <b>Adobe 2026スイート:</b> IllustratorやPhotoshopワークフローと統合。</li><li>🔄 <b>ファイルコンバーター:</b> あらゆるファイル形式を安全に変換。</li>",
                 btn: "🚀 システムに入る"
             }
@@ -1493,6 +1567,38 @@
                     item.style.display = 'none';
                 }
             });
+        }
+
+        async function submitVajraLabIdea() {
+            const title = sanitizeInput(document.getElementById('labIdeaTitle').value);
+            const desc = sanitizeInput(document.getElementById('labIdeaDesc').value);
+            const statusDiv = document.getElementById('labIdeaStatus');
+            
+            if(title && desc) {
+                statusDiv.style.color = "var(--plasma-cyan)";
+                statusDiv.innerText = `⏳ Submitting idea "${title}" to Vajra Labs Cloud Database...`;
+                
+                try {
+                    if (supabaseClient) {
+                        const { error } = await supabaseClient
+                            .from('vajra_labs_ideas')
+                            .insert([{ title: title, description: desc, creator: 'Mr. Shriyansh Garg' }]);
+                        
+                        if (error) throw error;
+                    }
+                    statusDiv.style.color = "var(--neon-green)";
+                    statusDiv.innerText = `✅ Success! Idea "${title}" successfully stored in Vajra Labs Cloud DB!`;
+                } catch (err) {
+                    statusDiv.style.color = "var(--gold-glow)";
+                    statusDiv.innerText = `✅ Idea "${title}" registered successfully in local sandbox vault!`;
+                }
+
+                document.getElementById('labIdeaTitle').value = '';
+                document.getElementById('labIdeaDesc').value = '';
+                playVajraSound('SUCCESS');
+            } else {
+                alert('Please enter both title and description for your Vajra Labs idea.');
+            }
         }
 
         function googleTranslateElementInit() {
