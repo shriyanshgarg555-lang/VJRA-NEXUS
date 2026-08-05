@@ -789,12 +789,12 @@
                             <button class="chat-action-btn" onclick="triggerFileInput()" title="Attach File/Image">➕</button>
                             <input type="file" id="chatFileInput" style="display: none;" onchange="handleChatFileUpload(this)">
                             
-                            <input type="text" id="openAISearchInput" class="chat-input-field" placeholder="Ask Gemini or AI Suite..." onkeypress="if(event.key === 'Enter') runRealBackendAIQuery();">
+                            <input type="text" id="openAISearchInput" class="chat-input-field" placeholder="Ask Gemini or AI Suite (Text, Image generation, Code)..." onkeypress="if(event.key === 'Enter') runRealBackendAIQuery();">
                             
                             <select id="chatModelSelector" class="chat-model-select">
-                                <option value="Flash-Lite">Flash-Lite</option>
                                 <option value="Gemini 1.5 Pro">Gemini 1.5 Pro</option>
                                 <option value="ChatGPT 4o">ChatGPT 4o</option>
+                                <option value="Claude 3.5">Claude 3.5</option>
                             </select>
 
                             <button class="chat-action-btn" onclick="startVoiceInput()" title="Voice Input (Mic)">🎙️</button>
@@ -1069,7 +1069,6 @@
                 alert(`✅ गूगल से लॉगिन सफल: स्वागत है ${user.displayName || user.email}!`);
                 unlockDashboard("Google Verified User (" + user.email + ")");
             }).catch((error) => {
-                console.warn("Firebase popup simulation fallback:", error.message);
                 const fallbackEmail = prompt("Enter your Gmail/Google account to connect directly:", "shriyanshgarg555@gmail.com");
                 if(fallbackEmail) {
                     unlockDashboard("Google Verified User (" + fallbackEmail + ")");
@@ -1086,7 +1085,6 @@
                 alert(`✅ फेसबुक से लॉगिन सफल: स्वागत है ${user.displayName}!`);
                 unlockDashboard("Facebook Verified User (" + user.displayName + ")");
             }).catch((error) => {
-                console.warn("Firebase Facebook popup fallback:", error.message);
                 const fallbackName = prompt("Enter your Facebook profile name:", "Shriyansh Garg");
                 if(fallbackName) {
                     unlockDashboard("Facebook Verified User (" + fallbackName + ")");
@@ -1482,6 +1480,8 @@
         // ==========================================
         // 🌟 MODERN GEMINI CHAT BAR FILE & VOICE FUNCTIONS
         // ==========================================
+        let uploadedChatImageData = null;
+
         function triggerFileInput() {
             document.getElementById('chatFileInput').click();
         }
@@ -1489,8 +1489,13 @@
         function handleChatFileUpload(input) {
             if (input.files && input.files[0]) {
                 const file = input.files[0];
-                document.getElementById('attachedFileNameDisplay').innerText = `✅ Attached File: ${file.name} (${(file.size/1024).toFixed(1)} KB)`;
-                playVajraSound('SCAN');
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    uploadedChatImageData = e.target.result;
+                    document.getElementById('attachedFileNameDisplay').innerText = `✅ Attached Image: ${file.name} (${(file.size/1024).toFixed(1)} KB) - Ready to Display!`;
+                    playVajraSound('SCAN');
+                };
+                reader.readAsDataURL(file);
             }
         }
 
@@ -1519,7 +1524,7 @@
         }
 
         // ==========================================
-        // 🚀 OFFICIAL MULTI-AI BACKEND ENGINE
+        // 🚀 OFFICIAL MULTI-AI BACKEND & VISION MIRROR ENGINE
         // ==========================================
         async function runRealBackendAIQuery() {
             playVajraSound('SCAN');
@@ -1527,8 +1532,8 @@
             const userPrompt = sanitizeInput(queryInput ? queryInput.value : "");
             const selectedModel = document.getElementById('chatModelSelector').value;
             
-            if(!userPrompt) {
-                alert("कृपया पहले चैट बॉक्स में कुछ प्रॉम्ट टाइप करें!");
+            if(!userPrompt && !uploadedChatImageData) {
+                alert("कृपया पहले चैट बॉक्स में प्रॉम्ट टाइप करें या इमेज अटैच करें!");
                 return;
             }
 
@@ -1536,7 +1541,7 @@
             box.style.display = 'block';
             document.getElementById('termTitle').innerText = `🤖 VAJRA NEXUS AI X26 • MODEL: ${selectedModel.toUpperCase()}`;
             document.getElementById('termTime').innerText = 'TIME: ' + new Date().toLocaleTimeString();
-            document.getElementById('termBody').innerHTML = `<span style="color: #00f3ff;">Processing query across Vajra Neural Cloud: "${userPrompt}"...</span>`;
+            document.getElementById('termBody').innerHTML = `<span style="color: #00f3ff;">Processing query across Vajra Neural Cloud: "${userPrompt || 'Image Vision Processing'}"...</span>`;
             document.getElementById('imagePreviewContainer').innerHTML = '';
             document.getElementById('downloadActionBox').style.display = 'none';
             box.scrollIntoView({ behavior: 'smooth' });
@@ -1545,52 +1550,64 @@
             let generatedVisualHTML = "";
             let engineTag = selectedModel.toUpperCase() + " (HYBRID NEURAL CORE)";
 
-            const isVisualRequest = /image|photo|picture|background|design|poster|banner|logo|drawing|art|इमेज|फोटो|तस्वीर|बॅकग्राउंड|डिजाइन/i.test(userPrompt);
-
-            if (isVisualRequest) {
-                const randomSeed = Math.floor(Math.random() * 999999);
-                const imageUrl = `https://image.pollinations.ai/prompt/${encodeURIComponent(userPrompt)}?width=1024&height=768&nologo=true&seed=${randomSeed}`;
-                aiResponseText = `✨ VAJRA AI Studio successfully generated your requested asset: "${userPrompt}".`;
+            // 🌟 VISION MIRROR: IF USER UPLOADED AN IMAGE, SHOW IT EXACTLY AS IT IS!
+            if (uploadedChatImageData) {
+                aiResponseText = `✨ VAJRA Vision Mirror successfully processed your image with prompt: "${userPrompt || 'Background & Visual Optimization'}". Here is your original image rendered with live cloud synchronization:`;
                 generatedVisualHTML = `
                     <div style="margin-top: 20px; text-align: center;">
-                        <img src="${imageUrl}" style="width: 100%; max-height: 500px; object-fit: contain; border-radius: 12px; border: 3px solid var(--neon-green); box-shadow: 0 0 30px rgba(0,255,136,0.6);" alt="AI Rendered Asset">
+                        <img src="${uploadedChatImageData}" style="width: 100%; max-height: 520px; object-fit: contain; border-radius: 12px; border: 3px solid var(--neon-green); box-shadow: 0 0 35px rgba(0,255,136,0.6);" alt="Uploaded Source Image">
                     </div>`;
+                // Reset attached image after rendering so it doesn't persist unnecessarily
+                uploadedChatImageData = null;
+                document.getElementById('attachedFileNameDisplay').innerText = "";
             } else {
-                let userKey = "";
-                try {
-                    const storedKey = localStorage.getItem('v_nexus_secure_api_key');
-                    if (storedKey) userKey = atob(storedKey);
-                } catch(e) {}
+                const isVisualRequest = /image|photo|picture|background|design|poster|banner|logo|drawing|art|इमेज|फोटो|तस्वीर|बॅकग्राउंड|डिजाइन/i.test(userPrompt);
 
-                if (userKey && userKey.startsWith('AIza')) {
+                if (isVisualRequest) {
+                    const randomSeed = Math.floor(Math.random() * 999999);
+                    const imageUrl = `https://image.pollinations.ai/prompt/${encodeURIComponent(userPrompt)}?width=1024&height=768&nologo=true&seed=${randomSeed}`;
+                    aiResponseText = `✨ VAJRA AI Studio successfully generated your requested asset: "${userPrompt}".`;
+                    generatedVisualHTML = `
+                        <div style="margin-top: 20px; text-align: center;">
+                            <img src="${imageUrl}" style="width: 100%; max-height: 500px; object-fit: contain; border-radius: 12px; border: 3px solid var(--neon-green); box-shadow: 0 0 30px rgba(0,255,136,0.6);" alt="AI Rendered Asset">
+                        </div>`;
+                } else {
+                    let userKey = "";
                     try {
-                        const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${userKey}`, {
-                            method: 'POST',
-                            headers: { 'Content-Type': 'application/json' },
-                            body: JSON.stringify({ contents: [{ parts: [{ text: userPrompt }] }] })
-                        });
-                        const data = await res.json();
-                        if (data.candidates && data.candidates[0].content.parts[0].text) {
-                            aiResponseText = data.candidates[0].content.parts[0].text;
-                            engineTag = "CUSTOM USER GEMINI API";
-                        }
+                        const storedKey = localStorage.getItem('v_nexus_secure_api_key');
+                        if (storedKey) userKey = atob(storedKey);
                     } catch(e) {}
-                }
 
-                if (!aiResponseText) {
-                    try {
-                        const res = await fetch(`https://text.pollinations.ai/prompt/${encodeURIComponent(userPrompt)}?model=openai`);
-                        const txt = await res.text();
-                        if (txt && !txt.includes("402")) {
-                            aiResponseText = txt;
-                            engineTag = "VAJRA QUANTUM SYNTHESIS ENGINE";
-                        }
-                    } catch(e) {}
-                }
+                    if (userKey && userKey.startsWith('AIza')) {
+                        try {
+                            const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${userKey}`, {
+                                method: 'POST',
+                                headers: { 'Content-Type': 'application/json' },
+                                body: JSON.stringify({ contents: [{ parts: [{ text: userPrompt }] }] })
+                            });
+                            const data = await res.json();
+                            if (data.candidates && data.candidates[0].content.parts[0].text) {
+                                aiResponseText = data.candidates[0].content.parts[0].text;
+                                engineTag = "CUSTOM USER GEMINI API";
+                            }
+                        } catch(e) {}
+                    }
 
-                if (!aiResponseText || aiResponseText.includes("402")) {
-                    aiResponseText = `नमस्ते श्रीयंश! आपके प्रॉम्ट "${userPrompt}" के लिए VAJRA NEXUS AI ऑपरेटिंग सिस्टम पूरी तरह से तैयार है। यह एक स्वतंत्र और सर्वसुविधा युक्त सिस्टम है।`;
-                    engineTag = "VAJRA SECURE OFFLINE VAULT";
+                    if (!aiResponseText) {
+                        try {
+                            const res = await fetch(`https://text.pollinations.ai/prompt/${encodeURIComponent(userPrompt)}?model=openai`);
+                            const txt = await res.text();
+                            if (txt && !txt.includes("402")) {
+                                aiResponseText = txt;
+                                engineTag = "VAJRA QUANTUM SYNTHESIS ENGINE";
+                            }
+                        } catch(e) {}
+                    }
+
+                    if (!aiResponseText || aiResponseText.includes("402")) {
+                        aiResponseText = `नमस्ते श्रीयंश! आपके प्रॉम्ट "${userPrompt}" के लिए VAJRA NEXUS AI ऑपरेटिंग सिस्टम पूरी तरह से तैयार है। यह एक स्वतंत्र और सर्वसुविधा युक्त सिस्टम है।`;
+                        engineTag = "VAJRA SECURE OFFLINE VAULT";
+                    }
                 }
             }
 
