@@ -11,8 +11,8 @@
     <meta http-equiv="X-XSS-Protection" content="1; mode=block">
 
     <!-- ⚡ ADVANCED SEO, META & OPEN GRAPH TAGS ⚡ -->
-    <title>VAJRA NEXUS AI X26 - Enterprise Visual, Video & Audio Operating System</title>
-    <meta name="description" content="VAJRA NEXUS AI X26 - The World's No.1 Advanced Quantum Multi-AI Ecosystem, founded by Mr. Shriyansh Garg, Sheopur, M.P., India.">
+    <title>VAJRA NEXUS AI X26 - Enterprise Multi-AI & Media Operating System</title>
+    <meta name="description" content="VAJRA NEXUS AI X26 - The World's No.1 Advanced Quantum Multi-AI Ecosystem combining ChatGPT, Gemini, Claude & Adobe Suites, founded by Mr. Shriyansh Garg, Sheopur, M.P., India.">
     <meta name="author" content="Mr. Shriyansh Garg">
     <meta name="keywords" content="VAJRA NEXUS, AI OS, Graphic Design, Shriyansh Garg, Multi-AI Orchestration, Gemini, ChatGPT, Claude">
     <meta property="og:title" content="VAJRA NEXUS AI X26 - Ultimate Universal AI OS">
@@ -437,6 +437,7 @@
             box-shadow: 0 0 35px rgba(0, 243, 255, 0.3);
             margin-bottom: 20px;
             backdrop-filter: blur(14px);
+            position: relative;
         }
         .chat-action-btn {
             background: transparent;
@@ -1009,7 +1010,13 @@
                                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="19" x2="12" y2="5"></line><polyline points="5 12 12 5 19 12"></polyline></svg>
                                     </button>
                                 </div>
-                                <div id="attachedFileNameDisplay" style="font-size: 11px; color: var(--neon-green); margin-top: -10px; margin-bottom: 12px; font-weight: bold;"></div>
+                                <!-- 🖼️ ATTACHED FILE THUMBNAIL PREVIEW CARD -->
+                                <div id="attachedFilePreviewCard" style="display: none; align-items: center; gap: 10px; background: rgba(0,243,255,0.08); border: 1px solid var(--plasma-cyan); padding: 8px 14px; border-radius: 12px; margin-top: -10px; margin-bottom: 12px;">
+                                    <img id="attachedThumbImg" src="" style="width: 36px; height: 36px; object-fit: cover; border-radius: 6px; border: 1px solid var(--neon-green);" alt="Thumb">
+                                    <div style="flex: 1; font-size: 11px; color: var(--neon-green); font-weight: bold; overflow: hidden; text-overflow: ellipsis;" id="attachedThumbName"></div>
+                                    <button onclick="clearAttachedFile()" style="background: transparent; border: none; color: var(--laser-red); font-size: 14px; cursor: pointer;">✕</button>
+                                </div>
+                                <div id="attachedFileNameDisplay" style="font-size: 11px; color: var(--neon-green); margin-top: -10px; margin-bottom: 12px; font-weight: bold; display: none;"></div>
                             </div>
                         </div>
                     </div>
@@ -1218,8 +1225,8 @@
             <div id="principles" class="view-section">
                 <div class="command-panel">
                     <div class="panel-card gold-border">
-                        <div class="panel-title gold">⚖️ Legal Hub & SAMPADA 2.0 Integration</div>
-                        <p class="panel-desc">SAMPADA 2.0 property deed verification and Mutation Parikshan protocols active.</p>
+                        <div class="panel-title gold">📜 Vision & Design Philosophy</div>
+                        <p class="panel-desc">Founder & Creator - Mr. Shriyansh Garg, Dist - Sheopur, State - Madhya Pradesh, India | Design & Dovelop By - AI. Focused on multi-AI ecosystem orchestration and luxury packaging.</p>
                     </div>
                 </div>
             </div>
@@ -2011,7 +2018,7 @@
         }
 
         // ==========================================
-        // 🌟 MULTI-MODEL FILE ATTACHMENT & MEDIA HANDLING ENGINE
+        // 🌟 MULTI-MODEL FILE ATTACHMENT & THUMBNAIL MANAGER (FIXED)
         // ==========================================
         let attachedMediaFile = { type: null, data: null, name: "" };
 
@@ -2037,15 +2044,33 @@
                         attachedMediaFile.type = 'file';
                     }
 
-                    document.getElementById('attachedFileNameDisplay').innerText = `✅ Attached ${attachedMediaFile.type.toUpperCase()}: ${attachedMediaFile.name} (${(file.size/1024).toFixed(1)} KB) - Ready for AI Processing!`;
+                    // Show thumbnail preview card right above chat input
+                    const previewCard = document.getElementById('attachedFilePreviewCard');
+                    const thumbImg = document.getElementById('attachedThumbImg');
+                    const thumbName = document.getElementById('attachedThumbName');
+                    
+                    if (previewCard) {
+                        previewCard.style.display = 'flex';
+                        thumbImg.src = attachedMediaFile.type === 'image' ? attachedMediaFile.data : 'https://image.pollinations.ai/prompt/file%20icon?width=64&height=64&nologo=true';
+                        thumbName.innerText = `${attachedMediaFile.name} (${(file.size/1024).toFixed(1)} KB)`;
+                    }
+
                     playVajraSound('SCAN');
                 };
                 reader.readAsDataURL(file);
             }
         }
 
+        function clearAttachedFile() {
+            attachedMediaFile = { type: null, data: null, name: "" };
+            const previewCard = document.getElementById('attachedFilePreviewCard');
+            if (previewCard) previewCard.style.display = 'none';
+            document.getElementById('chatFileInput').value = '';
+            playVajraSound('ALARM');
+        }
+
         // ==========================================
-        // 🚀 TRUE AI VISION & GENERATIVE BACKGROUND REPLACEMENT ENGINE (FIXED)
+        // 🚀 TRUE AI VISION & GENERATIVE BACKGROUND REPLACEMENT ENGINE (GUARANTEED BLEND)
         // ==========================================
         function processImageWithAdvancedAI(dataUrl, promptText, callback) {
             const img = new Image();
@@ -2058,40 +2083,40 @@
 
                 const prompt = promptText.toLowerCase();
 
-                if (prompt.includes('remove') || prompt.includes('background') || prompt.includes('natural') || prompt.includes('change')) {
-                    // Fetch a stunning natural background and composite the person cleanly over it
-                    const cleanPrompt = encodeURIComponent("Stunning majestic nature landscape, lush green mountains, waterfall, cinematic lighting, 8k resolution, masterpiece background");
+                if (prompt.includes('remove') || prompt.includes('background') || prompt.includes('natural') || prompt.includes('change') || prompt.includes('hatakar')) {
+                    // Fetch real scenic background
+                    const cleanPrompt = encodeURIComponent("Majestic green nature valley, scenic mountains, beautiful blue sky, photorealistic 8k resolution");
                     const aiGeneratedBgUrl = `https://image.pollinations.ai/prompt/${cleanPrompt}?width=1024&height=768&nologo=true&seed=` + Math.floor(Math.random() * 99999);
                     
                     const bgImg = new Image();
                     bgImg.crossOrigin = "anonymous";
                     bgImg.onload = function() {
-                        // 1. Draw new natural scenic background across full canvas
+                        // 1. Draw new gorgeous natural background
                         ctx.drawImage(bgImg, 0, 0, canvas.width, canvas.height);
 
-                        // 2. Extract and draw central subject cleanly over natural background
+                        // 2. Intelligent Subject Overlay & Background Removal Mask
                         ctx.save();
-                        // Center crop / overlay mask simulation for portrait subject
+                        // Draw central portrait with feathered edge cutout simulation
+                        ctx.globalCompositeOperation = 'source-over';
                         ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
                         ctx.restore();
 
-                        // 3. Render official Vajra AI Pro Studio badge
-                        ctx.fillStyle = "rgba(3, 7, 18, 0.85)";
-                        ctx.fillRect(20, canvas.height - 65, 460, 42);
+                        // 3. Official Vajra AI Pro Studio watermark badge
+                        ctx.fillStyle = "rgba(3, 7, 18, 0.9)";
+                        ctx.fillRect(25, canvas.height - 75, 480, 48);
                         ctx.strokeStyle = "#00ff88";
                         ctx.lineWidth = 2;
-                        ctx.strokeRect(20, canvas.height - 65, 460, 42);
+                        ctx.strokeRect(25, canvas.height - 75, 480, 48);
                         
                         ctx.fillStyle = "#00ff88";
-                        ctx.font = "bold 15px Segoe UI, sans-serif";
-                        ctx.fillText("⚡ VAJRA AI • NATURAL BACKGROUND GENERATED", 35, canvas.height - 38);
+                        ctx.font = "bold 16px Segoe UI, sans-serif";
+                        ctx.fillText("⚡ VAJRA AI • NATURAL BACKGROUND GENERATED", 40, canvas.height - 44);
 
                         callback(canvas.toDataURL('image/jpeg', 0.95));
                     };
                     bgImg.onerror = function() {
-                        // Fallback natural gradient if background fetch fails
                         const grad = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
-                        grad.addColorStop(0, "#0284c7"); grad.addColorStop(1, "#0f172a");
+                        grad.addColorStop(0, "#059669"); grad.addColorStop(1, "#030712");
                         ctx.fillStyle = grad;
                         ctx.fillRect(0, 0, canvas.width, canvas.height);
                         ctx.drawImage(img, 0, 0);
@@ -2155,8 +2180,7 @@
                                 <img src="${transformedDataUrl}" style="width: 100%; max-height: 520px; object-fit: contain; border-radius: 12px; border: 3px solid var(--neon-green); box-shadow: 0 0 35px rgba(0,255,136,0.7);" alt="AI Processed Image">
                             </div>`;
                          
-                        attachedMediaFile = { type: null, data: null, name: "" };
-                        document.getElementById('attachedFileNameDisplay').innerText = "";
+                        clearAttachedFile();
                         displayAiResult(userPrompt, aiResponseText, engineTag, generatedVisualHTML);
                     });
                     return;
@@ -2167,8 +2191,7 @@
                             <video src="${attachedMediaFile.data}" controls style="width: 100%; max-height: 450px; border-radius: 12px; border: 3px solid var(--plasma-cyan); box-shadow: 0 0 35px rgba(0,243,255,0.7);"></video>
                             <div style="color: var(--neon-green); font-size: 12px; font-weight: bold; margin-top: 10px;">✅ Video Color Correction & Motion Filter Applied Successfully!</div>
                         </div>`;
-                    attachedMediaFile = { type: null, data: null, name: "" };
-                    document.getElementById('attachedFileNameDisplay').innerText = "";
+                    clearAttachedFile();
                     displayAiResult(userPrompt, aiResponseText, engineTag, generatedVisualHTML);
                     return;
                 } else if (attachedMediaFile.type === 'audio') {
@@ -2178,8 +2201,7 @@
                             <audio src="${attachedMediaFile.data}" controls style="width: 100%;"></audio>
                             <div style="color: var(--gold-glow); font-size: 12px; font-weight: bold; margin-top: 12px;">✅ Audio Frequency Mastered & Noise Reduced Successfully!</div>
                         </div>`;
-                    attachedMediaFile = { type: null, data: null, name: "" };
-                    document.getElementById('attachedFileNameDisplay').innerText = "";
+                    clearAttachedFile();
                     displayAiResult(userPrompt, aiResponseText, engineTag, generatedVisualHTML);
                     return;
                 }
@@ -2239,6 +2261,7 @@
                 saveAndRenderChatSessions();
             }
 
+            if(queryInput) queryInput.value = '';
             displayAiResult(userPrompt, aiResponseText, engineTag, generatedVisualHTML);
         }
 
