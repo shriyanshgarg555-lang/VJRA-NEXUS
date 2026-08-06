@@ -1698,7 +1698,7 @@
                     if (supabaseClient) {
                         const { error } = await supabaseClient
                             .from('vajra_labs_ideas')
-                            .insert([{ title: title, description: desc, creator: 'Mr. Shriyansh Garg' }]);
+                            .insert([{ title: title, description: desc, creator: 'Ecosystem Member' }]);
                          
                         if (error) throw error;
                     }
@@ -2441,13 +2441,13 @@
                         </div>
 
                         <div style="position: relative; z-index: 1;">
-                            <div style="color: #ffffff; font-size: 12px; font-weight: 600; letter-spacing: 3px; margin-bottom: 4px;">Developer Ecosystem • VAJRA NEXUS AI X26</div>
-                            <div style="color: #94a3b8; font-size: 10px; letter-spacing: 1.5px;">Design & Orchestration By: AI Engine</div>
+                            <div style="color: #ffffff; font-size: 12px; font-weight: 600; letter-spacing: 3px; margin-bottom: 4px;">Founder & Creator: Shriyansh Garg, Sheopur, Madhya Pradesh</div>
+                            <div style="color: #94a3b8; font-size: 10px; letter-spacing: 1.5px;">Design & Dovelop By: AI • VAJRA NEXUS AI X26</div>
                         </div>
                     </div>
                 </div>`;
 
-                lastGeneratedReport = `VAJRA NEXUS AI X26 - ADOBE & AI REPORT\nApp: ${adobeApp}\nTitle: ${rawTitle}\nPrompt: ${rawPrompt}\nStatus: Rendered Successfully`;
+                lastGeneratedReport = `VAJRA NEXUS AI X26 - ADOBE & AI REPORT\nApp: ${adobeApp}\nTitle: ${rawTitle}\nPrompt: ${rawPrompt}\nFounder: Shriyansh Garg, Sheopur, Madhya Pradesh\nStatus: Rendered Successfully`;
 
                 document.getElementById('termBody').innerHTML = `<span style="color: #00ff88;">[SUCCESS: ADOBE 2026 ASSET RENDERED]</span>`;
                 document.getElementById('imagePreviewContainer').innerHTML = visualDisplayHTML;
